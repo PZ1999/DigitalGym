@@ -5,40 +5,41 @@ import java.util.Date;
 
 public class LivePlan {
 
-    ArrayList<String> url_path,live_plan;
-    Date live_start_time;
-    public LivePlan()
-    {
+    private String live_url;
+    private Date live_start_Date;//null before book
+    private String personal_plan;
+
+    public LivePlan() {
+        setLive_url("initial url");
+        setLive_start_Date(null);
+        setPersonal_plan("initial text");
 
     }
-
-    public LivePlan(ArrayList<String> url_path, ArrayList<String> live_plan, Date live_start_time) {
-        this.url_path = url_path;
-        this.live_plan = live_plan;
-        this.live_start_time = live_start_time;
+    public String toString(){
+        return "use IO.printObject instead.";
     }
 
-    public ArrayList<String> getUrl_path() {
-        return url_path;
+    public String getLive_url() {
+        return live_url;
     }
 
-    public void setUrl_path(ArrayList<String> url_path) {
-        this.url_path = url_path;
+    public void setLive_url(String live_url) {
+        this.live_url = live_url;
     }
 
-    public ArrayList<String> getLive_plan() {
-        return live_plan;
+    public Date getLive_start_Date() {
+        return live_start_Date;
     }
 
-    public void setLive_plan(ArrayList<String> live_plan) {
-        this.live_plan = live_plan;
+    public void setLive_start_Date(Date live_start_Date) {
+        this.live_start_Date = live_start_Date;
     }
 
-    public Date getLive_start_time() {
-        return live_start_time;
+    public String getPersonal_plan() {
+        return personal_plan;
     }
 
-    public void setLive_start_time(Date live_start_time) {
-        this.live_start_time = live_start_time;
+    public void setPersonal_plan(String personal_plan) {
+        this.personal_plan = personal_plan;
     }
 }

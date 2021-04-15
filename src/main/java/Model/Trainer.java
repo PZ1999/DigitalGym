@@ -2,51 +2,27 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
-public class Trainer {
-    String phone_number,password,name,state;
-    Set<Date> occupation;
-    ArrayList<String> my_course;
-    ArrayList<Live> my_live;
+public class Trainer extends User{
+    HashSet <Date> occupation;
+    ArrayList <String> my_course;
+    ArrayList <Live> my_live;
 
-    public String getPhone_number() {
-        return phone_number;
+    public Trainer(String phone_number, String password, String name) {
+        super(phone_number, password, name);
+        occupation = new HashSet<Date>();
+        my_course = new ArrayList<String>();
+        my_live = new ArrayList<Live>();
+
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Set<Date> getOccupation() {
+    public HashSet<Date> getOccupation() {
         return occupation;
     }
 
-    public void setOccupation(Set<Date> occupation) {
+    public void setOccupation(HashSet<Date> occupation) {
         this.occupation = occupation;
     }
 
@@ -65,4 +41,22 @@ public class Trainer {
     public void setMy_live(ArrayList<Live> my_live) {
         this.my_live = my_live;
     }
+
+    /**
+     * later --PZ
+     * @param course
+     */
+    public void addCourse(Course course){
+
+    }
+    public void deleteCourse(String course_id){
+
+    }
+    public void addLive(Live live){
+
+    }
+    public void deleteLive(){
+
+    }
+
 }
