@@ -22,6 +22,7 @@ public class Payment {
     public double origin_price;
     public double discount_price;
     public int premium_month;
+    public ClientMainSceneController mainSceneController;
 
     /**
      * this method will do the payment logic including price decision.
@@ -78,6 +79,7 @@ public class Payment {
             }
             case "Premium":{
                 Control.addPremiumToClient(client.getPhone_number(),premium_month);
+                mainSceneController.buildScene();
                 break;
             }
             default:{
@@ -86,5 +88,6 @@ public class Payment {
         }
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.close();
+
     }
 }

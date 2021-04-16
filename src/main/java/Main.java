@@ -28,9 +28,8 @@ public class Main extends Application {
     //
     public static void main(String[] args) throws IOException {
         //IO.main(args);
-        //launch(args);
-        Trainer p = (Trainer) read(new Trainer(),"22222222222");
-        System.out.println(p.toString()+"\n");
+        launch(args);
+
 
     }
 }

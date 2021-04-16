@@ -46,11 +46,20 @@ public class Client extends User{
     }
 
     public void prolongPremium(int month){
-        final long MONTH = 3600*1000*24*30;
+        final long MONTH = 3600L *1000*24*30;
         if(!checkPremium()){//expire
-            premium_end_date = new Date((new Date()).getTime()+MONTH*month);
+            System.out.println("not premium"+month);
+
+            premium_end_date = new Date(((new Date()).getTime()+MONTH*month));
+            //premium_end_date = new Date((new Date()).getTime());
+            System.out.println(premium_end_date);
         }
         else premium_end_date = new Date(premium_end_date.getTime()+MONTH*month);
+        updateRank();
+    }
+    public void updateRank(){
+        if(!checkPremium()) rank = 0;
+        else rank=1;
     }
 
     /**
@@ -58,6 +67,8 @@ public class Client extends User{
      * @return TRUE for yes, False for not
      */
     public Boolean checkPremium(){
+        System.out.println(new Date());
+        System.out.println(premium_end_date);
         return (new Date()).compareTo(premium_end_date)!=1;//expire
     }
     /**

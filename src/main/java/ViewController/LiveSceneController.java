@@ -35,6 +35,7 @@ public class LiveSceneController {
     public Live live;//should be Live Session
     public Client client;
     public TextArea personalPlanTextArea;
+    public Label liveSessionNameLabel;
 
     @FXML
     public void initialize() {
@@ -68,7 +69,8 @@ public class LiveSceneController {
         controller.textForPlanInfo.setText(live.getInfo());
         int i=1;
         priceLabel.setText(live.getPrice()+"");
-        discountPriceLabel.setText(live.getPrice()*0.9+"");
+        discountPriceLabel.setText(live.getPrice()*(1-Policy.live_discount)+"");
+
 
         for(String plan : live.getPlan()){
             loader = new FXMLLoader();
@@ -84,7 +86,7 @@ public class LiveSceneController {
             tabPane.getTabs().add(tab);
         }
 
-
+        liveSessionNameLabel.setText(liveSessionNameLabel.getText()+live.getName());
         tabPane.getSelectionModel().selectedIndexProperty().addListener( (observable, oldValue, newValue) -> {
             final long HOUR = 3600*1000;
             int selectedIndex = newValue.intValue();
@@ -101,7 +103,7 @@ public class LiveSceneController {
             liveInfoText.setText(text);
             //where index of the first tab is 0, while that of the second tab is 1 and so on.
         });
-        Date selected_date = Date.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        //Date selected_date = Date.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         //need more...
     }
 
@@ -170,6 +172,7 @@ public class LiveSceneController {
         controller.itemType = "Live";
         controller.live = live;
         controller.client = client;
+        controller.buildScene();
 
         stage.show();
     }
