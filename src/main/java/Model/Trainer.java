@@ -60,7 +60,7 @@ public class Trainer extends User{
      */
     public void addLive(Live live) throws Exception {
         for(Live l : my_live){
-            if(live.getCourse_id().equals(live.getCourse_id())){
+            if(l.getCourse_id().equals(live.getCourse_id())){
                 if(l.getClient_id().equals(live.getClient_id())){
                     Exception e = new Exception("live already subscribed by this client");
                     throw e;

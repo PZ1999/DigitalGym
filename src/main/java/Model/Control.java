@@ -95,6 +95,8 @@ public class Control {
         client.addLive(live);
         Trainer trainer = (Trainer)IO.read(new Trainer(),live.getTrainer_id());
         trainer.addLive(live);
+        IO.write(client,client.getPhone_number());
+        IO.write(trainer,trainer.getPhone_number());
     }
     public static void addPremiumToClient(String client_id,int premium_month) throws IOException {
         Client client = (Client)IO.read(new Client(),client_id);

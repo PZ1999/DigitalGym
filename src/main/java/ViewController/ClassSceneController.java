@@ -98,7 +98,20 @@ public class ClassSceneController {
     }
 
     public void Payment(ActionEvent actionEvent) throws Exception {
-        Control.addCourseToClient(client.getPhone_number(),course.getCourse_id());
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Payment.fxml"));
+        Parent PaymentParent = loader.load();
+        Scene PaymentScene = new Scene(PaymentParent);
+        stage.setScene(PaymentScene);
+        Payment controller = loader.getController();
+
+        controller.itemType = "Course";
+        controller.course = course;
+        controller.client = client;
+        controller.buildScene();
+
+        stage.show();
     }
 
 

@@ -28,10 +28,11 @@ public class GeneralCourse {
         setPrice(price);
         setPlan(new ArrayList<String>());
     }
-    public GeneralCourse()
-    {
+
+    public GeneralCourse() {
 
     }
+
     public void setPlan(ArrayList<String> plan) {
         this.plan = plan;
     }
