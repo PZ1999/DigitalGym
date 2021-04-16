@@ -374,7 +374,8 @@ public class ClientMainSceneController {
         loader.setLocation(getClass().getResource("/fxml/ChangePassword.fxml"));
         Parent changePassWordParent = loader.load();
         Scene changePassWordScene = new Scene(changePassWordParent);
-
+        ChangePassword controller = loader.getController();
+        controller.client_id = client.getPhone_number();
         stage.setScene(changePassWordScene);
 
         stage.show();

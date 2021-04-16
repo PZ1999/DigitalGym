@@ -58,6 +58,15 @@ public class Control {
 
     /**
      *
+     * @param client_id
+     * @param newPassword
+     */
+    public static void changeClientPassword(String client_id, String newPassword) {
+
+    }
+
+    /**
+     *
      * @param client client which requesting his courses
      * @return list of client's lives
      */
