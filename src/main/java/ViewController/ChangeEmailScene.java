@@ -40,9 +40,7 @@ public class ChangeEmailScene {
         Scene afterChangeEmailScene = new Scene(afterChangeEmailParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(afterChangeEmailScene);
-        client.setEmail(newemail.getText());
-        IO_for_Client io = new IO_for_Client();
-        io.Update(id,client);
+
         window.show();
     }
 

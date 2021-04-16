@@ -1,9 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Trainer extends User{
     HashSet <Date> occupation;
@@ -15,6 +12,10 @@ public class Trainer extends User{
         occupation = new HashSet<Date>();
         my_course = new ArrayList<String>();
         my_live = new ArrayList<Live>();
+
+    }
+
+    public Trainer() {
 
     }
 
@@ -52,11 +53,36 @@ public class Trainer extends User{
     public void deleteCourse(String course_id){
 
     }
-    public void addLive(Live live){
 
+    /**
+     * add a live subscribed by client to trainer
+     * @param live
+     */
+    public void addLive(Live live) throws Exception {
+        for(Live l : my_live){
+            if(live.getCourse_id().equals(live.getCourse_id())){
+                if(l.getClient_id().equals(live.getClient_id())){
+                    Exception e = new Exception("live already subscribed by this client");
+                    throw e;
+                }
+            }
+        }
+        my_live.add(live);
     }
     public void deleteLive(){
 
     }
 
+    @Override
+    public String toString() {
+        return "Trainer{" +
+                "occupation=" + occupation +
+                ", my_course=" + my_course +
+                ", my_live=" + my_live +
+                ", phone_number='" + phone_number + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

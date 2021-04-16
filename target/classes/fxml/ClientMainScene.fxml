@@ -202,12 +202,12 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_CENTER" hgap="10.0" layoutX="388.0" layoutY="443.0" prefHeight="29.0" prefWidth="313.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#changeEmailButtonCliecked" prefHeight="29.0" prefWidth="156.0" text="Change Email">
+                              <Button mnemonicParsing="false" onAction="#changeEmailButtonCliecked" prefHeight="29.0" prefWidth="310.0" text="Change Phone Number">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="29.0" prefWidth="147.0" text="Change Password">
+                              <Button mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="29.0" prefWidth="310.0" text="Change Password">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

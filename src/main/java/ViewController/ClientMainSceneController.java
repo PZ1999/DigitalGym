@@ -1,7 +1,7 @@
 package ViewController;
 
+
 import Model.Control;
-import Model.Live;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-
+import Model.*;
 import org.xml.sax.SAXException;
 
 
@@ -66,7 +66,7 @@ public class ClientMainSceneController {
     public Label myAccountUserNameLabel;
 
     public Model.Client client;
-    public String id;
+    //public String id; no need --PZ
 
 
     // public Label premiumLabel;
@@ -75,10 +75,11 @@ public class ClientMainSceneController {
         for(int i=8;i<=100;i++)
             myAccountAgeField.getItems().add(i);
         myAccountAgeField.setValue(20);
-        mainPageFilterType.getItems().add("Yoga");
-        mainPageFilterType.getItems().add("Swim");
-        myClassFilterType.getItems().add("Yoga");
-        myClassFilterType.getItems().add("Swim");
+
+        for(String s : Policy.sport_type){
+            mainPageFilterType.getItems().add(s);
+            myClassFilterType.getItems().add(s);
+        }
         mainPageFilterType.setValue(mainPageFilterType.getItems().get(0));
         myClassFilterType.setValue(myClassFilterType.getItems().get(0));
 
@@ -87,21 +88,17 @@ public class ClientMainSceneController {
         mainPageLiveButton.setToggleGroup(group1);
         mainPageLiveButton.setUserData("live");
         mainPageClassButton.setUserData("class");
-
-
-
         myClassClassButton.setToggleGroup(group2);
         myClassLiveButton.setToggleGroup(group2);
         myClassLiveButton.setUserData("Live");
         myClassClassButton.setUserData("class");
-
         group1.selectToggle(mainPageClassButton);
         group2.selectToggle(myClassClassButton);
 
 
         updateNotice();
 
-        discountRatio.setText("10%");
+        discountRatio.setText(""+Policy.premium_discount*100+"%");
         for(int i=1;i<=12;i++)
             monthChoiceBox.getItems().add(i);
     }
@@ -111,8 +108,9 @@ public class ClientMainSceneController {
         myAccountWeightField.setText(""+client.getWeight());
         myAccountHeightField.setText(""+client.getHeight());
         myAccountBMIField.setText(""+client.getBMI());
-        myAccountFattyField.setText(""+client.getFatty_Lipase());
+        myAccountFattyField.setText(""+client.getBody_fat_rate());
         updateClassesInMainPage();
+
         updateClassesInMyClass();
         myAccountUserNameLabel.setText(client.getName());
         premiumLabel.setText(client.getRank()==0?"Normal":"Premium");
@@ -164,7 +162,7 @@ public class ClientMainSceneController {
 
 
             ClassSceneController controller = loader.getController();
-            Model.Class course = (Model.Class)(((Node) actionEvent.getSource()).getUserData());
+            Course course = (Course)(((Node) actionEvent.getSource()).getUserData());
             controller.setCourse(course);
             controller.setClient(client);
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
@@ -179,7 +177,7 @@ public class ClientMainSceneController {
 
     EventHandler<ActionEvent> liveButtonClieked = new EventHandler<ActionEvent>() {
         /**
-         * this function change to the live page according to the class button clicked.
+         * this function change to the live page according to the live button clicked.
          * @param actionEvent
          */
         @Override
@@ -219,9 +217,8 @@ public class ClientMainSceneController {
      */
     public ArrayList<Button> getClassesButtonsForMainPage() throws ParserConfigurationException, SAXException, IOException {
         ArrayList<Button> buttons =new ArrayList<Button>();
-        Control controller = new Control();
-        ArrayList <Model.Class> classes = controller.ShowAllClasses();
-        for(Model.Class course :classes){
+        ArrayList <Course> classes = Control.getAllCourses();
+        for(Course course :classes){
             Button button = new Button();
             button.setPrefSize(160,160);
             //mainPageFlowPane.getChildren().add(button);
@@ -232,7 +229,7 @@ public class ClientMainSceneController {
                     new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent e) {
-                            mainPageOverviewText.setText(((Model.Class)button.getUserData()).getInfo());;
+                            mainPageOverviewText.setText(((Course)button.getUserData()).getInfo());;
                         }
                     });
 
@@ -254,9 +251,9 @@ public class ClientMainSceneController {
     public ArrayList<Button> getClassesButtonsForMyClass() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         ArrayList<Button> buttons =new ArrayList<Button>();
         Control controller = new Control();
-        ArrayList <Model.Class> classes = controller.showClientClasses(client.getId());//HERE
+        ArrayList <Course> classes = Control.getClientCourses(client);
         //System.out.println(classes.size());
-        for(Model.Class course :classes){
+        for(Course course :classes){
             Button button = new Button();
             button.setPrefSize(160,160);
             //mainPageFlowPane.getChildren().add(button);
@@ -267,7 +264,7 @@ public class ClientMainSceneController {
                     new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent e) {
-                            mainPageOverviewText.setText(((Model.Class)button.getUserData()).getInfo());;
+                            myClassOverviewText.setText(((Course)button.getUserData()).getInfo());;
                         }
                     });
 
@@ -289,7 +286,7 @@ public class ClientMainSceneController {
 
             ArrayList<Button> buttons =new ArrayList<Button>();
             Control controller = new Control();
-            ArrayList <Live> lives = controller.showClientLives(client.getId());
+            ArrayList <Live> lives = controller.getClientLives(client);
             for(Live live : lives){
                 Button button = new Button();
                 button.setPrefSize(160,160);
@@ -299,7 +296,8 @@ public class ClientMainSceneController {
                         new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent e) {
-                                mainPageOverviewText.setText(((Live)button.getUserData()).getInfo());;
+                                myClassOverviewText.setText(((Live)button.getUserData()).getInfo());
+
                             }
                         });
 
@@ -320,8 +318,8 @@ public class ClientMainSceneController {
      */
     public ArrayList<Button> getLiveButtonsForMainPage() throws ParserConfigurationException, SAXException, IOException {
         ArrayList<Button> buttons =new ArrayList<Button>();
-        Control controller = new Control();
-        ArrayList <Live> lives = controller.ShowAllLives();
+
+        ArrayList <Live> lives = Control.getAllLives();
         for(Live live : lives){
             Button button = new Button();
             button.setPrefSize(160,160);
@@ -364,7 +362,6 @@ public class ClientMainSceneController {
         stage.setScene(changeEmailScene);
         ChangeEmailScene controller = loader.getController();
         controller.client = client;
-        controller.id =id;
 
         stage.show();
     }
@@ -410,7 +407,7 @@ public class ClientMainSceneController {
 
     public void premierBuyClicked(ActionEvent actionEvent) throws IOException {
         Integer month = (Integer) (monthChoiceBox.getValue());
-        changeToPayment("Premier for "+month+" month",premierDiscountPriceLabel.getText());
+        Control.addPremiumToClient(client.getPhone_number(),month);
 
     }
     public void premierMonthSelected() throws IOException {
@@ -422,17 +419,7 @@ public class ClientMainSceneController {
         premierDiscountPriceLabel.setText(discountPrice+" $ ");
     }
 
-    public void changeToPayment(String item,String price) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Payment.fxml"));
-        Parent PaymentParent = loader.load();
-        Scene PaymentScene = new Scene(PaymentParent);
-        stage.setScene(PaymentScene);
-        Payment controller = loader.getController();
-        controller.buildScene(item,price);
-        stage.show();
-    }
+
 
 
 

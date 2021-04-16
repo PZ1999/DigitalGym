@@ -1,15 +1,15 @@
 {
-    "phone_number":"11111111111",
-    "password":"11111111111",
+    "phone_number":"22222222222",
+    "password":"22222222222",
     "name":"111",
     "state":"active",
-    "occupation":["2021-04-11 08:00:00"],
+    "occupation":[],
     "my_course":[
-        "0C000001"
+        "C001"
     ],
     "my_live":[
         {
-            "course_id":"0L000001",
+            "course_id":"L001",
             "name":"drink water",
             "trainer_id":"0T000001",
             "trainer":"zz",
@@ -40,7 +40,7 @@
                 "drink more hot water",
                 "drink more hot water"
             ],
-            "client_id":"18532164839",
+            "client_id":"11111111111",
             "live_plan":[
                 {
                     "live_url":"abababbabab",

@@ -27,6 +27,7 @@ public class ChangePassword {
 
 
     public void buttonClick(ActionEvent actionEvent) throws IOException {
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/SuccessScene.fxml"));
         Parent afterChangeEmailParent = loader.load();
@@ -36,3 +37,6 @@ public class ChangePassword {
         window.show();
     }
 }
+/**
+ *
+ */

@@ -27,7 +27,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="536.0" promptText="pick a date for your live session" />
+      <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="536.0" onAction="#bookDateChanged" promptText="pick a date for your live session" />
       <ChoiceBox fx:id="timePicker" layoutX="228.0" layoutY="536.0" prefHeight="23.0" prefWidth="186.0" />
       <Button fx:id="subscribeButton" layoutX="34.0" layoutY="141.0" mnemonicParsing="false" onAction="#subscribeButtonClicked" prefHeight="23.0" prefWidth="163.0" text="Subscribe ">
          <font>

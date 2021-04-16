@@ -1,4 +1,6 @@
+import Model.Client;
 import Model.IO;
+import Model.Trainer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
+import static Model.IO.read;
 
 
 public class Main extends Application {
@@ -22,5 +29,8 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         //IO.main(args);
         //launch(args);
+        Trainer p = (Trainer) read(new Trainer(),"22222222222");
+        System.out.println(p.toString()+"\n");
+
     }
 }
