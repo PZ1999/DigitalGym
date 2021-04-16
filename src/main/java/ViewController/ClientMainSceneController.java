@@ -66,6 +66,8 @@ public class ClientMainSceneController {
     public Label myAccountUserNameLabel;
 
     public Model.Client client;
+    public TextArea myAccountShowPlanTextArea;/////////////
+    public Button myAccountSaveButton;/////////
     //public String id; no need --PZ
 
 
@@ -385,6 +387,18 @@ public class ClientMainSceneController {
      * @param actionEvent
      */
     public void myAccountSaveButtonClicked(ActionEvent actionEvent) {
+        //read from user
+        client.setAge(myAccountAgeField.getSelectionModel().getSelectedIndex() + 8);////?
+        client.setWeight(Integer.parseInt(myAccountWeightField.getText()));
+        client.setHeight(Integer.parseInt(myAccountHeightField.getText()));
+
+        //client.cauculateBMIandBody_fat_rate();
+        // myAccountBMIField.setText(""+client.getBMI());
+        client.setBMI(Double.parseDouble(myAccountBMIField.getText()));
+        client.setBody_fat_rate(Double.parseDouble(myAccountFattyField.getText()));
+
+        client.generateGeneric_plan();
+        myAccountShowPlanTextArea.setText(client.getGeneric_plan());
 
     }
 

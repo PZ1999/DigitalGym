@@ -36,13 +36,30 @@ public class Client extends User{
      * need to be finished by WHY --PZ 4.14 2130
      */
     public void generateGeneric_plan(){
+        if(body_fat_rate<0.1){
+            if(BMI < 18.5) {
+                generic_plan = "Eat more food and do aerobics.";
+            }else if(BMI > 24){
+                generic_plan = "Make sure to have enough protein and calorie, and keep your regular exercise.";
+            }else{
+                generic_plan = "You can eat more protein and try more Anaerobic exercise to make your muscle stronger.";
+            }
 
+        }else if(body_fat_rate>0.35){
+            generic_plan = "Eat less fat and sugar and more vegetable. Try some aerobic in daily life.";
+        }else{
+            generic_plan = "You have standard figure, asking trainer for specific plan. ";
+        }
     }
     /**
      * need to be finished by WHY --PZ 4.14 2130
      */
     public void cauculateBMIandBody_fat_rate(){
+        BMI = weight/(height*height*0.0001);
 
+        // Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74
+
+        //body_fat_rate =  (yaowei * 0.74 - weight * 0.082 - 34.89) / weight
     }
 
     public void prolongPremium(int month){
