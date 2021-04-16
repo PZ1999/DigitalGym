@@ -25,6 +25,7 @@ public class IO{
 
     public static Object read(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
+        System.out.println(primary_key);
         //BufferedReader buffered_reader = new BufferedReader(new FileReader("src\\"+primary_key+".json"));
         String content= FileUtils.readFileToString(file,"UTF-8");
         Gson gson;

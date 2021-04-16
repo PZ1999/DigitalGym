@@ -5,6 +5,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import Model.*;
@@ -58,12 +59,26 @@ public class Control {
 
     /**
      *
-     * @param client_id
-     * @param newPassword
+     * @param client_id who wants to change his password
+     * @param newPassword is the new password which replaces original password
      */
-    public static void changeClientPassword(String client_id, String newPassword) {
-
+    public static void changeClientPassword(String client_id, String newPassword) throws Exception{
+        Client client = (Client)IO.read(new Client(),client_id);
+        client.setPassword(newPassword);
+        IO.write(client,client_id);
     }
+
+    /**
+     *
+     * @param client_id who wants to change his password
+     * @param newPhoneNumber is the new phone number which replaces original phone number
+     */
+    public static void changePhoneNumber(String client_id, String newPhoneNumber) throws Exception{
+        Client client = (Client)IO.read(new Client(),client_id);
+        String oldNumber = client.getPhone_number();
+        client.setPhone_number(newPhoneNumber);
+        IO.write(client,client_id);
+        changeFileName(new Client(), oldNumber, newPhoneNumber);
 
     /**
      *

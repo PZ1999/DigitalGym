@@ -30,10 +30,11 @@ public class ChangePassword {
     public Label errorLabel;
 
 
-    public void buttonClick(ActionEvent actionEvent) throws IOException {
-
-        if(!checkSamePassword()){
-            errorLabel.setText("");
+    public void buttonClick(ActionEvent actionEvent) throws Exception {
+        //It needs to be improved to determine D
+        if(!checkSamePassword()||newPasswordinput.getText()==""){
+            System.out.println("2333333333");
+            errorLabel.setText("Invalid Input!Please input again.");
             return ;
         }
 
