@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class IO{
     public static Object read(Object o, String primary_key) throws IOException {
@@ -71,6 +72,26 @@ public class IO{
     public static boolean Delete_Info(Object o, String primary_key) throws IOException {
         File file = new File("src\\target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
         return file.delete();
+    }
+    public static ArrayList<Live> showAllLive() throws IOException {
+        File file = new File("src\\target\\classes\\Data\\"+Live.class);
+        File[] fileName = file.listFiles();
+        ArrayList<Live> ans = new ArrayList<>();
+        for(int i=0;i<fileName.length;i++)
+        {
+            ans.add((Live) read(new Live(), fileName[i].getName()));
+        }
+        return  ans;
+    }
+    public static ArrayList<Course> showAllCourse() throws IOException {
+        File file = new File("src\\target\\classes\\Data\\"+Course.class);
+        File[] fileName = file.listFiles();
+        ArrayList<Course> ans = new ArrayList<>();
+        for(int i=0;i<fileName.length;i++)
+        {
+            ans.add((Course) read(new Course(), fileName[i].getName()));
+        }
+        return  ans;
     }
     public static void main(String[] args) throws IOException {
         Client p = (Client) read(new Client(),"1");

@@ -11,6 +11,11 @@ public class Course extends GeneralCourse{
         super(course_id, name, trainer_id, trainer, type, info, rank, price);
         setVideo_path(video_path);
     }
+
+    public Course() {
+
+    }
+
     public ArrayList<String> getVideo_path() {
         return video_path;
     }

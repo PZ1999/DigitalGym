@@ -31,7 +31,7 @@ public class ClassSceneController {
     public Label price;
     public Label nameLabel;
     public Client client;
-    public Model.Class course;
+
 
     public void setCourse(Model.Class course){
         this.course = course;

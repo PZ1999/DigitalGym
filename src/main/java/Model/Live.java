@@ -12,6 +12,10 @@ public class Live extends GeneralCourse{
         this.client_id = client_id;
     }
 
+    public Live()
+    {
+
+    }
     public ArrayList<LivePlan> getLive_plan() {
         return live_plan;
     }
