@@ -13,12 +13,11 @@ public class IO{
      *       CourseID: C001 C002  LiveID: L001 L002
      *       LivePlan : no use now
      *       PolicyID : policy
-     *
      */
     /**
      *
-     * @param o to show the class of object
-     * @param primary_key
+     * @param  o to show the class of object
+     * @param  primary_key
      * @return the object to search
      * @throws IOException
      */
@@ -44,14 +43,36 @@ public class IO{
         }
         return o;
     }
+
+    /**
+     *
+     * @param o
+     * @param primary_key
+     * @return  whether create file successfully
+     * @throws IOException
+     */
     public static boolean create(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
         return file.createNewFile();
     }
+
+    /**
+     *
+     * @param o
+     * @param primary_key
+     * @return whether delete file successfully
+     * @throws IOException
+     */
     public static boolean Delete_Info(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
         return file.delete();
     }
+
+    /**
+     *
+     * @return a arraylist contains all lives
+     * @throws IOException
+     */
     public static ArrayList<Live> showAllLive() throws IOException {
         File file = new File("target\\classes\\Data\\"+Live.class);
         File[] fileName = file.listFiles();
@@ -64,6 +85,12 @@ public class IO{
         }
         return  ans;
     }
+
+    /**
+     *
+     * @return a arraylist contains all courses
+     * @throws IOException
+     */
     public static ArrayList<Course> showAllCourse() throws IOException {
         File file = new File("target\\classes\\Data\\"+Course.class);
         File[] fileName = file.listFiles();
@@ -86,7 +113,12 @@ public class IO{
         return gson.toJson(o);
     }
 
-
+    /**
+     *
+     * @param o
+     * @param primary_key
+     * @return write object to string
+     */
     public static int  write(Object o, String primary_key)
     {
         try{
@@ -106,10 +138,21 @@ public class IO{
         }
         return 1;
     }
-    static {
 
+    /**
+     *
+     * @param o
+     * @param old_key
+     * @param new_key
+     * @return whether the filename has been successfully changed
+     */
+    public static boolean changeFileName(Object o, String old_key, String new_key)
+    {
+
+            File file1 = new File("target\\classes\\Data\\"+o.getClass()+"\\"+old_key+".json");
+            File file2 = new File("target\\classes\\Data\\"+o.getClass()+"\\"+new_key+".json");
+            return file1.renameTo(file2);
     }
 
-    public static void write(Client client) {
-    }
+
 }

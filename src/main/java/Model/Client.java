@@ -31,7 +31,6 @@ public class Client extends User{
     public Client() {
 
     }
-
     /**
      * need to be finished by WHY --PZ 4.14 2130
      */
@@ -61,7 +60,6 @@ public class Client extends User{
 
         body_fat_rate =  (64 * 0.74 - weight * 0.082 - 34.89) / weight;
     }
-
     public void prolongPremium(int month){
         final long MONTH = 3600L *1000*24*30;
         if(!checkPremium()){//expire

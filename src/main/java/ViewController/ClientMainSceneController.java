@@ -67,8 +67,7 @@ public class ClientMainSceneController {
     public ClientMainSceneController local_controller;
 
     public Model.Client client;
-    public TextArea myAccountShowPlanTextArea;/////////////
-    public Button myAccountSaveButton;/////////
+    public TextArea myAccountShowPlanTextArea;
     //public String id; no need --PZ
 
 
@@ -152,22 +151,6 @@ public class ClientMainSceneController {
 
         for(Button button:buttons)
             myClassFlowPane.getChildren().add(button);
-    }
-
-    public void updateMyAccountPage(){
-        //read from user
-        client.setAge((int)myAccountAgeField.getValue());////?SelectionModel().getSelectedIndex() + 8
-        client.setWeight(Integer.parseInt(myAccountWeightField.getText()));
-        client.setHeight(Integer.parseInt(myAccountHeightField.getText()));
-
-        client.cauculateBMIandBody_fat_rate();
-        myAccountBMIField.setText(""+client.getBMI());
-        myAccountFattyField.setText(""+client.getBody_fat_rate());
-        //client.setBMI(Double.parseDouble(myAccountBMIField.getText()));
-        //client.setBody_fat_rate(Double.parseDouble(myAccountFattyField.getText()));
-
-        client.generateGeneric_plan();
-        myAccountShowPlanTextArea.setText(client.getGeneric_plan());
     }
 
     EventHandler<ActionEvent> classButtonClicked = new EventHandler<ActionEvent>() {
@@ -414,17 +397,7 @@ public class ClientMainSceneController {
         stage.show();
     }
 
-    /**
-     * this method save changes of client's body information's changes, and generate generic plan
-     * @param actionEvent
-     */
-    public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
-        Control.updateMyAccountPage(client.getPhone_number(),(String)myAccountAgeField.getValue(),myAccountWeightField.getText(), myAccountHeightField.getText());
-        myAccountBMIField.setText(""+client.getBMI());
-        myAccountFattyField.setText(""+client.getBody_fat_rate());
-        myAccountShowPlanTextArea.setText(client.getGeneric_plan());
-        buildScene();
-    }
+
 
     /**
      * this method get what lessons and types user choose, and show them. It's in MainPage.
@@ -465,6 +438,11 @@ public class ClientMainSceneController {
         buildScene();
 
     }
+
+    /**
+     * show price of premium
+     * @throws IOException
+     */
     public void premierMonthSelected() throws IOException {
         Integer month = (Integer) (monthChoiceBox.getValue());
         //System.out.println(month);
@@ -472,5 +450,16 @@ public class ClientMainSceneController {
         double discountPrice = month * Policy.premium_price * (1-Policy.premium_discount);
         premierOriginalPriceLabel.setText(originPrice+" $ ");
         premierDiscountPriceLabel.setText(discountPrice+" $ ");
+    }
+    /**
+     * this method save changes of client's body information's changes, and generate generic plan
+     * @param actionEvent
+     */
+    public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
+        Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText());
+        myAccountBMIField.setText(""+client.getBMI());
+        myAccountFattyField.setText(""+client.getBody_fat_rate());
+        myAccountShowPlanTextArea.setText(client.getGeneric_plan());
+        buildScene();
     }
 }

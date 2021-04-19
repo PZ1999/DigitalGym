@@ -1,15 +1,155 @@
 {
-  "phone_number":"11111111111",
-  "password":"11111111111",
-  "name":"111",
-  "state":"active",
-  "rank":0,
-  "premium_end_date":"2020-4-11 08:56:00",
-  "height": 180,
-  "weight": 70,
-  "sex":"male",
-  "age":"20",
-  "generic_plan":"drink more hot water",
-  "my_course":[],
-  "my_live":[]
+  "rank": 0,
+  "premium_end_date": "2020-04-11 08:56:00",
+  "height": 180.0,
+  "weight": 70.0,
+  "BMI": 0.0,
+  "body_fat_rate": 0.0,
+  "sex": "male",
+  "age": 20,
+  "generic_plan": "drink more hot water",
+  "my_course": [
+    "C002"
+  ],
+  "my_live": [
+    {
+      "live_plan": [
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "absorbs",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        },
+        {
+          "live_url": "abababbabab",
+          "live_start_Date": null,
+          "personal_plan": "drink more hot water"
+        }
+      ],
+      "client_id": "11111111111",
+      "course_id": "L002",
+      "name": "drink water2",
+      "trainer_id": "22222222222",
+      "trainer": "zz",
+      "type": "Bike",
+      "info": "This is a L002",
+      "plan": [
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water",
+        "drink more hot water"
+      ],
+      "rank": 0,
+      "price": 100.0
+    }
+  ],
+  "phone_number": "11111111111",
+  "password": "11111111111",
+  "name": "111",
+  "state": "active"
 }
