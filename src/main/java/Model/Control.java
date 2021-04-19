@@ -167,6 +167,23 @@ public class Control {
 
     }
 
+    public static String checkLoginInfo(String phoneNumber, String password) throws IOException {
+        Client client = (Client)IO.read(new Client(),phoneNumber);
+
+        if(client!=null) {
+            if(client.password.equals(password))    return "Client";
+            else    return "PasswdFail";    //password not matched, three cases return one result
+        }
+        Manager manager = (Manager) IO.read(new Manager(), phoneNumber);
+        if(manager!=null){
+            if(manager.password.equals(password))   return "Manager";
+            else    return "PasswdFail";
+        }
+        Trainer trainer = (Trainer) IO.read(new Manager(), phoneNumber);
+        if(trainer.password.equals(password))   return "Trainer";
+        else    return "PasswdFail";
+    }
+
     /**
      *
      * @param client client which requesting his courses

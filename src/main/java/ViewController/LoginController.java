@@ -26,10 +26,8 @@ public class LoginController {
 
     public void loginButtionClicked(ActionEvent actionEvent) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 
-        String name = nameTextField.getText();
-        String password = passwordTextField.getText();
         Control con = new Control();
-       if(true){
+       if((Control.checkLoginInfo(nameTextField.getText(), passwordTextField.getText())).equals("Client")){
 
            FXMLLoader loader = new FXMLLoader();
            loader.setLocation(getClass().getResource("/fxml/ClientMainScene.fxml"));
@@ -39,7 +37,7 @@ public class LoginController {
            window.setScene(afterLoginScene);
            ClientMainSceneController controller = loader.getController();
            afterLoginScene.setUserData(controller);
-           controller.client = (Client)IO.read(new Client(),"11111111111");
+           controller.client = (Client)IO.read(new Client(),nameTextField.getText());
            controller.buildScene();
          //  controller.id = name;
            //System.out.println(controller.client.getName());
@@ -57,5 +55,15 @@ public class LoginController {
         window.setScene(afterRegisterScene);
         window.show();
 
+    }
+
+    public void forgetPasswordButtonClicked(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/ForgetPasswdScene.fxml"));
+        Parent forgetPasswdParent = loader.load();
+        Scene forgetPasswdScene = new Scene(forgetPasswdParent);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(forgetPasswdScene);
+        window.show();
     }
 }

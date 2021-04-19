@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ForgetPasswdScene">
+   <children>
+      <AnchorPane layoutX="73.0" layoutY="52.0" prefHeight="243.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="53.0" layoutY="42.0" text="Phone number" />
+            <TextField fx:id="phoneNumberTextField" layoutX="157.0" layoutY="38.0" />
+            <TextField fx:id="verifyCodeTextField" layoutX="157.0" layoutY="82.0" />
+            <TextField fx:id="newPasswordTextField" layoutX="157.0" layoutY="130.0" />
+            <TextField fx:id="passwordAgainTextField" layoutX="157.0" layoutY="179.0" />
+            <Label layoutX="72.0" layoutY="86.0" text="Verify Code" />
+            <Label layoutX="54.0" layoutY="134.0" text="New Password" />
+            <Label layoutX="47.0" layoutY="183.0" text="Password Again" />
+            <Button layoutX="344.0" layoutY="38.0" mnemonicParsing="false" text="Send Verify Code" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="273.0" layoutY="319.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" text="OK">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#goBackButtonClicked" prefHeight="36.0" prefWidth="85.0" text="Go back" />
+   </children>
+</AnchorPane>
