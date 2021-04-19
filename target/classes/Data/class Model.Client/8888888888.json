@@ -1,0 +1,17 @@
+{
+  "rank": 0,
+  "premium_end_date": "2021-04-18 10:59:16",
+  "height": 0,
+  "weight": 0,
+  "BMI": 0.0,
+  "body_fat_rate": 0.0,
+  "sex": "1",
+  "age": 0,
+  "generic_plan": "initial text",
+  "my_course": [],
+  "my_live": [],
+  "phone_number": "8888888888",
+  "password": "1234",
+  "name": "client1",
+  "state": "alive"
+}
