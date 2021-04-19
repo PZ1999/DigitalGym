@@ -1,13 +1,13 @@
 {
   "course_id":"C002",
-  "name":"drink hot water",
+  "name":"drink hot water2",
   "trainer_id":"22222222222",
   "trainer":"zz",
-  "type":"bike",
+  "type":"Bike",
   "state":"active",
   "info":"This is a C002",
-  "rank": 0,
-  "price":0.0,
+  "rank": 1,
+  "price":20.0,
   "plan":[
     "drink more hot water",
     "drink more hot water",

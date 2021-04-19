@@ -92,4 +92,20 @@ public class Control {
         client.prolongPremium(premium_month);
         IO.write(client,client_id);
     }
+    public static void updateMyAccountPage(String client_id, String clientAge, String clientWeight, String clientHeight) throws IOException {
+        Integer age = Integer.parseInt(clientAge);
+        Double weight = Double.parseDouble(clientWeight);
+        Double height = Double.parseDouble(clientHeight);
+
+
+        Client client = (Client)IO.read(new Client(),client_id);
+        client.setAge(age);
+        client.setWeight(weight);
+        client.setHeight(height);
+        //
+        client.cauculateBMIandBody_fat_rate();
+        client.generateGeneric_plan();
+        IO.write(client,client_id);
+
+    }
 }

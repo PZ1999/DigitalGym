@@ -13,7 +13,7 @@ public class Course extends GeneralCourse{
     }
 
     public Course() {
-
+        super();
     }
 
     public ArrayList<String> getVideo_path() {

@@ -97,11 +97,33 @@ public class ClassSceneController {
         controller.playVedio();
     }
 
-    public void Payment(ActionEvent actionEvent) throws Exception {
-        Control.addCourseToClient(client.getPhone_number(),course.getCourse_id());
+    public void subscribeButtionClicked(ActionEvent actionEvent) throws Exception {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Payment.fxml"));
+        Parent PaymentParent = loader.load();
+        Scene PaymentScene = new Scene(PaymentParent);
+        stage.setScene(PaymentScene);
+        Payment controller = loader.getController();
+
+        controller.itemType = "Course";
+        controller.course = course;
+        controller.client = client;
+        controller.buildScene();
+
+        stage.show();
     }
 
 
+    public void deleteButtonClicked(ActionEvent actionEvent) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
 
+        Control.deleteClientCourse(client.getPhone_number(),course.getCourse_id());
 
+        //back to previous page
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        ClientMainSceneController controller = (ClientMainSceneController) previousScene.getUserData();//get controller of previous scene
+        controller.updateClassesInMyClass();
+        controller.updateClassesInMainPage();
+        window.setScene(previousScene);
+    }
 }

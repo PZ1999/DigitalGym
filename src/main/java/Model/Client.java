@@ -7,8 +7,8 @@ public class Client extends User{
 
     private int rank;//0 for normal, 1 for premium
     private Date premium_end_date;
-    private int height;
-    private int weight;
+    private double height;
+    private double weight;
     private double BMI;
     private double body_fat_rate;
     private String sex;//Male,Female
@@ -57,17 +57,26 @@ public class Client extends User{
     public void cauculateBMIandBody_fat_rate(){
         BMI = weight/(height*height*0.0001);
 
-        // Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74
+        //Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74//infer that yaowei is 64
 
-        //body_fat_rate =  (yaowei * 0.74 - weight * 0.082 - 34.89) / weight
+        body_fat_rate =  (64 * 0.74 - weight * 0.082 - 34.89) / weight;
     }
 
     public void prolongPremium(int month){
-        final long MONTH = 3600*1000*24*30;
+        final long MONTH = 3600L *1000*24*30;
         if(!checkPremium()){//expire
-            premium_end_date = new Date((new Date()).getTime()+MONTH*month);
+            System.out.println("not premium"+month);
+
+            premium_end_date = new Date(((new Date()).getTime()+MONTH*month));
+            //premium_end_date = new Date((new Date()).getTime());
+            System.out.println(premium_end_date);
         }
         else premium_end_date = new Date(premium_end_date.getTime()+MONTH*month);
+        updateRank();
+    }
+    public void updateRank(){
+        if(!checkPremium()) rank = 0;
+        else rank=1;
     }
 
     /**
@@ -75,6 +84,8 @@ public class Client extends User{
      * @return TRUE for yes, False for not
      */
     public Boolean checkPremium(){
+        System.out.println(new Date());
+        System.out.println(premium_end_date);
         return (new Date()).compareTo(premium_end_date)!=1;//expire
     }
     /**
@@ -163,19 +174,19 @@ public class Client extends User{
         this.premium_end_date = premium_end_date;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

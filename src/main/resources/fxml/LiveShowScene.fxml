@@ -6,29 +6,29 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.LiveShowScene">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.LiveShowScene">
    <children>
-      <AnchorPane layoutX="-6.0" prefHeight="88.0" prefWidth="412.0">
+      <AnchorPane layoutX="110.0" prefHeight="88.0" prefWidth="412.0">
          <children>
-            <Label layoutX="239.0" layoutY="35.0" prefHeight="42.0" prefWidth="76.0" text="Live">
+            <Label layoutX="264.0" layoutY="35.0" prefHeight="42.0" prefWidth="76.0" text="Live">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label layoutX="108.0" layoutY="35.0" prefHeight="42.0" prefWidth="57.0" text="Day">
+            <Label layoutX="57.0" layoutY="35.0" prefHeight="42.0" prefWidth="67.0" text="Day">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label fx:id="dayLabel" layoutX="172.0" layoutY="35.0" prefHeight="42.0" prefWidth="67.0">
+            <Label fx:id="dayLabel" layoutX="130.0" layoutY="35.0" prefHeight="42.0" prefWidth="109.0">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Circle fx:id="circle" fill="#e4e4e4" layoutX="200.0" layoutY="209.0" radius="91.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fx:id="triangle" fill="WHITE" layoutX="200.0" layoutY="219.0" points="-33.199981689453125, 33.00001525878906, 54.000030517578125, -8.599990844726562, -33.199981689453125, -54.99998474121094" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="urlLabel" layoutX="89.0" layoutY="88.0" prefHeight="15.0" prefWidth="264.0" text="Label" />
+      <Circle fx:id="circle" fill="#e4e4e4" layoutX="316.0" layoutY="252.0" radius="91.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="triangle" fill="WHITE" layoutX="319.0" layoutY="263.0" points="-33.199981689453125, 33.00001525878906, 54.000030517578125, -8.599990844726562, -33.199981689453125, -54.99998474121094" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="urlLabel" layoutX="2.0" layoutY="88.0" prefHeight="15.0" prefWidth="628.0" text="Label" />
    </children>
 </AnchorPane>

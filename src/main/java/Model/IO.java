@@ -58,7 +58,9 @@ public class IO{
         ArrayList<Live> ans = new ArrayList<>();
         for(int i=0;i<fileName.length;i++)
         {
-            ans.add((Live) read(new Live(), fileName[i].getName()));
+            String s = fileName[i].getName();
+            s = s.substring(0,s.lastIndexOf("."));
+            ans.add((Live) read(new Live(), s));
         }
         return  ans;
     }
@@ -68,7 +70,9 @@ public class IO{
         ArrayList<Course> ans = new ArrayList<>();
         for(int i=0;i<fileName.length;i++)
         {
-            ans.add((Course) read(new Course(), fileName[i].getName()));
+            String s = fileName[i].getName();
+            s = s.substring(0,s.lastIndexOf("."));
+            ans.add((Course) read(new Course(), s));
         }
         return  ans;
     }
@@ -101,5 +105,11 @@ public class IO{
             return 0;
         }
         return 1;
+    }
+    static {
+
+    }
+
+    public static void write(Client client) {
     }
 }
