@@ -56,7 +56,7 @@ public class TrainerMainSceneController {
         controller.setTrainer(trainer);
         stage.setScene(addLiveScene);
         stage.show();
-
+//
 
 
     }
