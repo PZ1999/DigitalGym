@@ -28,7 +28,7 @@ public class Client extends User{
 
     }
 
-    public Client() {
+    public Client(){
 
     }
 
@@ -83,7 +83,7 @@ public class Client extends User{
         }
         else{
             my_course.add(course_id);
-            IO.write(new Client(),phone_number);
+            //IO.write(new Client(),phone_number);
         }
     }
     /**

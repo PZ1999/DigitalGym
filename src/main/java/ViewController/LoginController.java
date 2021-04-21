@@ -27,21 +27,28 @@ public class LoginController {
     public void loginButtionClicked(ActionEvent actionEvent) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 
         Control con = new Control();
+        //System.out.println(Control.checkLoginInfo(nameTextField.getText(), passwordTextField.getText()));
        if((Control.checkLoginInfo(nameTextField.getText(), passwordTextField.getText())).equals("Client")){
 
            FXMLLoader loader = new FXMLLoader();
            loader.setLocation(getClass().getResource("/fxml/ClientMainScene.fxml"));
+
            Parent afterLoginParent = loader.load();
            Scene afterLoginScene = new Scene(afterLoginParent);
            Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
            window.setScene(afterLoginScene);
            ClientMainSceneController controller = loader.getController();
            afterLoginScene.setUserData(controller);
+           //System.out.println("test");
            controller.client = (Client)IO.read(new Client(),nameTextField.getText());
+
            controller.buildScene();
          //  controller.id = name;
            //System.out.println(controller.client.getName());
            window.show();
+
+       }else if((Control.checkLoginInfo(nameTextField.getText(), passwordTextField.getText())).equals("Trainer")){
+           //trainer main GUI
        }
 
     }
@@ -65,5 +72,6 @@ public class LoginController {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(forgetPasswdScene);
         window.show();
+
     }
 }

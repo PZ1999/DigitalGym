@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="182.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ChangeEmailScene">
+<AnchorPane prefHeight="182.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ChangeEmailScene">
    <children>
       <Button fx:id="sendVarifyButton" layoutX="283.0" layoutY="41.0" mnemonicParsing="false" onAction="#sendVarifyClicked" text="send varification code">
          <font>
@@ -14,7 +14,7 @@
          </font>
       </Button>
       <TextField fx:id="varify" layoutX="122.0" layoutY="84.0" />
-      <TextField fx:id="newemail" layoutX="122.0" layoutY="43.0" />
+      <TextField fx:id="newPhoneNumber" layoutX="122.0" layoutY="43.0" />
       <Label layoutX="78.0" layoutY="43.0" prefHeight="23.0" prefWidth="44.0" text="new" textAlignment="CENTER">
          <font>
             <Font size="17.0" />
@@ -30,7 +30,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="14.0" layoutY="108.0" prefHeight="34.0" prefWidth="410.0" text="error info">
+      <Label fx:id="errorLabel" layoutX="14.0" layoutY="108.0" prefHeight="34.0" prefWidth="410.0">
          <font>
             <Font size="14.0" />
          </font>

@@ -366,7 +366,7 @@ public class ClientMainSceneController {
         mainPageNoticeTextArea.setText(s);
     }
 
-    public void changeEmailButtonCliecked(ActionEvent actionEvent) throws IOException {
+    public void changeEmailButtonClicked(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
 
 
@@ -377,7 +377,7 @@ public class ClientMainSceneController {
 
         stage.setScene(changeEmailScene);
         ChangeEmailScene controller = loader.getController();
-        controller.client = client;
+        controller.client_id = client.getPhone_number();
 
         stage.show();
     }
@@ -385,11 +385,12 @@ public class ClientMainSceneController {
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
 
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/ChangePassword.fxml"));
         Parent changePassWordParent = loader.load();
         Scene changePassWordScene = new Scene(changePassWordParent);
+
+        ChangePassword controller = loader.getController();
 
         stage.setScene(changePassWordScene);
 
@@ -451,4 +452,6 @@ public class ClientMainSceneController {
         premierOriginalPriceLabel.setText(originPrice+" $ ");
         premierDiscountPriceLabel.setText(discountPrice+" $ ");
     }
+
+
 }

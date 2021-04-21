@@ -33,7 +33,7 @@ public class RegisterScene {
         }
         else{
 
-            Control.register(UsernameTextField.getText(),PhoneNumberTextField.getText(),PasswordTextField.getText(),SexTextField.getText());
+            Model.Control.register(UsernameTextField.getText(),PhoneNumberTextField.getText(),PasswordTextField.getText(),SexTextField.getText());
 
             //jump back to login
             FXMLLoader loader = new FXMLLoader();
@@ -56,5 +56,6 @@ public class RegisterScene {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(gobackScene);
         window.show();
+
     }
 }

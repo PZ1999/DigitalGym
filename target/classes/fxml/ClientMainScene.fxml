@@ -202,7 +202,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_CENTER" hgap="10.0" layoutX="388.0" layoutY="443.0" prefHeight="29.0" prefWidth="313.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#changeEmailButtonCliecked" prefHeight="29.0" prefWidth="310.0" text="Change Phone Number">
+                              <Button mnemonicParsing="false" onAction="#changeEmailButtonClicked" prefHeight="29.0" prefWidth="310.0" text="Change Phone Number">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

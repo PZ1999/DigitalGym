@@ -1,15 +1,17 @@
 {
-  "phone_number":"11111111111",
-  "password":"11111111111",
-  "name":"111",
-  "state":"active",
-  "rank":0,
-  "premium_end_date":"2020-4-11 08:56:00",
+  "rank": 0,
+  "premium_end_date": "2020-04-11 08:56:00",
   "height": 180,
   "weight": 70,
-  "sex":"male",
-  "age":"20",
-  "generic_plan":"drink more hot water",
-  "my_course":[],
-  "my_live":[]
+  "BMI": 0.0,
+  "body_fat_rate": 0.0,
+  "sex": "male",
+  "age": 20,
+  "generic_plan": "drink more hot water",
+  "my_course": [],
+  "my_live": [],
+  "phone_number": "11111111111",
+  "password": "33",
+  "name": "111",
+  "state": "active"
 }
