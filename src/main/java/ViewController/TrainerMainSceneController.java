@@ -33,7 +33,7 @@ public class TrainerMainSceneController {
     public TextArea myLiveOverviewText;
     public Model.Trainer trainer;
     public TrainerMainSceneController local_controller;
-    
+
 
     public void TrainerMainAddClassButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
