@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddLive">
+   <children>
+      <ComboBox fx:id="AddLiveTypeComboBox" layoutX="86.0" layoutY="44.0" prefHeight="23.0" prefWidth="150.0" />
+      <Button fx:id="AddLiveBackButton" mnemonicParsing="false" onAction="#AddLiveBackButtonClicked" text="Back" />
+      <Label layoutX="371.0" layoutY="45.0" text="Days">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="AddLivePublishButton" layoutX="464.0" layoutY="39.0" mnemonicParsing="false" onAction="#AddLivePublishButtonClicked" text="Publish">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TabPane fx:id="tabPane" layoutX="53.0" layoutY="116.0" prefHeight="252.0" prefWidth="489.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="introTag" text="Intro">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="456.0">
+                     <children>
+                        <TextField fx:id="AddLiveIntroTxtField" prefHeight="247.0" prefWidth="324.0" />
+                        <Label layoutX="351.0" layoutY="14.0" prefHeight="22.0" prefWidth="78.0" text="Video URL:" />
+                        <TextField fx:id="AddLiveIntroURL" layoutX="330.0" layoutY="36.0" prefHeight="209.0" prefWidth="122.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <ComboBox fx:id="addLiveDays" layoutX="308.0" layoutY="44.0" onAction="#AddLiveChooseDays" prefHeight="5.0" prefWidth="51.0" />
+   </children>
+</AnchorPane>
