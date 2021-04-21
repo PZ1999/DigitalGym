@@ -230,4 +230,20 @@ public class Control {
         IO.write(client,client_id);
 
     }
+
+    public static void createNewLive(String trainer_id, String Type, String info, ArrayList plan, ArrayList URL) throws IOException {
+        Live live = new Live();
+        String live_id = "??????";
+        live.setCourse_id("?????");
+        live.setInfo(info);
+        live.setPlan(plan);
+        live.setLive_plan(URL);
+        live.setTrainer(trainer_id);
+        live.setType(Type);
+
+        IO.create(new Live(), live_id);
+
+
+    }
+
 }

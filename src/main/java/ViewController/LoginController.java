@@ -32,6 +32,20 @@ public class LoginController {
        if(true){
 
            FXMLLoader loader = new FXMLLoader();
+           loader.setLocation(getClass().getResource("/fxml/TrainerMainScene.fxml"));
+           Parent afterLoginParent = loader.load();
+           Scene afterLoginScene = new Scene(afterLoginParent);
+           Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+           window.setScene(afterLoginScene);
+           ClientMainSceneController controller = loader.getController();
+           //afterLoginScene.setUserData(controller);
+           //controller.client = (Client)IO.read(new Client(),"11111111111");
+           controller.buildScene();
+           //  controller.id = name;
+           //System.out.println(controller.client.getName());
+           window.show();
+
+           /*FXMLLoader loader = new FXMLLoader();
            loader.setLocation(getClass().getResource("/fxml/ClientMainScene.fxml"));
            Parent afterLoginParent = loader.load();
            Scene afterLoginScene = new Scene(afterLoginParent);
@@ -43,7 +57,7 @@ public class LoginController {
            controller.buildScene();
          //  controller.id = name;
            //System.out.println(controller.client.getName());
-           window.show();
+           window.show();*/
        }
 
     }

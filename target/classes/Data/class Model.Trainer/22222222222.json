@@ -1,14 +1,14 @@
 {
-    "phone_number":"22222222222",
-    "password":"22222222222",
-    "name":"111",
-    "state":"active",
-    "occupation":[],
-    "my_course":[
-        "C001",
-        "C002"
-    ],
-    "my_live":[
-
-    ]
+  "occupation": [
+    "2021-05-17 08:00:00"
+  ],
+  "my_course": [
+    "C001",
+    "C002"
+  ],
+  "my_live": [],
+  "phone_number": "22222222222",
+  "password": "22222222222",
+  "name": "111",
+  "state": "active"
 }
