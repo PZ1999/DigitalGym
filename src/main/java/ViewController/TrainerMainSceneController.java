@@ -7,10 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 
@@ -33,6 +32,16 @@ public class TrainerMainSceneController {
     public TextArea myLiveOverviewText;
     public Model.Trainer trainer;
     public TrainerMainSceneController local_controller;
+    public FlowPane MyClassFlowPane;
+    public ChoiceBox MyClassFilter;
+    public Button MyClassSearch;
+    public TextField MyClassOverView;
+    public Button MyClassDelete;
+    public Button MyClassChange;
+    public Label MyAccountName;
+    public Button MyAccountChangePassword;
+    public Button MyAccountchangeEmail;
+    public TextField MyAccountIntro;
 
 
     public void TrainerMainAddClassButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -59,6 +68,21 @@ public class TrainerMainSceneController {
 //
 
 
+    }
+
+    public void MyClassSearchClicked(ActionEvent actionEvent) {
+    }
+
+    public void MyClassDeleteClicked(ActionEvent actionEvent) {
+    }
+
+    public void MyClassChangeClicked(ActionEvent actionEvent) {
+    }
+
+    public void MyAccountChangePasswordClicked(ActionEvent actionEvent) {
+    }
+
+    public void MyAccountChangeEmailClicked(ActionEvent actionEvent) {
     }
 }
 
