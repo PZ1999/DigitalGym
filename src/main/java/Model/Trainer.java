@@ -45,10 +45,11 @@ public class Trainer extends User{
 
     /**
      * later --PZ
+     * done --PZ
      * @param course
      */
     public void addCourse(Course course){
-
+        this.my_course.add(course.getCourse_id());
     }
     public void deleteCourse(String course_id){
 

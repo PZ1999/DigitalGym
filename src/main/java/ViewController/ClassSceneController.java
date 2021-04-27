@@ -61,7 +61,6 @@ public class ClassSceneController {
             tab.setContent(pane);//Node
             controller.textForPlanInfo.setText(s);
             tabPane.getTabs().add(tab);
-
         }
         accountType.setText((course.getRank()==0)?"Standard":"Premier");
         price.setText(course.getPrice()+"");

@@ -54,6 +54,7 @@ public class IO{
      */
     public static boolean create(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
+        System.out.println(file);
         return file.createNewFile();
     }
 

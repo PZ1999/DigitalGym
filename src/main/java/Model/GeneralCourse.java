@@ -19,7 +19,7 @@ public class GeneralCourse {
     protected double price;
     public GeneralCourse(String course_id,String name,String trainer_id,String trainer,String type,String info,int rank,double price){
         setCourse_id(course_id);
-        setCourse_id(name);
+        setName(name);
         setTrainer_id(trainer_id);
         setTrainer(trainer);
         setType(type);

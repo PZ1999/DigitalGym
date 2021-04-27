@@ -67,9 +67,6 @@ public class TrainerMainSceneController {
         trainer = (Trainer) IO.read(trainer, trainer.getPhone_number());
         MyAccountName.setText(trainer.getName());
         myLiveDatePickerchanged(new ActionEvent());
-
-
-
     }
 
     public void TrainerMainAddClassButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -80,6 +77,8 @@ public class TrainerMainSceneController {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         AddClass controller = loader.getController();
         controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+        controller.course = getNewCourse();
+        controller.buildScene();
         window.setScene(addClassScene);
         window.show();
     }
@@ -233,6 +232,11 @@ public class TrainerMainSceneController {
         Button button = (Button)mouseEvent.getSource();
         if(button.getUserData()==null) liveIntroTextField.setText("No live session in this interval");
         else liveIntroTextField.setText(button.getUserData().toString());
+    }
+    public Course getNewCourse(){
+        Course course = new Course(new Date().toString(),"new course",trainer.getPhone_number(),trainer.getName(),"new type","new info",0,0.0,new ArrayList<String>());
+
+        return course;
     }
 }
 

@@ -640,6 +640,7 @@ public class Control {
         if(phoneNumber.length()!=11) return false;
         return true;
     }
+
     /**
      * called to check password format
      * need more function later --PZ 4.22
@@ -648,6 +649,20 @@ public class Control {
      */
     public static Boolean checkPasswordFormat(String password){
         return true;
+    }
+
+    /**
+     * called whe a new course added by a trainer
+     * @param course
+     * @throws IOException
+     */
+    public static void addCourse(Course course) throws IOException {
+        course.setCourse_id("C"+IO.showAllCourse().size());
+        IO.create(course,course.getCourse_id());
+        IO.write(course,course.getCourse_id());
+        Trainer trainer = (Trainer) IO.read(new Trainer(),course.getTrainer_id());
+        trainer.addCourse(course);
+        IO.write(trainer,trainer.getPhone_number());
     }
 }
 
