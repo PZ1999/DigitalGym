@@ -186,6 +186,8 @@ public class Control {
         IO.write(trainer,trainer.getPhone_number());
     }
 
+
+
     /** return live subscription by client
      * add filter function --PZ
      * @author PZ
@@ -653,8 +655,9 @@ public class Control {
 
     /**
      * called whe a new course added by a trainer
-     * @param course
-     * @throws IOException
+     * @author PZ
+     * @param course new course passed from GUI
+     * @throws IOException IO exception
      */
     public static void addCourse(Course course) throws IOException {
         course.setCourse_id("C"+IO.showAllCourse().size());
@@ -663,6 +666,17 @@ public class Control {
         Trainer trainer = (Trainer) IO.read(new Trainer(),course.getTrainer_id());
         trainer.addCourse(course);
         IO.write(trainer,trainer.getPhone_number());
+    }
+    /**
+     * called whe a new live added by a trainer
+     * @param live new live passed from GUI
+     * @author PZ
+     * @throws IOException
+     */
+    public static void addLive(Live live) throws IOException {
+        live.setCourse_id("L"+IO.showAllLive().size());
+        IO.create(live,live.getCourse_id());
+        IO.write(live,live.getCourse_id());
     }
 }
 

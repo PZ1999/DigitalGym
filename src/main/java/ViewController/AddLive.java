@@ -3,124 +3,117 @@ package ViewController;
 import Model.*;
 import Model.Control;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class AddLive {
-    public ComboBox AddLiveTypeComboBox;
-    public Button AddLiveBackButton;
-    public Button AddLivePublishButton;
-    public TextField AddLiveIntroTxtField;
-    public TextField AddLiveIntroURL;
-    public Tab introTag;
+    public Button AddClassBack;
+    public Button AddClassPublish;
+    public ComboBox typePicker;
+    public ComboBox dayPicker;
     public TabPane tabPane;
-    public ComboBox addLiveDays;
-    private Live live;
-    private Trainer trainer;
+    public TextArea coursePlanTextArea;
+    public TextField nameTextField;
+    public Trainer trainer;
+
     public Scene previousScene;
-    public ArrayList<TextField> plan = new ArrayList<>();
-    public ArrayList<TextField> URL = new ArrayList<>();
+    public Live live;
 
 
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void initialize(){
+
+        for(int i=1;i<=14;i++)
+            dayPicker.getItems().add(i);
+        for(String s: Policy.sport_type){
+            typePicker.getItems().add(s);
+        }
+        //dayPicker.setValue(dayPicker.getItems().get(0));
+        typePicker.setValue(typePicker.getItems().get(0));
+        dayPicker.getSelectionModel().select(0);
+        //tabPane.getTabs().add(new Tab("Intro"));
+
+        tabPane.getSelectionModel().selectedIndexProperty().addListener( (observable, oldValue, newValue) -> {
+            int old = oldValue.intValue();
+            System.out.println("new tab selected: "+old+"->"+newValue.intValue());
+            if(old==0){//save intro
+                live.setInfo(coursePlanTextArea.getText());
+            }
+            else{//save plan
+                live.getPlan().set(old-1,coursePlanTextArea.getText());
+            }
+            if(newValue.intValue()==0){
+                coursePlanTextArea.setText(live.getInfo());
+            }
+            else{
+                coursePlanTextArea.setText(live.getPlan().get(newValue.intValue()-1));//new plan
+            }
+        });
+        //22222222222AddClassChooseDays(new ActionEvent());
+        //dayPicker.getSelectionModel().select(0);
     }
 
-    public void initialize() throws IOException {
-        for (int i = 1; i <= 22; i++)
-            addLiveDays.getItems().add(i);
-        AddLiveTypeComboBox.getItems().add("Yoga");
-        AddLiveTypeComboBox.getItems().add("Bike");
-        addLiveDays.setValue(0);
+    public void buildScene(){
+
+        tabPane.getSelectionModel().select(0);
+        coursePlanTextArea.setText(live.getInfo());
+        //tabPane.getSelectionModel().select(1);
+        //tabPane.getSelectionModel().select(0);
+        int tabSize = tabPane.getTabs().size();
+        //System.out.println(tabSize);
+        for(int i=1;i<tabSize;i++){
+            tabPane.getTabs().remove(1);
+        }
+        tabPane.getSelectionModel().select(0);
+
+        for(int i=0;i<(Integer) dayPicker.getValue();i++){
+            Tab tab = new Tab("Day"+(i+1));
+            //System.out.println(tab.getText());
+            tabPane.getTabs().add(tab);
+        }
+
+        if(live.getPlan().size()<((Integer) dayPicker.getValue())){
+            for(int i=live.getPlan().size();i<(Integer)dayPicker.getValue();i++){//more days,add plan and Live_Plan
+                //System.out.println("new "+i);
+                live.getPlan().add("plan not modified");
+                live.getLive_plan().add(new LivePlan(live.getCourse_id(),"",trainer.getPhone_number()));
+            }
+        }
+        else{//less day
+            for(int i=live.getPlan().size();i>(Integer)dayPicker.getValue();i--){//less days
+                live.getPlan().remove(i-1);
+                live.getLive_plan().remove(i-1);
+            }
+        }
+        tabPane.getSelectionModel().select(0);
     }
 
-
-    public void AddLiveBackButtonClicked(ActionEvent actionEvent) {
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        TrainerMainSceneController controller = (TrainerMainSceneController) previousScene.getUserData();//get controller of previous scene
+    public void AddClassBackClicked(ActionEvent actionEvent) throws XPathExpressionException, ParserConfigurationException, IOException, SAXException {
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        TrainerMainSceneController controller = (TrainerMainSceneController) previousScene.getUserData();
+        controller.buildScene();
         window.setScene(previousScene);
     }
 
-    public void AddLivePublishButtonClicked(ActionEvent actionEvent) throws IOException {
-        Integer day = Integer.parseInt(addLiveDays.getValue().toString());
-        ArrayList p = new ArrayList();
-        ArrayList U = new ArrayList();
-        for (int i = 0; !plan.isEmpty() && !URL.isEmpty() && i < day.intValue(); i++) {
-            if(plan.get(i).getText() != "") {
-                p.add(plan.get(i).getText());
-            }
-            if(URL.get(i).getText() != "") {
-                U.add(URL.get(i).getText());
-            }
-        }
-        /*Trainer is null so this part contains problem may be right when have the login info------------*/
-        //Control.createNewLive(trainer.getPhone_number(), AddLiveTypeComboBox.getValue().toString(),AddLiveIntroTxtField.getText(), p , U);
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/SuccessScene.fxml"));
-        Parent publishLive = loader.load();
-        Scene publishLiveScene = new Scene(publishLive);
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(publishLiveScene);
-
-        window.show();
+    public void AddClassPublishClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
+        tabPane.getSelectionModel().select(1);
+        tabPane.getSelectionModel().select(0);
+        live.setName(nameTextField.getText());
+        live.setType(typePicker.getValue().toString());
+        Control.addLive(live);
+        AddClassBackClicked(actionEvent);
     }
 
-    public void AddLiveChooseDays(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/AddLive.fxml"));
-        Parent parent = loader.load();
-        Scene sceneForPlan = new Scene(parent);
-
-        AddLive controller = loader.getController();
-        if(tabPane.getTabs().size()>1){
-            tabPane.getTabs().remove(1,tabPane.getTabs().size());
-        }
-        addLiveDays.getValue();
-        Integer day = Integer.parseInt(addLiveDays.getValue().toString());
-        for (int i = 1; i <= day.intValue(); ) {
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/AddLive.fxml"));
-            parent = loader.load();
-            sceneForPlan = new Scene(parent);
-
-            controller = loader.getController();
-
-            Tab tab = new Tab("Day" + i++);
-            AnchorPane pane = new AnchorPane();
-            pane.setPrefWidth(415);
-            pane.setPrefHeight(328);
-            TextField tf = new TextField();
-            tf.setPrefHeight(324);
-            tf.setPrefWidth(304);
-            plan.add(tf);
-            TextField url = new TextField();
-            url.setPrefHeight(267);
-            url.setPrefWidth(272);
-            Label lb = new Label();
-            lb.setText("Video URL:");
-            pane.getChildren().add(tf);
-            pane.getChildren().add(url);
-            pane.getChildren().add(lb);
-            AnchorPane.setTopAnchor(url, 52.0);
-            AnchorPane.setLeftAnchor(url, 344.0);
-            AnchorPane.setTopAnchor(lb, 7.0);
-            AnchorPane.setLeftAnchor(lb, 365.0);
-            tab.setContent(pane);//Node
-            tabPane.getTabs().add(tab);
-        }
+    public void AddClassChooseDays(ActionEvent actionEvent){
+        System.out.println("info:"+live.getInfo());
+        buildScene();
     }
+
 }
-
-
-

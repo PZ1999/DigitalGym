@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -32,7 +33,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="coursePlanTextArea" alignment="TOP_LEFT" layoutX="115.0" layoutY="184.0" prefHeight="338.0" prefWidth="309.0" />
       <TextField fx:id="urlTextField" layoutX="434.0" layoutY="262.0" prefHeight="23.0" prefWidth="266.0" text="test.mp4" />
       <Label fx:id="urlLabel" layoutX="434.0" layoutY="200.0" prefHeight="62.0" prefWidth="296.0" text="Video URL (please put video to target.vedio and just input vedio name here):" textAlignment="JUSTIFY" wrapText="true" />
       <Button fx:id="AddClassPublish" layoutX="434.0" layoutY="298.0" mnemonicParsing="false" onAction="#AddClassPublishClicked" prefHeight="36.0" prefWidth="266.0" text="Publish">
@@ -46,5 +46,6 @@
          </font>
       </Label>
       <TextField fx:id="nameTextField" layoutX="101.0" layoutY="122.0" prefHeight="23.0" prefWidth="296.0" />
+      <TextArea fx:id="coursePlanTextArea" layoutX="114.0" layoutY="185.0" prefHeight="338.0" prefWidth="311.0" wrapText="true" />
    </children>
 </AnchorPane>

@@ -5,43 +5,45 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddLive">
-   <children>
-      <ComboBox fx:id="AddLiveTypeComboBox" layoutX="116.0" layoutY="65.0" prefHeight="23.0" prefWidth="150.0" />
-      <Button fx:id="AddLiveBackButton" mnemonicParsing="false" onAction="#AddLiveBackButtonClicked" text="Back" />
-      <Label layoutX="440.0" layoutY="70.0" text="Days">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Button fx:id="AddLivePublishButton" layoutX="637.0" layoutY="69.0" mnemonicParsing="false" onAction="#AddLivePublishButtonClicked" text="Publish">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <TabPane fx:id="tabPane" layoutX="57.0" layoutY="153.0" prefHeight="341.0" prefWidth="692.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab fx:id="introTag" text="Intro">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="328.0" prefWidth="415.0">
-                     <children>
-                        <TextField fx:id="AddLiveIntroTxtField" layoutY="7.0" prefHeight="334.0" prefWidth="323.0" />
-                        <Label layoutX="365.0" layoutY="7.0" prefHeight="39.0" prefWidth="234.0" text="Video URL:">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="AddLiveIntroURL" layoutX="344.0" layoutY="52.0" prefHeight="272.0" prefWidth="267.0" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <ComboBox fx:id="addLiveDays" layoutX="358.0" layoutY="65.0" onAction="#AddLiveChooseDays" prefHeight="5.0" prefWidth="51.0" />
-   </children>
+    <children>
+        <Button fx:id="AddClassBack" mnemonicParsing="false" onAction="#AddClassBackClicked" text="Back" />
+        <ComboBox fx:id="typePicker" layoutX="100.0" layoutY="87.0" prefHeight="23.0" prefWidth="169.0" />
+        <Label layoutX="410.0" layoutY="87.0" prefHeight="23.0" prefWidth="35.0" text="Days">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TabPane fx:id="tabPane" layoutX="87.0" layoutY="184.0" prefHeight="292.0" prefWidth="27.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Intro">
+                    <content>
+                        <AnchorPane prefHeight="374.0" prefWidth="26.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <ComboBox fx:id="dayPicker" layoutX="297.0" layoutY="87.0" onAction="#AddClassChooseDays" prefHeight="23.0" prefWidth="110.0" />
+        <Label layoutX="57.0" layoutY="89.0" prefHeight="19.0" prefWidth="43.0" text="Type:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="AddClassPublish" layoutX="460.0" layoutY="119.0" mnemonicParsing="false" onAction="#AddClassPublishClicked" prefHeight="23.0" prefWidth="266.0" text="Publish">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label layoutX="51.0" layoutY="124.0" prefHeight="19.0" prefWidth="52.0" text="Name: ">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameTextField" layoutX="101.0" layoutY="122.0" prefHeight="23.0" prefWidth="344.0" />
+      <TextArea fx:id="coursePlanTextArea" layoutX="114.0" layoutY="184.0" prefHeight="292.0" prefWidth="615.0" />
+    </children>
 </AnchorPane>

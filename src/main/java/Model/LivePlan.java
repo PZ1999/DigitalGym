@@ -14,11 +14,14 @@ public class LivePlan {
     private String trainer_id;
     private Boolean finish;//false before live , true after live.
 
-    public LivePlan(String client_id) {
+    public LivePlan(String course_id,String client_id,String trainer_id) {
+        setCourse_id(course_id);
         setLive_url("initial url");
         setLive_start_Date(null);
         setPersonal_plan("initial text");
         this.client_id = client_id;
+        this.trainer_id = trainer_id;
+        this.finish = false;
     }
     public LivePlan()
     {

@@ -91,6 +91,9 @@ public class TrainerMainSceneController {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         AddLive controller = loader.getController();
         controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+        controller.live = getNewLive();
+        controller.trainer = trainer;
+        controller.buildScene();
         window.setScene(addLiveScene);
         window.show();
 
@@ -98,6 +101,8 @@ public class TrainerMainSceneController {
 
 
     }
+
+
 
 
     //go to new page
@@ -233,10 +238,17 @@ public class TrainerMainSceneController {
         if(button.getUserData()==null) liveIntroTextField.setText("No live session in this interval");
         else liveIntroTextField.setText(button.getUserData().toString());
     }
-    public Course getNewCourse(){
-        Course course = new Course(new Date().toString(),"new course",trainer.getPhone_number(),trainer.getName(),"new type","new info",0,0.0,new ArrayList<String>());
-
+    public Course getNewCourse() throws IOException {
+        Course course = new Course("C"+IO.showAllCourse().size(),"new course",trainer.getPhone_number(),trainer.getName(),"new type","new info",0,0.0,new ArrayList<String>());
         return course;
+    }
+    private Live getNewLive() throws IOException {
+        Live live = new Live("L"+IO.showAllLive().size(),"new course",trainer.getPhone_number(),trainer.getName(),"new type","new info",0,0.0,new ArrayList<LivePlan>(),"");
+        return live;
+    }
+
+    public void refreshButtonClicked(ActionEvent actionEvent) throws IOException {
+        myLiveDatePickerchanged(actionEvent);
     }
 }
 

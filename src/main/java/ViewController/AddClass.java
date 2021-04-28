@@ -21,7 +21,7 @@ public class AddClass {
     public ComboBox typePicker;
     public ComboBox dayPicker;
     public TabPane tabPane;
-    public TextField coursePlanTextArea;
+    public TextArea coursePlanTextArea;
     public TextField urlTextField;
     public Label urlLabel;
     public TextField nameTextField;
@@ -96,12 +96,13 @@ public class AddClass {
             }
         }
         else{//less day
-            for(int i=course.getPlan().size();i>=(Integer)dayPicker.getValue();i--){//more days
+            for(int i=course.getPlan().size();i>(Integer)dayPicker.getValue();i--){//less days
                 course.getPlan().remove(i-1);
                 course.getVideo_path().remove(i-1);
             }
         }
         tabPane.getSelectionModel().select(0);
+        System.out.println(course.getPlan().size());
     }
 
     public void AddClassBackClicked(ActionEvent actionEvent) throws XPathExpressionException, ParserConfigurationException, IOException, SAXException {
@@ -123,8 +124,6 @@ public class AddClass {
     public void AddClassChooseDays(ActionEvent actionEvent){
         System.out.println("info:"+course.getInfo());
         buildScene();
-
-
     }
 
 }

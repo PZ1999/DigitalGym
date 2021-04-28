@@ -22,16 +22,18 @@ public class LiveSceneForTrainerController {
     public TextArea LiveClient;
     public Button Go;
     public Button CancelLive;
-    public TextField personalPlanTextArea;
+    public TextArea personalPlanTextArea;
     public Tab introTag;
     public TextArea liveInfoText;
     public Label errorLabel;
     public TabPane tabPane;
+    public Label liveClientLabel;
 
     public Live live;
     public Scene previousScene;
     public Trainer trainer;
     public LivePlan live_plan;
+
     int day;
 
     public void buildScene() throws IOException {
@@ -94,6 +96,7 @@ public class LiveSceneForTrainerController {
             text = "Live session has been finished\n"+"from: "+live_plan.getLive_start_Date()+"\nto: "+end_time+"\nurl: "+live_plan.getLive_url();
         liveInfoText.setText(text);
         personalPlanTextArea.setText(live_plan.getPersonal_plan());
+        liveClientLabel.setText(((Client)IO.read(new Client(),live_plan.getClient_id())).getName());
     }
 
 
