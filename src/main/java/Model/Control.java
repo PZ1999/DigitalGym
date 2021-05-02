@@ -35,15 +35,30 @@ public class Control {
     public static ArrayList<Course> getAllCourses(String filter,String client_id) throws IOException {
         ArrayList<Course> courses = IO.showAllCourse();
         ArrayList<Course> targets = new ArrayList<Course>();
-        Client client = (Client)IO.read(new Client(),client_id);
+
         if(filter.equals("All")){
             for(Course course:courses)//all
                     targets.add(course);
         }
         else if(filter.equals("Discount")){//get discount courses to client
+            Client client = (Client)IO.read(new Client(),client_id);
             for(Course course:courses){//no discount
                 if(course.getRank()<=client.getRank())
                     targets.add(course);
+            }
+        }
+        else if(filter.equals("Wait For Approval")){
+            for(Course course:courses){
+                if(course.getState().equals("waiting")){
+                    targets.add(course);
+                }
+            }
+        }
+        else if(filter.equals("Banned")){
+            for(Course course:courses){
+                if(course.getState().equals("ban")){
+                    targets.add(course);
+                }
             }
         }
         else{//filter by type
@@ -57,21 +72,37 @@ public class Control {
     /**
      *
      * This method used to get all lives from IO
+     * add filter function --PZ 4.19
      * @return list of course
      * @author PZ
      */
     public static ArrayList<Live> getAllLives(String filter,String client_id) throws IOException {
         ArrayList<Live> lives = IO.showAllLive();
         ArrayList<Live> targets = new ArrayList<Live>();
-        Client client = (Client)IO.read(new Client(),client_id);
+
         if(filter.equals("All")){
             for(Live live:lives)//all
                 targets.add(live);
         }
         else if(filter.equals("Discount")){//get discount courses to client
+            Client client = (Client)IO.read(new Client(),client_id);
             for(Live live:lives){//no discount
                 if(live.getRank()<=client.getRank())
                     targets.add(live);
+            }
+        }
+        else if(filter.equals("Wait For Approval")){
+            for(Live live:lives){
+                if(live.getState().equals("waiting")){
+                    targets.add(live);
+                }
+            }
+        }
+        else if(filter.equals("Banned")){
+            for(Live live:lives){
+                if(live.getState().equals("ban")){
+                    targets.add(live);
+                }
             }
         }
         else{//filter by type
@@ -186,6 +217,37 @@ public class Control {
         IO.write(trainer,trainer.getPhone_number());
     }
 
+    /**
+     * this method is called when a manager approve a course and set its rank and price
+     * @param course
+     * @param rank rank set by manager, "Normal"/"Premium"
+     * @param price
+     */
+    public static void managerApproveCourse(Course course,String rank, double price) {
+        course.setState("alive");
+        course.setRank(rank.equals("Normal")?0:1);
+        course.setPrice(price);
+        IO.write(course,course.getCourse_id());
+    }
+
+    public static void managerApproveLive(Live live, String rank, double price) {
+        live.setState("alive");
+        live.setRank(rank.equals("Normal")?0:1);
+        live.setPrice(price);
+        IO.write(live,live.getCourse_id());
+    }
+
+    public static boolean changePolicy(Double premium_price, Double premium_discount, Double premium_live_discount) throws IOException {
+        if(premium_price<0||premium_discount>1.0||premium_discount<0.0||premium_live_discount>1.0||premium_live_discount<0.0)
+            return false;
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        System.out.println(policy.toString());
+        policy.premium_price = premium_price;
+        policy.premium_discount = premium_discount;
+        policy.live_discount = premium_live_discount;
+        IO.write(policy,"Policy");
+        return true;
+    }
 
 
     /** return live subscription by client
@@ -355,7 +417,9 @@ public class Control {
                 }
 
             }catch (IOException o){
-                return "fail";
+                if(phoneNumber.equals("00000000000")&&password.equals("00000000000"))   return "Manager";
+                    //else if(phoneNumber.equals("00000000000")||!password.equals("00000000000")) System.out.println("ManagerPassword Wrong");
+                else    return "fail";
             }
 
         }

@@ -31,11 +31,12 @@ public class AddClass {
 
 
 
-    public void initialize(){
+    public void initialize() throws IOException {
 
         for(int i=1;i<=14;i++)
             dayPicker.getItems().add(i);
-        for(String s: Policy.sport_type){
+        Policy policy = (Policy) IO.read(new Policy(),"Policy");
+        for(String s: policy.sport_type){
             typePicker.getItems().add(s);
         }
         //dayPicker.setValue(dayPicker.getItems().get(0));

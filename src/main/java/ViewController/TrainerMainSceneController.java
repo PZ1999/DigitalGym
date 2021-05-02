@@ -53,11 +53,12 @@ public class TrainerMainSceneController {
     public TextArea liveIntroTextField;
 
 
-    public void initialize(){
+    public void initialize() throws IOException {
         LocalDate date = LocalDate.now();
         myLiveDatePicker.setValue(date);
         MyClassFilter.getItems().add("All");
-        for(String s : Policy.sport_type)
+        Policy policy = (Policy) IO.read(new Policy(),"Policy");
+        for(String s : policy.sport_type)
             MyClassFilter.getItems().add(s);
         MyClassFilter.setValue(MyClassFilter.getItems().get(0));
     }

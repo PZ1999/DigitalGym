@@ -4,7 +4,7 @@
   "trainer_id":"44444444444",
   "trainer":"Master Pan",
   "type":"Bike",
-  "state":"active",
+  "state":"alive",
   "info":"This is a L002",
   "rank": 0,
   "price":100.0,

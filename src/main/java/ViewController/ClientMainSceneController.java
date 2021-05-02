@@ -81,7 +81,8 @@ public class ClientMainSceneController {
         mainPageFilterType.getItems().add("All");
         myClassFilterType.getItems().add("All");
         mainPageFilterType.getItems().add("Discount");
-        for(String s : Policy.sport_type){
+        Policy policy = (Policy) IO.read(new Policy(),"Policy");
+        for(String s : policy.sport_type){
             mainPageFilterType.getItems().add(s);
             myClassFilterType.getItems().add(s);
         }
@@ -103,7 +104,7 @@ public class ClientMainSceneController {
 
         updateNotice();
 
-        discountRatio.setText(""+Policy.premium_discount*100+"%");
+        discountRatio.setText(""+policy.premium_discount*100+"%");
         for(int i=1;i<=12;i++)
             monthChoiceBox.getItems().add(i);
     }
@@ -125,8 +126,9 @@ public class ClientMainSceneController {
 
         myAccountUserNameLabel.setText(client.getName());
         premiumLabel.setText(client.getRank()==0?"Normal":"Premium");
-        System.out.println(Policy.premium_discount);
-        discountRatio.setText(Policy.premium_discount*100+"%");
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        System.out.println(policy.premium_discount);
+        discountRatio.setText(policy.premium_discount*100+"%");
         myAccountSaveButtonClicked(new ActionEvent());
         myAccountShowPlanTextArea.setText(client.getGeneric_plan());
 
@@ -234,7 +236,7 @@ public class ClientMainSceneController {
      * This method return a set of class buttons for Main pages.
      * details needed to be added --PZ
      * details added at 4.9 1412 --PZ
-     *
+     * a filter added to check availability --PZ
      * @return
      *
      */
@@ -243,6 +245,8 @@ public class ClientMainSceneController {
         ArrayList <Course> classes = Control.getAllCourses(mainPageFilterType.getValue().toString(),client.getPhone_number());
 
             for(Course course:classes){
+                if(!course.getState().equals("alive"))
+                    continue ;//not available
                 Button button = new Button();
                 button.setPrefSize(160,160);
                 //mainPageFlowPane.getChildren().add(button);
@@ -267,6 +271,7 @@ public class ClientMainSceneController {
      * This method return a set of live buttons for Main pages.
      * details needed to be added --PZ
      * added at 4.9 --PZ
+     * a filter added to check availability --PZ
      * @return
      *
      */
@@ -275,6 +280,8 @@ public class ClientMainSceneController {
 
         ArrayList <Live> lives = Control.getAllLives(mainPageFilterType.getValue().toString(),client.getPhone_number());
         for(Live live : lives){
+            if(!live.getState().equals("alive"))
+                continue ; //not available
             Button button = new Button();
             button.setPrefSize(160,160);
             //mainPageFlowPane.getChildren().add(button);
@@ -451,8 +458,9 @@ public class ClientMainSceneController {
     public void premierMonthSelected() throws IOException {
         Integer month = (Integer) (monthChoiceBox.getValue());
         //System.out.println(month);
-        double originPrice = month * Policy.premium_price;
-        double discountPrice = month * Policy.premium_price * (1-Policy.premium_discount);
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        double originPrice = month * policy.premium_price;
+        double discountPrice = month * policy.premium_price * (1-policy.premium_discount);
         premierOriginalPriceLabel.setText(originPrice+" $ ");
         premierDiscountPriceLabel.setText(discountPrice+" $ ");
     }

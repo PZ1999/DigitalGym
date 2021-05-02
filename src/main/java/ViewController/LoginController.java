@@ -87,8 +87,18 @@ public class LoginController {
         window.show();
     }
 
-    private void goToManagerScene(ActionEvent actionEvent) {//further
+    private void goToManagerScene(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {//further
         System.out.println("manager login");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/ManagerMainScene.fxml"));
+        Parent afterLoginParent = loader.load();
+        Scene afterLoginScene = new Scene(afterLoginParent);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        ManagerMainSceneController controller = loader.getController();
+        afterLoginScene.setUserData(controller);
+        window.show();
+
     }
 
     private void goToTrainerScene(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {//further

@@ -79,7 +79,9 @@ public class LiveSceneController {
         controller.textForPlanInfo.setText(live.getInfo());
         int i=1;
         priceLabel.setText(live.getPrice()+"");
-        discountPriceLabel.setText(live.getPrice()*(1-Policy.live_discount)+"");
+
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        discountPriceLabel.setText(live.getPrice()*(1-policy.live_discount)+"");
 
 
         for(String plan : live.getPlan()){

@@ -23,9 +23,21 @@ public class Course extends GeneralCourse{
     public void setVideo_path(ArrayList<String> video_path) {
         this.video_path = video_path;
     }
-    @Override
-    public String toString(){
-        return "use IO.printObject instead.";
-    }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "video_path=" + video_path +
+                ", course_id='" + course_id + '\'' +
+                ", name='" + name + '\'' +
+                ", trainer_id='" + trainer_id + '\'' +
+                ", trainer='" + trainer + '\'' +
+                ", type='" + type + '\'' +
+                ", info='" + info + '\'' +
+                ", plan=" + plan +
+                ", rank=" + rank +
+                ", state='" + state + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
