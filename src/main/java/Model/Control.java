@@ -718,18 +718,25 @@ public class Control {
     }
 
     /**
-     * called whe a new course added by a trainer
+     * called whe a new course added by a trainer.
+     * Also called when courses info is updated.
      * @author PZ
      * @param course new course passed from GUI
      * @throws IOException IO exception
      */
     public static void addCourse(Course course) throws IOException {
+
+        Trainer trainer = (Trainer) IO.read(new Trainer(),course.getTrainer_id());
+        if(trainer.getMy_course().contains(course.getCourse_id())){//called for update course
+            System.out.println("course updated");
+            IO.write(course,course.getCourse_id());
+            return ;
+        }
+        trainer.addCourse(course);
+        IO.write(trainer,trainer.getPhone_number());
         course.setCourse_id("C"+IO.showAllCourse().size());
         IO.create(course,course.getCourse_id());
         IO.write(course,course.getCourse_id());
-        Trainer trainer = (Trainer) IO.read(new Trainer(),course.getTrainer_id());
-        trainer.addCourse(course);
-        IO.write(trainer,trainer.getPhone_number());
     }
     /**
      * called whe a new live added by a trainer
@@ -741,6 +748,39 @@ public class Control {
         live.setCourse_id("L"+IO.showAllLive().size());
         IO.create(live,live.getCourse_id());
         IO.write(live,live.getCourse_id());
+    }
+    public static ArrayList<Course> getTrainerCourses(Trainer trainer, String filter) throws IOException {
+        ArrayList<Course> courses = new ArrayList<Course>();
+        for (String s : trainer.getMy_course())
+            courses.add((Course) IO.read(new Course(), s));
+        ArrayList<Course> targets = new ArrayList<Course>();
+        if (filter.equals("All")) {
+            for (Course course : courses)//all
+                targets.add(course);
+        }
+
+        else if (filter.equals("Wait For Approval")) {
+            for (Course course : courses) {
+                if (course.getState().equals("waiting")) {
+                    targets.add(course);
+                }
+            }
+        }
+        else if (filter.equals("Banned")) {
+            for (Course course : courses) {
+                if (course.getState().equals("ban")) {
+                    targets.add(course);
+                }
+            }
+        }
+        else {//filter by type
+            for (Course course : courses) {//no discount
+                if (course.getType().equals(filter))
+                    targets.add(course);
+            }
+            return targets;
+        }
+        return targets;
     }
 }
 

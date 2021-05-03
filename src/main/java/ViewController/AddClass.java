@@ -106,6 +106,17 @@ public class AddClass {
         System.out.println(course.getPlan().size());
     }
 
+    public void buildSceneForChange(){
+        typePicker.setValue(course.getType());
+        dayPicker.getSelectionModel().select(course.getPlan().size()-1);
+        nameTextField.setText(course.getName());
+        AddClassChooseDays(new ActionEvent());
+        AddClassPublish.setText("Save Changes");
+
+    }
+
+
+
     public void AddClassBackClicked(ActionEvent actionEvent) throws XPathExpressionException, ParserConfigurationException, IOException, SAXException {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         TrainerMainSceneController controller = (TrainerMainSceneController) previousScene.getUserData();

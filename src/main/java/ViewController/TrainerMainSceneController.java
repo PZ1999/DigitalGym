@@ -32,17 +32,9 @@ import Model.Policy;
 public class TrainerMainSceneController {
     public Button TrainerMainAddClassButton;
     public Button TrainerMainAddLiveButton;
-    public ChoiceBox myLiveFilterType;
-    public Button Goto;
-    public TextArea myLiveOverviewText;
-    public Trainer trainer;
-    public TrainerMainSceneController local_controller;
     public FlowPane MyClassFlowPane;
     public ChoiceBox MyClassFilter;
-    public Button MyClassSearch;
-    public TextField MyClassOverView;
-    public Button MyClassDelete;
-    public Button MyClassChange;
+    public TextArea MyClassOverView;
     public Label MyAccountName;
     public Button MyAccountChangePassword;
     public DatePicker myLiveDatePicker;
@@ -52,6 +44,8 @@ public class TrainerMainSceneController {
     public Button live4SlotButton;
     public TextArea liveIntroTextField;
 
+    public Trainer trainer;
+    public TrainerMainSceneController local_controller;
 
     public void initialize() throws IOException {
         LocalDate date = LocalDate.now();
@@ -60,7 +54,10 @@ public class TrainerMainSceneController {
         Policy policy = (Policy) IO.read(new Policy(),"Policy");
         for(String s : policy.sport_type)
             MyClassFilter.getItems().add(s);
+        MyClassFilter.getItems().add("Wait For Approval");
+        MyClassFilter.getItems().add("Banned");
         MyClassFilter.setValue(MyClassFilter.getItems().get(0));
+
     }
 
 
@@ -68,6 +65,7 @@ public class TrainerMainSceneController {
         trainer = (Trainer) IO.read(trainer, trainer.getPhone_number());
         MyAccountName.setText(trainer.getName());
         myLiveDatePickerchanged(new ActionEvent());
+        myCourseSearchButtonClicked(new ActionEvent());
     }
 
     public void TrainerMainAddClassButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -251,5 +249,75 @@ public class TrainerMainSceneController {
     public void refreshButtonClicked(ActionEvent actionEvent) throws IOException {
         myLiveDatePickerchanged(actionEvent);
     }
+
+    public void myCourseSearchButtonClicked(ActionEvent event) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+        updateClassesInMainPage();
+    }
+    public void updateClassesInMainPage() throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
+        MyClassFlowPane.getChildren().clear();
+        ArrayList<Button> buttons;
+        buttons = getClassesButtonsForMyClass();//with filter --PZ
+        for(Button button:buttons)
+            MyClassFlowPane.getChildren().add(button);
+    }
+    /**
+     * This method return a set of class buttons for myClass pages.
+     * details needed to be added --PZ
+     * not usable for id Issue
+     * @return
+     */
+    public ArrayList<Button> getClassesButtonsForMyClass() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+        ArrayList<Button> buttons =new ArrayList<Button>();
+        Control controller = new Control();
+        trainer = (Trainer)IO.read(trainer,trainer.getPhone_number());
+        ArrayList <Course> classes = Control.getTrainerCourses(trainer,MyClassFilter.getValue().toString());
+        //System.out.println(classes.size());
+        for(Course course :classes){
+            Button button = new Button();
+            button.setPrefSize(160,160);
+            //mainPageFlowPane.getChildren().add(button);
+            button.setOnAction(classButtonClicked);
+
+            //add action on class button to show over view
+            button.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            MyClassOverView.setText(((Course)button.getUserData()).getInfo());;
+                        }
+                    });
+            button.setUserData(course);//add course object to object
+            button.setText("Trainner: "+course.getTrainer()+"\n"+course.getName());
+            buttons.add(button);
+
+        }
+        return buttons;
+    }
+    EventHandler<ActionEvent> classButtonClicked = new EventHandler<ActionEvent>() {
+        /**
+         * this function change to the course page according to the class button clicked.
+         * @param actionEvent
+         */
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            Course course = (Course)(((Node) actionEvent.getSource()).getUserData());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/AddClass.fxml"));
+            Parent addClassParent = null;
+            try {
+                addClassParent = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene addClassScene = new Scene(addClassParent);
+            Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            AddClass controller = loader.getController();
+            controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+            controller.course = course;
+            controller.buildSceneForChange();
+            window.setScene(addClassScene);
+            window.show();
+        }
+    };
 }
 

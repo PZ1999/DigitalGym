@@ -9,7 +9,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -39,49 +38,46 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab text="My Class">
+          <Tab text="My Courses">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ScrollPane layoutX="25.0" layoutY="117.0" prefHeight="326.0" prefWidth="381.0">
                            <content>
-                              <FlowPane fx:id="MyClassFlowPane" prefHeight="282.0" prefWidth="384.0" />
+                              <FlowPane fx:id="MyClassFlowPane" alignment="TOP_CENTER" hgap="10.0" prefHeight="312.0" prefWidth="366.0" vgap="10.0" />
                            </content>
                         </ScrollPane>
                         <AnchorPane layoutX="25.0" prefHeight="108.0" prefWidth="352.0">
                            <children>
                               <ChoiceBox fx:id="MyClassFilter" layoutY="35.0" prefWidth="150.0" />
-                              <Button fx:id="MyClassSearch" layoutX="196.0" layoutY="35.0" mnemonicParsing="false" onAction="#MyClassSearchClicked" text="Search" />
+                              <Button layoutX="202.0" layoutY="32.0" mnemonicParsing="false" onAction="#myCourseSearchButtonClicked" prefHeight="11.0" prefWidth="112.0" text="Search">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
                            </children>
                         </AnchorPane>
-                        <VBox layoutX="423.0" layoutY="48.0" prefHeight="369.0" prefWidth="353.0">
+                        <VBox layoutX="423.0" layoutY="48.0" prefHeight="398.0" prefWidth="353.0">
                            <children>
-                              <Label text="       Class Overview:        ">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
                               <Label>
                                  <font>
                                     <Font size="27.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="MyClassOverView" prefHeight="290.0" prefWidth="317.0" />
+                              <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="32.0" prefWidth="357.0" text="Class Overview">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="MyClassOverView" prefHeight="336.0" prefWidth="353.0" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
                            </children>
                         </VBox>
                         <HBox layoutX="458.0" layoutY="419.0" prefHeight="53.0" prefWidth="289.0">
                            <children>
-                              <Button fx:id="MyClassDelete" mnemonicParsing="false" onAction="#MyClassDeleteClicked" text="Delete ">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Button>
                               <Label prefHeight="39.0" prefWidth="98.0" text="        " />
-                              <Button fx:id="MyClassChange" mnemonicParsing="false" onAction="#MyClassChangeClicked" text="Change">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </HBox>
                      </children></AnchorPane>
