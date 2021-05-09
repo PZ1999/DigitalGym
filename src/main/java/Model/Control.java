@@ -38,7 +38,7 @@ public class Control {
 
         if(filter.equals("All")){
             for(Course course:courses)//all
-                    targets.add(course);
+                targets.add(course);
         }
         else if(filter.equals("Discount")){//get discount courses to client
             Client client = (Client)IO.read(new Client(),client_id);
@@ -171,13 +171,13 @@ public class Control {
             if(l.getCourse_id().equals(live_plan.getCourse_id()))
                 live = l;
         }
-       // IO.printObject(live);
+        // IO.printObject(live);
         Trainer trainer = (Trainer)IO.read(new Trainer(),live.getTrainer_id());
         for(int i=0;i<live.getLive_plan().size();i++){//cancel live session
             if(live.getLive_plan().get(i).getLive_start_Date()!=null){
 
                 if(live.getLive_plan().get(i).getLive_start_Date().equals(live_plan.getLive_start_Date())){
-                   // System.out.println(live.getLive_plan().get(i).getLive_start_Date());
+                    // System.out.println(live.getLive_plan().get(i).getLive_start_Date());
                     //System.out.println(trainer.getOccupation().remove(live.getLive_plan().get(i).getLive_start_Date()));
 
                     live.getLive_plan().get(i).setLive_start_Date(null);
@@ -501,6 +501,20 @@ public class Control {
     }
 
     /**
+     * @Author JoyceJ&yy
+     * @Description //the trainer account add
+     * @Date 23:10 2021-05-07
+     * @Param trainername password phonenumber
+     * @return
+     **/
+
+    public static void trainerAddAccount(String Trainername, String Phonenumber, String password) throws IOException {
+        Trainer trainer = new Trainer(Phonenumber, password, Trainername);
+        boolean res = IO.create(trainer, Phonenumber);
+        boolean res2 = IO.write(trainer, Phonenumber);
+    }
+
+    /**
      * @author JoyceJ and yy
      * Used in forgetPasswordScene and the changePasswordScene in client's main scene
      **/
@@ -634,7 +648,7 @@ public class Control {
         user.setState("Inactive");
         return IO.write(user,user.getPhone_number());
         */
-         return IO.delete(new Client(),client_id);
+        return IO.delete(new Client(),client_id);
     }
 
     public static boolean changeLiveInfo(Trainer t, Live l) throws IOException {
@@ -698,23 +712,28 @@ public class Control {
     /**
      * called to check phoneNumber format
      * need more function later --PZ 4.22
+     * added --ZZ 5.8
      * @param phoneNumber input for check
      * @return true if valid, otherwise false
      */
     public static Boolean checkPhoneNumberFormat(String phoneNumber){
-
-        if(phoneNumber.length()!=11) return false;
-        return true;
+        String  re = "\\d{11}";
+        return phoneNumber.matches(re);
     }
 
     /**
      * called to check password format
      * need more function later --PZ 4.22
+     * added  --ZZ 5.8
+     * modified with bit limitation --PZ 5.9
      * @param password input for check
      * @return true if valid, otherwise false
      */
     public static Boolean checkPasswordFormat(String password){
-        return true;
+            if(password.length()<6||password.length()>20)
+                return false;
+            String re = "[1-9a-zA-z]";
+            return password.matches(re);
     }
 
     /**

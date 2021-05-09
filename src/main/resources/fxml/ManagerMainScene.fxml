@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ManagerMainSceneController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ManagerMainSceneController">
     <children>
         <TabPane layoutX="14.0" layoutY="14.0" prefHeight="584.0" prefWidth="775.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -61,75 +61,118 @@
                                         </VBox>
                                     </children>
                                 </AnchorPane>
-                        <ComboBox fx:id="rankComboBox" layoutX="556.0" layoutY="459.0" prefHeight="23.0" prefWidth="197.0" />
-                        <Label layoutX="486.0" layoutY="458.0" text="Rank">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="487.0" layoutY="482.0" text="Price">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="priceTextField" layoutX="556.0" layoutY="483.0" prefHeight="23.0" prefWidth="199.0" />
-                        <Button layoutX="487.0" layoutY="506.0" mnemonicParsing="false" onAction="#approveButtonClicked" prefHeight="36.0" prefWidth="135.0" text="Approve">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="622.0" layoutY="506.0" mnemonicParsing="false" onAction="#banButtonClicked" prefHeight="36.0" prefWidth="131.0" text="Ban">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
+                                <ComboBox fx:id="rankComboBox" layoutX="556.0" layoutY="459.0" prefHeight="23.0" prefWidth="197.0" />
+                                <Label layoutX="486.0" layoutY="458.0" text="Rank">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="487.0" layoutY="482.0" text="Price">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="priceTextField" layoutX="556.0" layoutY="483.0" prefHeight="23.0" prefWidth="199.0" />
+                                <Button layoutX="487.0" layoutY="506.0" mnemonicParsing="false" onAction="#approveButtonClicked" prefHeight="36.0" prefWidth="135.0" text="Approve">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button layoutX="622.0" layoutY="506.0" mnemonicParsing="false" onAction="#banButtonClicked" prefHeight="36.0" prefWidth="131.0" text="Ban">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
                             </children></AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="Publish Discount Info">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="185.0" layoutY="100.0" prefHeight="24.0" prefWidth="156.0" text="Premium Price :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="premiumPriceTextField" layoutX="341.0" layoutY="100.0" />
-                        <Label layoutX="523.0" layoutY="100.0" text="\$/Month">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="151.0" layoutY="174.0" prefHeight="24.0" prefWidth="190.0" text="Premium Discount :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="premiumDiscountTextField" layoutX="341.0" layoutY="175.0" />
-                        <Label layoutX="523.0" layoutY="174.0" text="\%Off">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="80.0" layoutY="254.0" prefHeight="24.0" prefWidth="261.0" text="Live Discount For premium :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="premiumLiveDiscountTextField" layoutX="341.0" layoutY="255.0" />
-                        <Label layoutX="523.0" layoutY="254.0" text="\%Off">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="278.0" layoutY="331.0" mnemonicParsing="false" onAction="#discountSaveButtonClicked" prefHeight="36.0" prefWidth="220.0" text="Save">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Label fx:id="premiumErrorLabel" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="298.0" prefHeight="15.0" prefWidth="411.0" text="Invalid input, please try again." textAlignment="RIGHT" textFill="#b20606" />
-                     </children></AnchorPane>
+                            <children>
+                                <Label layoutX="185.0" layoutY="100.0" prefHeight="24.0" prefWidth="156.0" text="Premium Price :">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="premiumPriceTextField" layoutX="341.0" layoutY="100.0" />
+                                <Label layoutX="523.0" layoutY="100.0" text="\$/Month">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="151.0" layoutY="174.0" prefHeight="24.0" prefWidth="190.0" text="Premium Discount :">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="premiumDiscountTextField" layoutX="341.0" layoutY="175.0" />
+                                <Label layoutX="523.0" layoutY="174.0" text="\%Off">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="80.0" layoutY="254.0" prefHeight="24.0" prefWidth="261.0" text="Live Discount For premium :">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="premiumLiveDiscountTextField" layoutX="341.0" layoutY="255.0" />
+                                <Label layoutX="523.0" layoutY="254.0" text="\%Off">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Button layoutX="278.0" layoutY="331.0" mnemonicParsing="false" onAction="#discountSaveButtonClicked" prefHeight="36.0" prefWidth="220.0" text="Save">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <Label fx:id="premiumErrorLabel" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="298.0" prefHeight="15.0" prefWidth="411.0" text="Invalid input, please try again." textAlignment="RIGHT" textFill="#b20606" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Add Trainer Account">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane layoutX="106.0" layoutY="65.0" prefHeight="387.0" prefWidth="581.0">
+                                    <children>
+                                        <FlowPane alignment="TOP_RIGHT" hgap="10.0" layoutX="170.0" layoutY="14.0" prefHeight="210.0" prefWidth="167.0" vgap="10.0">
+                                            <children>
+                                                <TextField fx:id="trainerNameTextField" />
+                                                <TextField fx:id="trainerPhoneNumberTextField" />
+                                                <TextField fx:id="trainerPasswordTextField" />
+                                                <TextField fx:id="trainerPasswordAgainTextField" />
+                                            </children>
+                                        </FlowPane>
+                                        <VBox alignment="TOP_RIGHT" layoutX="-51.0" layoutY="13.0" prefHeight="200.0" prefWidth="221.0" spacing="17.0">
+                                            <children>
+                                                <Label contentDisplay="CENTER" text="Trainername" />
+                                                <Label text="PhoneNumber" />
+                                                <Label prefHeight="20.0" prefWidth="55.0" text="Password" />
+                                                <Label prefHeight="20.0" prefWidth="89.0" text="PasswordAgain" />
+                                            </children>
+                                        </VBox>
+                                        <Button fx:id="addAccountButton" layoutX="192.0" layoutY="256.0" mnemonicParsing="false" onAction="#addAccountButtonClicked" prefHeight="42.0" prefWidth="124.0" text="Add">
+                                            <font>
+                                                <Font size="21.0" />
+                                            </font>
+                                        </Button>
+                                        <Label fx:id="errorLabelForTwicePassword" layoutX="344.0" layoutY="144.0" prefHeight="23.0" prefWidth="292.0" textFill="#f20606">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="errorLabelForPhoneNumebr" layoutX="344.0" layoutY="47.0" prefHeight="23.0" prefWidth="292.0" textFill="#f20606">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
                     </content>
                 </Tab>
             </tabs>

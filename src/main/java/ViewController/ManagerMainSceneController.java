@@ -36,6 +36,15 @@ public class ManagerMainSceneController {
     public TextField premiumLiveDiscountTextField;
     public Label premiumErrorLabel;
 
+    //j&yy
+    public TextField trainerNameTextField;
+    public TextField trainerPhoneNumberTextField;
+    public TextField trainerPasswordTextField;
+    public TextField trainerPasswordAgainTextField;
+    public Button addAccountButton;
+    public Label errorLabelForTwicePassword;
+    public Label errorLabelForPhoneNumebr;
+
     public void initialize() throws IOException {
         myClassClassButton.setToggleGroup(groupForType);//initialize first tab
         myClassLiveButton.setToggleGroup(groupForType);
@@ -56,12 +65,12 @@ public class ManagerMainSceneController {
         premiumPriceTextField.setText(String.valueOf(policy.premium_price));
         premiumDiscountTextField.setText(String.valueOf(policy.premium_discount*100));
         premiumLiveDiscountTextField.setText(String.valueOf(policy.live_discount*100));
-       //
+        //
     }
 
     public void myClassSearchClicked(ActionEvent actionEvent) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
-            groupForClasses = new ToggleGroup();
-            updateClassesInMyClass();
+        groupForClasses = new ToggleGroup();
+        updateClassesInMyClass();
     }
 
     public void updateClassesInMyClass() throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
@@ -164,6 +173,38 @@ public class ManagerMainSceneController {
         catch (Exception e){
             premiumErrorLabel.setVisible(true);
         }
+
+    }
+
+    public void addAccountButtonClicked(ActionEvent actionEvent) throws IOException {
+//        public TextField trainerNameTextField;
+//        public TextField trainerPhoneNumberTextField;
+//        public TextField trainerPasswordTextField;
+//        public TextField trainerPasswordAgainTextField;
+//        public Button addAccountButton;
+//        public Label errorLabelForTwicePassword;
+//        public Label errorLabelForPhoneNumebr;
+
+        errorLabelForTwicePassword.setText("");
+        errorLabelForPhoneNumebr.setText("");
+
+        if(!trainerPasswordAgainTextField.getText().equals(trainerPasswordTextField.getText()))
+            errorLabelForTwicePassword.setText("Different input from first time.");
+        if(!Control.checkPhoneNumberFormat(trainerPhoneNumberTextField.getText()))
+            errorLabelForPhoneNumebr.setText("Wrong format of phone number.");
+
+        if(!errorLabelForPhoneNumebr.getText().equals("")||!errorLabelForTwicePassword.getText().equals(""))
+            return ;
+
+        Model.Control.trainerAddAccount(trainerNameTextField.getText(),trainerPhoneNumberTextField.getText(),trainerPasswordTextField.getText());
+        //jump back to login
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/ManagerMainScene.fxml"));
+        Parent afterLoginParent = loader.load();
+        Scene afterLoginScene = new Scene(afterLoginParent);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(afterLoginScene);
+        window.show();
 
     }
 }
