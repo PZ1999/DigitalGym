@@ -1,15 +1,19 @@
 {
-  "phone_number":"11111111111",
-  "password":"11111111111",
-  "name":"user One",
-  "state":"active",
-  "rank":0,
-  "premium_end_date":"2020-4-11 08:56:00",
-  "height": 180,
-  "weight": 70,
-  "sex":"male",
-  "age":"20",
-  "generic_plan":"drink more hot water",
-  "my_course":[],
-  "my_live":[]
+  "rank": 0,
+  "premium_end_date": "2020-04-11 08:56:00",
+  "height": 180.0,
+  "weight": 70.0,
+  "BMI": 21.604938271604937,
+  "body_fat_rate": 0.0961428571428571,
+  "sex": "male",
+  "age": 20,
+  "generic_plan": "You can eat more protein and try more Anaerobic exercise to make your muscle stronger.",
+  "my_course": [
+    "C2"
+  ],
+  "my_live": [],
+  "phone_number": "11111111111",
+  "password": "11111111111",
+  "name": "user One",
+  "state": "active"
 }

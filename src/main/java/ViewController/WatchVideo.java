@@ -38,7 +38,7 @@ public class WatchVideo {
      */
     public void playVedio() throws MalformedURLException {
 
-        File mediaFile = new File("target/classes/video/"+url);//find file
+        File mediaFile = new File("target/classes/Data/video/"+url);//find file
         Media media = new Media(mediaFile.toURI().toURL().toString());//convert to Media
 
         MediaPlayer mediaPlayer = new MediaPlayer(media);//generate player

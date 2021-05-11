@@ -4,7 +4,7 @@
   "trainer_id":"44444444444",
   "trainer":"Master Pan",
   "type":"Bike",
-  "state":"active",
+  "state":"alive",
   "info":"This is a C002",
   "rank": 1,
   "price":20.0,

@@ -62,7 +62,7 @@ public class Client extends User{
 
         //Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74//infer that yaowei is 64
 
-        body_fat_rate =  (64 * 0.74 - weight * 0.082 - 34.89) / weight;
+        body_fat_rate =  (130 * 0.74 - weight * 0.082 - 34.89) / weight;
     }
     public void prolongPremium(int month){
         final long MONTH = 3600L *1000*24*30;

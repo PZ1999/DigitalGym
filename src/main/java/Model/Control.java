@@ -501,11 +501,11 @@ public class Control {
     }
 
     /**
-     * @Author JoyceJ&yy
-     * @Description //the trainer account add
-     * @Date 23:10 2021-05-07
-     * @Param trainername password phonenumber
-     * @return
+     * the trainer account add
+     * @author JoyceJ and yy
+     * @param Trainername trainer name
+     * @param password password set
+     * @param Phonenumber trainer ID
      **/
 
     public static void trainerAddAccount(String Trainername, String Phonenumber, String password) throws IOException {
@@ -730,9 +730,7 @@ public class Control {
      * @return true if valid, otherwise false
      */
     public static Boolean checkPasswordFormat(String password){
-            if(password.length()<6||password.length()>20)
-                return false;
-            String re = "[1-9a-zA-z]";
+            String re = "[0-9a-zA-z]{6,20}";
             return password.matches(re);
     }
 
