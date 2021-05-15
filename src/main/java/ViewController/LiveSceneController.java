@@ -39,6 +39,7 @@ public class LiveSceneController {
     public Label liveSessionNameLabel;
     public Label errorLabelForGoLive;
     public Label errorLabelForBookLive;
+    public Button subscribeButton;
 
     @FXML
     public void initialize() {

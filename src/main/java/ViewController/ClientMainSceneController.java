@@ -192,6 +192,7 @@ public class ClientMainSceneController {
             Course course = (Course)(((Node) actionEvent.getSource()).getUserData());
             controller.setCourse(course);
             controller.setClient(client);
+
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
@@ -224,6 +225,7 @@ public class ClientMainSceneController {
             LiveSceneController controller = loader.getController();
             controller.live = (Live) (((Node)actionEvent.getSource()).getUserData());
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+
             controller.setClient(client);
             classScene.setUserData(controller);
             window.setScene(classScene);
