@@ -32,7 +32,10 @@
                         </ScrollPane>
                         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="475.0" layoutY="14.0" prefHeight="109.0" prefWidth="290.0">
                            <content>
-                              <TextArea fx:id="mainPageNoticeTextArea" prefHeight="109.0" prefWidth="275.0" />
+                              <TextArea fx:id="mainPageNoticeTextArea" prefHeight="109.0" prefWidth="275.0" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextArea>
                            </content>
                         </ScrollPane>
                         <VBox alignment="TOP_CENTER" layoutX="488.0" layoutY="142.0" prefHeight="304.0" prefWidth="282.0">
@@ -42,7 +45,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="mainPageOverviewText" editable="false" prefHeight="280.0" prefWidth="280.0" />
+                              <TextArea fx:id="mainPageOverviewText" editable="false" prefHeight="280.0" prefWidth="280.0" wrapText="true" />
                            </children>
                         </VBox>
                         <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="134.0" prefWidth="450.0">
@@ -87,7 +90,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="myClassOverviewText" prefHeight="280.0" prefWidth="256.0" />
+                              <TextArea fx:id="myClassOverviewText" prefHeight="280.0" prefWidth="256.0" wrapText="true" />
                            </children>
                         </VBox>
                         <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="149.0" prefWidth="468.0">
@@ -141,16 +144,16 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="myAccountShowPlanTextArea" layoutX="388.0" layoutY="169.0" prefHeight="257.0" prefWidth="369.0" text="My Plan" />
-                        <FlowPane alignment="TOP_RIGHT" hgap="30.0" layoutX="16.0" layoutY="169.0" prefHeight="282.0" prefWidth="311.0" vgap="20.0">
+                        <TextArea fx:id="myAccountShowPlanTextArea" layoutX="388.0" layoutY="169.0" prefHeight="257.0" prefWidth="369.0" text="My Plan" wrapText="true" />
+                        <FlowPane alignment="TOP_RIGHT" hgap="30.0" layoutX="16.0" layoutY="169.0" prefHeight="311.0" prefWidth="334.0" vgap="20.0">
                            <children>
                               <Label text="Age">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="myAccountAgeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="187.0" />
-                              <Label text="Weight">
+                              <ComboBox fx:id="myAccountAgeField" prefHeight="23.0" prefWidth="190.0" />
+                              <Label text="Weight (kg)">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -160,7 +163,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label text="Height">
+                              <Label text="Height (cm)">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -170,12 +173,18 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
+                              <Label text="Twaistline (cm)">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="twistlineTextField" prefHeight="23.0" prefWidth="186.0" />
                               <Label text="BMI">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="myAccountBMIField">
+                              <TextField fx:id="myAccountBMIField" editable="false">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -185,7 +194,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="myAccountFattyField">
+                              <TextField fx:id="myAccountFattyField" editable="false">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

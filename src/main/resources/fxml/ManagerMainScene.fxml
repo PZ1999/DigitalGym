@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ManagerMainSceneController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ManagerMainSceneController">
     <children>
         <TabPane layoutX="14.0" layoutY="14.0" prefHeight="584.0" prefWidth="775.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -142,8 +143,8 @@
                                             <children>
                                                 <TextField fx:id="trainerNameTextField" />
                                                 <TextField fx:id="trainerPhoneNumberTextField" />
-                                                <TextField fx:id="trainerPasswordTextField" />
-                                                <TextField fx:id="trainerPasswordAgainTextField" />
+                                    <PasswordField fx:id="trainerPasswordTextField" />
+                                    <PasswordField fx:id="trainerPasswordAgainTextField" />
                                             </children>
                                         </FlowPane>
                                         <VBox alignment="TOP_RIGHT" layoutX="-51.0" layoutY="13.0" prefHeight="200.0" prefWidth="221.0" spacing="17.0">

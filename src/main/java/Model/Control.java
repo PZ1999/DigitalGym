@@ -1,15 +1,8 @@
 package Model;
 
-import ViewController.*;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
-
-import Model.*;
 
 public class Control {
     /**
@@ -247,6 +240,25 @@ public class Control {
         policy.live_discount = premium_live_discount;
         IO.write(policy,"Policy");
         return true;
+    }
+
+    /**
+     * This method is called when manager selected a course and ban it.
+     * It will change a course's state from alive to ban
+     * @param course Target course to be banned
+     */
+    public static void managerBanCourse(Course course) {
+        course.setState("ban");
+        IO.write(course,course.getCourse_id());
+    }
+    /**
+     * This method is called when manager selected a course and ban it.
+     * It will change a course's state from alive to ban
+     * @param live Target live to be banned
+     */
+    public static void managerBanLive(Live live) {
+        live.setState("ban");
+        IO.write(live,live.getCourse_id());
     }
 
 
@@ -534,16 +546,18 @@ public class Control {
      * @param clientHeight
      * @throws IOException
      */
-    public static void updateMyAccountPage(String client_id, String clientAge, String clientWeight, String clientHeight) throws IOException {
+    public static void updateMyAccountPage(String client_id, String clientAge, String clientWeight, String clientHeight, String clientTwist) throws IOException {
         Integer age = Integer.parseInt(clientAge);
         Double weight = Double.parseDouble(clientWeight);
         Double height = Double.parseDouble(clientHeight);
+        Double twist = Double.parseDouble(clientTwist);
 
 
         Client client = (Client)IO.read(new Client(),client_id);
         client.setAge(age);
         client.setWeight(weight);
         client.setHeight(height);
+        client.setWaistline(twist);
         //
         client.cauculateBMIandBody_fat_rate();
         client.generateGeneric_plan();

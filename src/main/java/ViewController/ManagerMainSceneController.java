@@ -45,7 +45,7 @@ public class ManagerMainSceneController {
     public Label errorLabelForTwicePassword;
     public Label errorLabelForPhoneNumebr;
 
-    public void initialize() throws IOException {
+    public void initialize() throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
         myClassClassButton.setToggleGroup(groupForType);//initialize first tab
         myClassLiveButton.setToggleGroup(groupForType);
         groupForType.selectToggle(myClassClassButton);
@@ -59,12 +59,13 @@ public class ManagerMainSceneController {
         buildScene();
 
     }
-    public void buildScene() throws IOException {
+    public void buildScene() throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
         //second tab
         Policy policy = (Policy) IO.read(new Policy(),"Policy");
         premiumPriceTextField.setText(String.valueOf(policy.premium_price));
         premiumDiscountTextField.setText(String.valueOf(policy.premium_discount*100));
         premiumLiveDiscountTextField.setText(String.valueOf(policy.live_discount*100));
+        myClassSearchClicked(new ActionEvent());
         //
     }
 
@@ -159,7 +160,15 @@ public class ManagerMainSceneController {
         myClassSearchClicked(event);
     }
 
-    public void banButtonClicked(ActionEvent event) {
+    public void banButtonClicked(ActionEvent event) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
+        ToggleButton button = (ToggleButton)groupForClasses.getSelectedToggle();
+        System.out.println(button.getUserData().getClass());
+        if(button.getUserData().getClass().equals(new Course().getClass()))
+            Control.managerBanCourse((Course)button.getUserData());
+
+        else
+            Control.managerBanLive((Live)button.getUserData());
+        myClassSearchClicked(event);
     }
 
     public void discountSaveButtonClicked(ActionEvent event) {

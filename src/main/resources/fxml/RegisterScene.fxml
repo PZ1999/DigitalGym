@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -19,8 +20,8 @@
                   <TextField fx:id="UsernameTextField" />
                   <TextField fx:id="PhoneNumberTextField" />
                   <TextField fx:id="CodeTextField" />
-                  <TextField fx:id="PasswordTextField" />
-                  <TextField fx:id="PasswordAgainTextField" />
+                  <PasswordField fx:id="PasswordTextField" />
+                  <PasswordField fx:id="PasswordAgainTextField" />
                   <ChoiceBox fx:id="sexChoiceBox" prefHeight="23.0" prefWidth="162.0" />
                </children>
             </FlowPane>

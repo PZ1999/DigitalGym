@@ -9,6 +9,7 @@ public class Client extends User{
     private Date premium_end_date;
     private double height;
     private double weight;
+    private double waistline;
     private double BMI;
     private double body_fat_rate;
     private String sex;//Male,Female
@@ -39,20 +40,14 @@ public class Client extends User{
      * need to be finished by WHY --PZ 4.14 2130
      */
     public void generateGeneric_plan(){
-        if(body_fat_rate<0.1){
+
             if(BMI < 18.5) {
-                generic_plan = "Eat more food and do aerobics.";
+                generic_plan = "You are to light. Eat more food and do aerobics.";
             }else if(BMI > 24){
                 generic_plan = "Make sure to have enough protein and calorie, and keep your regular exercise.";
             }else{
                 generic_plan = "You can eat more protein and try more Anaerobic exercise to make your muscle stronger.";
             }
-
-        }else if(body_fat_rate>0.35){
-            generic_plan = "Eat less fat and sugar and more vegetable. Try some aerobic in daily life.";
-        }else{
-            generic_plan = "You have standard figure, asking trainer for specific plan. ";
-        }
     }
     /**
      * need to be finished by WHY --PZ 4.14 2130
@@ -62,7 +57,7 @@ public class Client extends User{
 
         //Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74//infer that yaowei is 64
 
-        body_fat_rate =  (130 * 0.74 - weight * 0.082 - 34.89) / weight;
+        body_fat_rate = ((1.2*BMI)+(0.23*(double)age)-16.2)/100;
     }
     public void prolongPremium(int month){
         final long MONTH = 3600L *1000*24*30;
@@ -244,5 +239,13 @@ public class Client extends User{
                 my_live.get(i).getLive_plan().get(index).setFinish(true);
             }
         }
+    }
+
+    public double getWaistline() {
+        return waistline;
+    }
+
+    public void setWaistline(double waistline) {
+        this.waistline = waistline;
     }
 }

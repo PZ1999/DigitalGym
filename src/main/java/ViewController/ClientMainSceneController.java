@@ -30,7 +30,7 @@ public class ClientMainSceneController {
     @FXML
 
     public Label premiumLabel;
-    public ChoiceBox myAccountAgeField;//this field is about body information in my account
+    public ComboBox myAccountAgeField;//this field is about body information in my account
     public TextField myAccountWeightField;//this field is about body information in my account
     public TextField myAccountBMIField;//this field is about body information in my account
     public TextField myAccountHeightField;//this field is about body information in my account
@@ -68,6 +68,7 @@ public class ClientMainSceneController {
 
     public Model.Client client;
     public TextArea myAccountShowPlanTextArea;
+    public TextField twistlineTextField;
     //public String id; no need --PZ
 
 
@@ -76,7 +77,8 @@ public class ClientMainSceneController {
     public void initialize() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         for(int i=8;i<=100;i++)
             myAccountAgeField.getItems().add(i);
-        myAccountAgeField.setValue(20);
+        myAccountAgeField.setVisibleRowCount(10);
+        myAccountAgeField.getSelectionModel().select(20);
 
         mainPageFilterType.getItems().add("All");
         myClassFilterType.getItems().add("All");
@@ -118,6 +120,7 @@ public class ClientMainSceneController {
         myAccountAgeField.setValue(client.getAge());
         myAccountWeightField.setText(""+client.getWeight());
         myAccountHeightField.setText(""+client.getHeight());
+        twistlineTextField.setText(""+client.getWaistline());
         myAccountBMIField.setText(""+client.getBMI());
         myAccountFattyField.setText(""+client.getBody_fat_rate());
 
@@ -369,10 +372,13 @@ public class ClientMainSceneController {
 
     }
 
-    public void updateNotice() {
+    public void updateNotice() throws IOException {
         String s = new String();
-        for(int i=0;i<=100;i++)
-            s+=("Line"+i+"\n");
+        Policy policy = (Policy)IO.read(new Policy(),"policy");
+        s = "Welcome to IGym\n" +
+                "Today's Discount:\n" +
+                "Premium Discount: "+ policy.premium_discount*100+" % off\n" +
+                "Live Session for Premium: "+policy.live_discount*100+" % off\n";
         mainPageNoticeTextArea.setText(s);
     }
 
@@ -472,7 +478,7 @@ public class ClientMainSceneController {
      * @param actionEvent
      */
     public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
-        Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText());
+        Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText(),twistlineTextField.getText());
         client = (Client)IO.read(client,client.getPhone_number());
 
         myAccountBMIField.setText(""+client.getBMI());
