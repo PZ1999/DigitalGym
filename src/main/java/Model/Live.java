@@ -32,8 +32,24 @@ public class Live extends GeneralCourse{
         this.client_id = client_id;
     }
 
+    public LivePlan getALivePlan(int k)
+    {
+        return  live_plan.get(k);
+    }
     @Override
     public String toString() {
-        return "use IO.printObject instead.";
+        return "Live{" +
+                "course_id='" + course_id + '\'' +
+                ", name='" + name + '\'' +
+                ", trainer_id='" + trainer_id + '\'' +
+                ", trainer='" + trainer + '\'' +
+                ", type='" + type + '\'' +
+                ", info='" + info + '\'' +
+                ", plan=" + plan +
+                ", rank=" + rank +
+                ", price=" + price +
+                ", live_plan=" + live_plan +
+                ", client_id='" + client_id + '\'' +
+                '}';
     }
 }

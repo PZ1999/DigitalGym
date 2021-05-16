@@ -10,10 +10,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -35,22 +36,19 @@
                               <TextArea fx:id="mainPageNoticeTextArea" prefHeight="109.0" prefWidth="275.0" />
                            </content>
                         </ScrollPane>
-                        <VBox alignment="TOP_CENTER" layoutX="488.0" layoutY="142.0" prefHeight="304.0" prefWidth="238.0">
+                        <VBox fx:id="OverviewVbox" alignment="TOP_CENTER" layoutX="488.0" layoutY="142.0" prefHeight="304.0" prefWidth="282.0">
                            <children>
-                              <Label prefHeight="19.0" prefWidth="245.0" text="              Overview">
+                              <Label fx:id="Overview" prefHeight="23.0" prefWidth="245.0" text="              Overview">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="mainPageOverviewText" editable="false" prefHeight="332.0" prefWidth="238.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></TextArea>
+                              <TextArea fx:id="mainPageOverviewText" editable="false" prefHeight="280.0" prefWidth="280.0" />
                            </children>
                         </VBox>
                         <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="134.0" prefWidth="450.0">
                            <children>
-                              <ChoiceBox fx:id="mainPageFilterType" layoutX="54.0" layoutY="76.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="mainPageFilterType" layoutX="54.0" layoutY="76.0" prefHeight="20.0" prefWidth="112.0" />
                               <Button fx:id="mainPageSearchButton" layoutX="225.0" layoutY="73.0" mnemonicParsing="false" onAction="#mainPageSearchClicked" text="Search">
                                  <font>
                                     <Font size="14.0" />
@@ -69,6 +67,11 @@
                                     </RadioButton>
                                  </children>
                               </VBox>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="194.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/放大镜.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>
@@ -83,14 +86,14 @@
                               <FlowPane fx:id="myClassFlowPane" alignment="TOP_CENTER" hgap="20.0" prefHeight="266.0" prefWidth="448.0" vgap="20.0" />
                            </content>
                         </ScrollPane>
-                        <VBox alignment="TOP_CENTER" layoutX="486.0" layoutY="140.0" prefHeight="304.0" prefWidth="238.0">
+                        <VBox alignment="TOP_CENTER" layoutX="486.0" layoutY="140.0" prefHeight="304.0" prefWidth="289.0">
                            <children>
                               <Label prefHeight="19.0" prefWidth="245.0" text="              Overview">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="myClassOverviewText" prefHeight="332.0" prefWidth="238.0" />
+                              <TextArea fx:id="myClassOverviewText" prefHeight="280.0" prefWidth="256.0" />
                            </children>
                         </VBox>
                         <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="149.0" prefWidth="468.0">
@@ -99,7 +102,7 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font></Button>
-                              <ChoiceBox fx:id="myClassFilterType" layoutX="54.0" layoutY="76.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="myClassFilterType" layoutX="54.0" layoutY="76.0" prefHeight="20.0" prefWidth="112.0" />
                               <VBox layoutX="319.0" layoutY="50.0" prefHeight="53.0" prefWidth="88.0" spacing="5.0">
                                  <children>
                                     <RadioButton fx:id="myClassClassButton" mnemonicParsing="false" text="Class">
@@ -116,14 +119,18 @@
                               </VBox>
                            </children>
                         </AnchorPane>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="205.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../web/放大镜.png" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="My Account">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane fx:id="an" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Circle fill="DODGERBLUE" layoutX="56.0" layoutY="56.0" radius="56.0" stroke="BLACK" strokeType="INSIDE" />
                         <Label fx:id="Text" layoutX="118.0" layoutY="40.0" prefHeight="32.0" prefWidth="132.0" text="UserName:">
                            <font>
                               <Font size="24.0" />
@@ -144,16 +151,26 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="myAccountShowPlanTextArea" layoutX="388.0" layoutY="169.0" prefHeight="257.0" prefWidth="369.0" text="My Plan" />
-                        <FlowPane alignment="TOP_RIGHT" hgap="30.0" layoutX="16.0" layoutY="169.0" prefHeight="282.0" prefWidth="311.0" vgap="20.0">
+                        <TextArea fx:id="myAccountShowPlanTextArea" layoutX="388.0" layoutY="139.0" prefHeight="257.0" prefWidth="369.0" text="My Plan" />
+                        <FlowPane alignment="TOP_RIGHT" hgap="30.0" layoutX="18.0" layoutY="143.0" prefHeight="350.0" prefWidth="358.0" vgap="20.0">
                            <children>
-                              <Label text="Age">
+                              <ImageView fitHeight="29.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/年龄.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="           Age">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
                               <ChoiceBox fx:id="myAccountAgeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="187.0" />
-                              <Label text="Weight">
+                              <ImageView fitHeight="29.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/身高.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="     Weight">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -163,7 +180,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label text="Height">
+                              <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/体重.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="     Height">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -173,7 +195,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label text="BMI">
+                              <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/质量分析.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="          BMI">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -183,6 +210,11 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../web/自体脂肪.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Fatty_Lipase">
                                  <font>
                                     <Font size="14.0" />
@@ -193,27 +225,37 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="myAccountSaveButton" mnemonicParsing="false" onAction="#myAccountSaveButtonClicked" prefHeight="29.0" prefWidth="92.0" text="Save">
+                              <Button mnemonicParsing="false" onAction="#myAccountSaveButtonClicked" prefHeight="29.0" prefWidth="92.0" text="Save">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
                            </children>
                         </FlowPane>
-                        <FlowPane alignment="TOP_CENTER" hgap="10.0" layoutX="388.0" layoutY="443.0" prefHeight="29.0" prefWidth="313.0">
+                        <FlowPane alignment="TOP_CENTER" hgap="10.0" layoutX="388.0" layoutY="405.0" prefHeight="107.0" prefWidth="274.0" vgap="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#changeEmailButtonCliecked" prefHeight="29.0" prefWidth="310.0" text="Change Phone Number">
+                              <Button mnemonicParsing="false" onAction="#changeEmailButtonClicked" prefHeight="29.0" prefWidth="196.0" text="Change Phone Number">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="29.0" prefWidth="310.0" text="Change Password">
+                              <Button mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="29.0" prefWidth="197.0" text="Change Password">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#deleteAccountClicked" prefHeight="29.0" prefWidth="197.0" text="Delete My Account">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
                            </children>
                         </FlowPane>
+                        <ImageView fitHeight="100.0" fitWidth="105.0" layoutX="8.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../web/icon2.jpg" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>
@@ -222,8 +264,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="326.0" layoutX="65.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="244.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="326.0" layoutX="467.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="326.0" layoutX="32.0" layoutY="64.0" stroke="WHITE" strokeType="INSIDE" width="324.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="326.0" layoutX="401.0" layoutY="62.0" stroke="WHITE" strokeType="INSIDE" width="346.0" />
                         <Label fx:id="Normal" layoutX="132.0" layoutY="86.0" text="Normal">
                            <font>
                               <Font size="24.0" />
@@ -280,12 +322,12 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="monthChoiceBox" layoutX="479.0" layoutY="293.0" onAction="#premierMonthSelected" prefHeight="23.0" prefWidth="59.0" />
-                        <Label fx:id="premierOriginalPriceLabel" layoutX="599.0" layoutY="227.0" prefHeight="32.0" prefWidth="100.0">
+                        <Label fx:id="premierOriginalPriceLabel" layoutX="619.0" layoutY="253.0" prefHeight="32.0" prefWidth="125.0">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="premierDiscountPriceLabel" layoutX="596.0" layoutY="263.0" prefHeight="32.0" prefWidth="106.0" textFill="#006b20">
+                        <Label fx:id="premierDiscountPriceLabel" layoutX="621.0" layoutY="287.0" prefHeight="32.0" prefWidth="106.0" textFill="#006b20">
                            <font>
                               <Font size="24.0" />
                            </font>

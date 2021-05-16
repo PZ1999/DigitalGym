@@ -13,13 +13,14 @@ public class GeneralCourse {
     protected String info;
     protected ArrayList <String> plan;//daily plan,normal String
     protected int rank;
+    protected String state;//waiting->before approve, alive->normal, ban->banned
 
 
 
     protected double price;
     public GeneralCourse(String course_id,String name,String trainer_id,String trainer,String type,String info,int rank,double price){
         setCourse_id(course_id);
-        setCourse_id(name);
+        setName(name);
         setTrainer_id(trainer_id);
         setTrainer(trainer);
         setType(type);
@@ -27,7 +28,10 @@ public class GeneralCourse {
         setRank(rank);
         setPrice(price);
         setPlan(new ArrayList<String>());
+        setState("waiting");
     }
+
+
 
     public GeneralCourse() {
 
@@ -94,6 +98,12 @@ public class GeneralCourse {
     }
     public void setRank(int rank){
         this.rank = rank;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+    public String getState(){
+        return state;
     }
 
 }

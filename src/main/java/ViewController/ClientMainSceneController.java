@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -68,6 +69,8 @@ public class ClientMainSceneController {
 
     public Model.Client client;
     public TextArea myAccountShowPlanTextArea;
+    public Label Overview;
+    public VBox OverviewVbox;
     //public String id; no need --PZ
 
 
@@ -78,7 +81,11 @@ public class ClientMainSceneController {
             myAccountAgeField.getItems().add(i);
         myAccountAgeField.setValue(20);
 
-        for(String s : Policy.sport_type){
+        mainPageFilterType.getItems().add("All");
+        myClassFilterType.getItems().add("All");
+        mainPageFilterType.getItems().add("Discount");
+        Policy policy = (Policy) IO.read(new Policy(),"Policy");
+        for(String s : policy.sport_type){
             mainPageFilterType.getItems().add(s);
             myClassFilterType.getItems().add(s);
         }
@@ -100,12 +107,13 @@ public class ClientMainSceneController {
 
         updateNotice();
 
-        discountRatio.setText(""+Policy.premium_discount*100+"%");
+        discountRatio.setText(""+policy.premium_discount*100+"%");
         for(int i=1;i<=12;i++)
             monthChoiceBox.getItems().add(i);
     }
 
     public void buildScene() throws SAXException, ParserConfigurationException, XPathExpressionException, IOException {
+
         local_controller = (ClientMainSceneController)buy.getScene().getUserData();
         client = (Client)IO.read(client,client.getPhone_number());
         //System.out.println(client.getRank());
@@ -121,15 +129,19 @@ public class ClientMainSceneController {
 
         myAccountUserNameLabel.setText(client.getName());
         premiumLabel.setText(client.getRank()==0?"Normal":"Premium");
-        System.out.println(Policy.premium_discount);
-        discountRatio.setText(Policy.premium_discount*100+"%");
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        System.out.println(policy.premium_discount);
+        discountRatio.setText(policy.premium_discount*100+"%");
+        myAccountSaveButtonClicked(new ActionEvent());
+        myAccountShowPlanTextArea.setText(client.getGeneric_plan());
+
     }
 
     public void updateClassesInMainPage() throws IOException, SAXException, ParserConfigurationException {
         mainPageFlowPane.getChildren().clear();
         ArrayList<Button> buttons;
         if(group1.getSelectedToggle().getUserData().equals("class"))
-            buttons = getClassesButtonsForMainPage();
+            buttons = getClassesButtonsForMainPage();//with filter --PZ
         else
             buttons = getLiveButtonsForMainPage();
         for(Button button:buttons)
@@ -181,6 +193,8 @@ public class ClientMainSceneController {
             controller.setCourse(course);
             controller.setClient(client);
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+            classScene.getStylesheets().add
+                    (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
             } catch (IOException e) {
@@ -213,7 +227,10 @@ public class ClientMainSceneController {
             controller.live = (Live) (((Node)actionEvent.getSource()).getUserData());
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
             controller.setClient(client);
+            classScene.setUserData(controller);
             window.setScene(classScene);
+            classScene.getStylesheets().add
+                    (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
             } catch (IOException e) {
@@ -222,41 +239,75 @@ public class ClientMainSceneController {
 
         }
     };
-
-
     /**
      * This method return a set of class buttons for Main pages.
      * details needed to be added --PZ
      * details added at 4.9 1412 --PZ
+     * a filter added to check availability --PZ
      * @return
+     *
      */
     public ArrayList<Button> getClassesButtonsForMainPage() throws ParserConfigurationException, SAXException, IOException {
         ArrayList<Button> buttons =new ArrayList<Button>();
-        ArrayList <Course> classes = Control.getAllCourses();
-        for(Course course :classes){
-            Button button = new Button();
-            button.setPrefSize(160,160);
-            //mainPageFlowPane.getChildren().add(button);
-            button.setOnAction(classButtonClicked);
+        ArrayList <Course> classes = Control.getAllCourses(mainPageFilterType.getValue().toString(),client.getPhone_number());
 
-            //add action on class button to show over view
-            button.addEventHandler(MouseEvent.MOUSE_ENTERED,
+            for(Course course:classes){
+                if(!course.getState().equals("alive"))
+                    continue ;//not available
+                Button button = new Button();
+                button.setPrefSize(170,50);
+                //mainPageFlowPane.getChildren().add(button);
+                button.setOnAction(classButtonClicked);
+
+                //add action on class button to show over view
+                button.addEventHandler(MouseEvent.MOUSE_ENTERED,
                     new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent e) {
                             mainPageOverviewText.setText(((Course)button.getUserData()).getInfo());;
                         }
                     });
+                button.setUserData(course);//add course object to object
+                button.setText("Trainner: "+course.getTrainer()+"\n"+course.getName());
+                buttons.add(button);
+            }
+        return buttons;
+    }
 
+    /**
+     * This method return a set of live buttons for Main pages.
+     * details needed to be added --PZ
+     * added at 4.9 --PZ
+     * a filter added to check availability --PZ
+     * @return
+     *
+     */
+    public ArrayList<Button> getLiveButtonsForMainPage() throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Button> buttons =new ArrayList<Button>();
 
-            
-            button.setUserData(course);//add course object to object
-            button.setText("Trainner: "+course.getTrainer()+"\n"+course.getInfo());
+        ArrayList <Live> lives = Control.getAllLives(mainPageFilterType.getValue().toString(),client.getPhone_number());
+        for(Live live : lives){
+            if(!live.getState().equals("alive"))
+                continue ; //not available
+            Button button = new Button();
+            button.setPrefSize(180,50);
+            //mainPageFlowPane.getChildren().add(button);
+            button.setOnAction(liveButtonClieked);
+            button.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            mainPageOverviewText.setText(((Live)button.getUserData()).getInfo());;
+                        }
+                    });
+            button.setUserData(live);
+            button.setText("Trainner: "+live.getTrainer()+"\n"+live.getName());
             buttons.add(button);
 
         }
         return buttons;
     }
+
     /**
      * This method return a set of class buttons for myClass pages.
      * details needed to be added --PZ
@@ -267,11 +318,11 @@ public class ClientMainSceneController {
         ArrayList<Button> buttons =new ArrayList<Button>();
         Control controller = new Control();
         client = (Client)IO.read(client,client.getPhone_number());
-        ArrayList <Course> classes = Control.getClientCourses(client);
+        ArrayList <Course> classes = Control.getClientCourses(client,myClassFilterType.getValue().toString());
         //System.out.println(classes.size());
         for(Course course :classes){
             Button button = new Button();
-            button.setPrefSize(160,160);
+            button.setPrefSize(180,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(classButtonClicked);
 
@@ -283,11 +334,8 @@ public class ClientMainSceneController {
                             myClassOverviewText.setText(((Course)button.getUserData()).getInfo());;
                         }
                     });
-
-
-
             button.setUserData(course);//add course object to object
-            button.setText("Trainner: "+course.getTrainer()+"\n"+course.getInfo());
+            button.setText("Trainner: "+course.getTrainer()+"\n"+course.getName());
             buttons.add(button);
 
         }
@@ -303,10 +351,10 @@ public class ClientMainSceneController {
             ArrayList<Button> buttons =new ArrayList<Button>();
             Control controller = new Control();
             client = (Client)IO.read(client,client.getPhone_number());
-            ArrayList <Live> lives = controller.getClientLives(client);
+            ArrayList <Live> lives = controller.getClientLives(client,myClassFilterType.getValue().toString());
             for(Live live : lives){
                 Button button = new Button();
-                button.setPrefSize(160,160);
+                //button.setPrefSize(160,160);
                 //mainPageFlowPane.getChildren().add(button);
                 button.setOnAction(liveButtonClieked);
                 button.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -320,45 +368,13 @@ public class ClientMainSceneController {
 
 
                 button.setUserData(live);
-                button.setText("Trainner: "+live.getTrainer()+"\n"+live.getInfo());
+                button.setText("Trainner: "+live.getTrainer()+"\n"+live.getName());
                 buttons.add(button);
 
             }
             return buttons;
 
     }
-    /**
-     * This method return a set of live buttons for Main pages.
-     * details needed to be added --PZ
-     * added at 4.9 --PZ
-     * @return
-     */
-    public ArrayList<Button> getLiveButtonsForMainPage() throws ParserConfigurationException, SAXException, IOException {
-        ArrayList<Button> buttons =new ArrayList<Button>();
-
-        ArrayList <Live> lives = Control.getAllLives();
-        for(Live live : lives){
-            Button button = new Button();
-            button.setPrefSize(160,160);
-            //mainPageFlowPane.getChildren().add(button);
-            button.setOnAction(liveButtonClieked);
-            button.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                    new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent e) {
-                            mainPageOverviewText.setText(((Live)button.getUserData()).getInfo());;
-                        }
-                    });
-
-
-            button.setUserData(live);
-            button.setText("Trainner: "+live.getTrainer()+"\n"+live.getInfo());
-            buttons.add(button);
-
-        }
-        return buttons;
-    }
-
 
     public void updateNotice() {
         String s = new String();
@@ -367,7 +383,7 @@ public class ClientMainSceneController {
         mainPageNoticeTextArea.setText(s);
     }
 
-    public void changeEmailButtonCliecked(ActionEvent actionEvent) throws IOException {
+    public void changeEmailButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
         Stage stage = new Stage();
 
 
@@ -379,8 +395,12 @@ public class ClientMainSceneController {
         stage.setScene(changeEmailScene);
         ChangeEmailScene controller = loader.getController();
         controller.client = client;
-
+        controller.mainSceneController = (ClientMainSceneController)(((Node)actionEvent.getSource()).getScene()).getUserData();
+        changeEmailScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
+
+
     }
 
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -391,9 +411,11 @@ public class ClientMainSceneController {
         loader.setLocation(getClass().getResource("/fxml/ChangePassword.fxml"));
         Parent changePassWordParent = loader.load();
         Scene changePassWordScene = new Scene(changePassWordParent);
-
+        ChangePassword controller = loader.getController();
+        controller.client = this.client;
         stage.setScene(changePassWordScene);
-
+        changePassWordScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -430,6 +452,8 @@ public class ClientMainSceneController {
         controller.client = client;
         controller.buildScene();
         controller.mainSceneController = local_controller;
+        PaymentScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
 
         stage.show();
 
@@ -446,20 +470,45 @@ public class ClientMainSceneController {
     public void premierMonthSelected() throws IOException {
         Integer month = (Integer) (monthChoiceBox.getValue());
         //System.out.println(month);
-        double originPrice = month * Policy.premium_price;
-        double discountPrice = month * Policy.premium_price * (1-Policy.premium_discount);
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        double originPrice = month * policy.premium_price;
+        double discountPrice = month * policy.premium_price * (1-policy.premium_discount);
         premierOriginalPriceLabel.setText(originPrice+" $ ");
         premierDiscountPriceLabel.setText(discountPrice+" $ ");
     }
     /**
+     * @author WD,WHY
+     *
      * this method save changes of client's body information's changes, and generate generic plan
+     * modified by PZ at 4.19 to read client IO again.
      * @param actionEvent
      */
     public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
         Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText());
+        client = (Client)IO.read(client,client.getPhone_number());
+
         myAccountBMIField.setText(""+client.getBMI());
         myAccountFattyField.setText(""+client.getBody_fat_rate());
         myAccountShowPlanTextArea.setText(client.getGeneric_plan());
-        buildScene();
+
+
+    }
+
+    public void deleteAccountClicked(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/DeleteAccountScene.fxml"));
+        Parent parent = loader.load();
+        Scene deleteAccountScene = new Scene(parent);
+        DeleteAccountSceneController controller = loader.getController();
+        controller.client_id = this.client.getPhone_number();
+        controller.stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(deleteAccountScene);
+        deleteAccountScene.setUserData(((Node)actionEvent.getSource()).getScene().getWindow());
+        deleteAccountScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
+        stage.show();
     }
 }

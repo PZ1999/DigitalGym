@@ -1,136 +1,76 @@
 {
   "course_id":"L002",
-  "name":"drink water2",
-  "trainer_id":"22222222222",
-  "trainer":"zz",
+  "name":"Bile Live Courses",
+  "trainer_id":"44444444444",
+  "trainer":"Master Pan",
   "type":"Bike",
-  "state":"active",
+  "state":"alive",
   "info":"This is a L002",
   "rank": 0,
   "price":100.0,
   "plan":[
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water",
-    "drink more hot water"
+    "Day1 Plan: Basic workout. \n Some plan info...",
+    "Day2 Plan: Basic workout. \n Some plan info...",
+    "Day3 Plan: Basic workout. \n Some plan info...",
+    "Day4 Plan: Basic workout. \n Some plan info...",
+    "Day5 Plan: Basic workout. \n Some plan info...",
+    "Day6 Plan: Basic workout. \n Some plan info..."
   ],
   "client_id":"",
   "live_plan":[
     {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day1_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     },
     {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day2_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     },
     {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day3_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     },
     {
-      "live_url":"absorbs",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day4_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     },
     {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day5_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     },
     {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
-    },
-    {
-      "live_url":"abababbabab",
-      "live_start_time":"2021-4-14 08:41:00",
-      "personal_plan":"drink more hot water"
+      "live_url":"url_for_day6_live",
+      "live_start_time":null,
+      "personal_plan":"not modified by trainer",
+      "client_id": null,
+      "course_id": "L002",
+      "finish": false
+
     }
   ]
 }

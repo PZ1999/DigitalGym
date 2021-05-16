@@ -1,19 +1,17 @@
 {
-  "rank": 0,
-  "premium_end_date": "2020-04-11 08:56:00",
+  "rank": 1,
+  "premium_end_date": "2022-05-10 13:53:43",
   "height": 180.0,
   "weight": 70.0,
-  "BMI": 0.0,
-  "body_fat_rate": 0.0,
+  "BMI": 21.604938271604937,
+  "body_fat_rate": 0.7938571428571429,
   "sex": "male",
   "age": 20,
-  "generic_plan": "drink more hot water",
-  "my_course": [
-    "C002"
-  ],
+  "generic_plan": "Eat less fat and sugar and more vegetable. Try some aerobic in daily life.",
+  "my_course": [],
   "my_live": [],
   "phone_number": "11111111111",
   "password": "11111111111",
-  "name": "111",
+  "name": "user One",
   "state": "active"
 }

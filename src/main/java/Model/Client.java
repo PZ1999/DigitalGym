@@ -25,10 +25,14 @@ public class Client extends User{
         my_course = new ArrayList<String>();
         my_live = new ArrayList<Live>();
         setGeneric_plan("initial text");
+        setHeight(160.0);
+        setWeight(50.0);
+        setBMI(0.0);
+        setBody_fat_rate(0.0);
 
     }
 
-    public Client() {
+    public Client(){
 
     }
     /**
@@ -58,7 +62,7 @@ public class Client extends User{
 
         //Body_fat_rate needs yaoWei(cm)//female - 34.89 male-44.74//infer that yaowei is 64
 
-        body_fat_rate =  (64 * 0.74 - weight * 0.082 - 34.89) / weight;
+        body_fat_rate =  (130 * 0.74 - weight * 0.082 - 34.89) / weight;
     }
     public void prolongPremium(int month){
         final long MONTH = 3600L *1000*24*30;
@@ -98,7 +102,7 @@ public class Client extends User{
         }
         else{
             my_course.add(course_id);
-            IO.write(new Client(),phone_number);
+            //IO.write(new Client(),phone_number);
         }
     }
     /**
@@ -116,22 +120,6 @@ public class Client extends User{
         }
         my_live.add(live);
     }
-    /**
-     * need to be finished by PZ --PZ  4.14 2130
-     * @param courseID pk of course
-     */
-    public void deleteCourse(String courseID){
-
-    }
-    /**
-     * need to be finished by PZ --PZ  4.14 2130
-     * @param liveID  pk for live
-     */
-    public void deleteLive(Live liveID){
-
-    }
-
-
 
     @Override
     public String toString() {
@@ -242,5 +230,19 @@ public class Client extends User{
 
     public void setMy_live(ArrayList<Live> my_live) {
         this.my_live = my_live;
+    }
+
+    /**
+     * used to mark a live session as finished
+     * @param live_plan
+     */
+    public void finishLiveSession(LivePlan live_plan) {
+        for(int i=0;i<my_live.size();i++){
+            if(my_live.get(i).getCourse_id().equals(live_plan.getCourse_id())){
+                int index = my_live.get(i).getLive_plan().indexOf(live_plan);
+                //live_plan.setFinish(true);
+                my_live.get(i).getLive_plan().get(index).setFinish(true);
+            }
+        }
     }
 }

@@ -1,14 +1,14 @@
 {
-  "occupation": [
-    "2021-05-17 08:00:00"
-  ],
+  "occupation": [],
   "my_course": [
     "C001",
-    "C002"
+    "C2",
+    "C3",
+    "C4"
   ],
   "my_live": [],
   "phone_number": "22222222222",
   "password": "22222222222",
-  "name": "111",
+  "name": "Master Zhang",
   "state": "active"
 }

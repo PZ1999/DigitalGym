@@ -37,6 +37,8 @@ public class LiveSceneController {
     public Client client;
     public TextArea personalPlanTextArea;
     public Label liveSessionNameLabel;
+    public Label errorLabelForGoLive;
+    public Label errorLabelForBookLive;
 
     @FXML
     public void initialize() {
@@ -65,17 +67,21 @@ public class LiveSceneController {
             if(l.getCourse_id().equals(live.getCourse_id()))
                 live = l;
 
-
+        errorLabelForGoLive.setText("");
+        errorLabelForBookLive.setText("");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/SceneForClassesPlan.fxml"));
         Parent parent = loader.load();
         Scene sceneForPlan = new Scene(parent);
         SceneForClassesPlan controller = loader.getController();
+        tabPane.getTabs().remove(1,tabPane.getTabs().size());
         introTag.setContent(controller.pane);
         controller.textForPlanInfo.setText(live.getInfo());
         int i=1;
         priceLabel.setText(live.getPrice()+"");
-        discountPriceLabel.setText(live.getPrice()*(1-Policy.live_discount)+"");
+
+        Policy policy = (Policy)IO.read(new Policy(),"Policy");
+        discountPriceLabel.setText(live.getPrice()*(1-policy.live_discount)+"");
 
 
         for(String plan : live.getPlan()){
@@ -96,13 +102,17 @@ public class LiveSceneController {
         tabPane.getSelectionModel().selectedIndexProperty().addListener( (observable, oldValue, newValue) -> {
             final long HOUR = 3600L*1000;
             int selectedIndex = newValue.intValue();
-            if (selectedIndex==0) return;
+            String text;
+            if (selectedIndex==0){
+                liveInfoText.setText("Intro page has no live session");
+                return;
+            }
             else selectedIndex--;
             LivePlan plan = live.getLive_plan().get(selectedIndex);
             personalPlanTextArea.setText(plan.getPersonal_plan());
             System.out.println(selectedIndex);
             //check if booked
-            String text;
+
             if(plan.getLive_start_Date()==null){
 
                 text = "Live not booked, please book a live first.";
@@ -111,8 +121,12 @@ public class LiveSceneController {
             else{
                 Date end_time = new Date(plan.getLive_start_Date().getTime()+2*HOUR);
                 text = "Live session has been booked\n"+"from: "+plan.getLive_start_Date()+"\nto: "+end_time+"\nurl: "+plan.getLive_url();
+                if(plan.getFinish())
+                    text = "Live session has been finished\n"+"from: "+plan.getLive_start_Date()+"\nto: "+end_time+"\nurl: "+plan.getLive_url();
             }
             liveInfoText.setText(text);
+            errorLabelForBookLive.setText("");
+            errorLabelForGoLive.setText("");
             //where index of the first tab is 0, while that of the second tab is 1 and so on.
         });
         LocalDate date = LocalDate.now();
@@ -128,6 +142,8 @@ public class LiveSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
 
     }
 
@@ -135,22 +151,29 @@ public class LiveSceneController {
 
         int index = tabPane.getSelectionModel().getSelectedIndex();
         if(index==0) return;//intro, no live
+        index--;
+        if(live.getLive_plan().get(index).getFinish()){
+            errorLabelForGoLive.setText("Live session has finished, cannot go live again.");
+            return;
+        }
         Stage stage = new Stage();
 
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LiveShowScene.fxml"));
         Parent LiveShowSceneParent = loader.load();
-        Scene LiveShowScene = new Scene(LiveShowSceneParent);
-
-        stage.setScene(LiveShowScene);
+        Scene liveShowScene = new Scene(LiveShowSceneParent);
+        liveShowScene.setUserData(((Node)actionEvent.getSource()).getScene().getUserData());
+        stage.setScene(liveShowScene);
         LiveShowScene controller = loader.getController();
 
-        if(index!=0) index--;
-        controller.dayLabel.setText(""+index);
+
+        controller.dayLabel.setText(""+(index+1));
         controller.url = live.getLive_plan().get(index).getLive_url();
         controller.urlLabel.setText(controller.url);
-
+        controller.live_plan = live.getLive_plan().get(index);
+        liveShowScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -159,12 +182,13 @@ public class LiveSceneController {
      * go to success window.
      * @param actionEvent
      */
-    public void bookbuttonClicked(ActionEvent actionEvent) throws IOException {
+    public void bookButtonClicked(ActionEvent actionEvent) throws IOException {
 
         try {
             Control.bookLiveSession(live,tabPane.getSelectionModel().getSelectedIndex(),datePicker.getValue(),(String)timePicker.getValue());
         } catch (Exception e) {
             e.printStackTrace();
+            errorLabelForBookLive.setText(e.toString());
             return ;
         }
 
@@ -176,6 +200,8 @@ public class LiveSceneController {
         Parent PaymentParent = loader.load();
         Scene PaymentScene = new Scene(PaymentParent);
         stage.setScene(PaymentScene);
+        PaymentScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
         buildScene();
     }
@@ -197,7 +223,8 @@ public class LiveSceneController {
         controller.live = live;
         controller.client = client;
         controller.buildScene();
-
+        PaymentScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -211,10 +238,10 @@ public class LiveSceneController {
     }
     public void updateTimePicker() throws IOException {
         LocalDate date = datePicker.getValue();
-        Calendar calendar1 = new GregorianCalendar(date.getYear(),date.getMonthValue(),date.getDayOfMonth(),8,0);
-        Calendar calendar2 = new GregorianCalendar(date.getYear(),date.getMonthValue(),date.getDayOfMonth(),10,0);
-        Calendar calendar3 = new GregorianCalendar(date.getYear(),date.getMonthValue(),date.getDayOfMonth(),13,0);
-        Calendar calendar4 = new GregorianCalendar(date.getYear(),date.getMonthValue(),date.getDayOfMonth(),15,0);
+        Calendar calendar1 = new GregorianCalendar(date.getYear(),date.getMonthValue()-1,date.getDayOfMonth(),8,0);
+        Calendar calendar2 = new GregorianCalendar(date.getYear(),date.getMonthValue()-1,date.getDayOfMonth(),10,0);
+        Calendar calendar3 = new GregorianCalendar(date.getYear(),date.getMonthValue()-1,date.getDayOfMonth(),13,0);
+        Calendar calendar4 = new GregorianCalendar(date.getYear(),date.getMonthValue()-1,date.getDayOfMonth(),15,0);
         Date date1 = calendar1.getTime();
         Date date2 = calendar2.getTime();
         Date date3 = calendar3.getTime();
@@ -237,5 +264,18 @@ public class LiveSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
+    }
+
+    public void cancelLiveButtonClicked(ActionEvent actionEvent) throws IOException {
+        int index = tabPane.getSelectionModel().getSelectedIndex();
+        if(index==0) return;//intro, no live
+        if(live.getLive_plan().get(index-1).getFinish()){
+            errorLabelForBookLive.setText("Session has been finished, cannot cancel.");
+            return;
+        }
+        Control.cancelLiveSession(live.getLive_plan().get(index-1));
+        buildScene();
     }
 }

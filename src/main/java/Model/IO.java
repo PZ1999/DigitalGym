@@ -25,6 +25,7 @@ public class IO{
     public static Object read(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
         //BufferedReader buffered_reader = new BufferedReader(new FileReader("src\\"+primary_key+".json"));
+        System.out.println(file.getPath());
         String content= FileUtils.readFileToString(file,"UTF-8");
         Gson gson;
         try {
@@ -39,7 +40,7 @@ public class IO{
         catch (Exception e)
         {
             e.printStackTrace();
-
+            return  null;
         }
         return o;
     }
@@ -53,6 +54,7 @@ public class IO{
      */
     public static boolean create(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
+        System.out.println(file);
         return file.createNewFile();
     }
 
@@ -63,7 +65,7 @@ public class IO{
      * @return whether delete file successfully
      * @throws IOException
      */
-    public static boolean Delete_Info(Object o, String primary_key) throws IOException {
+    public static boolean delete(Object o, String primary_key) throws IOException {
         File file = new File("target\\classes\\Data\\"+o.getClass()+"\\"+primary_key+".json");
         return file.delete();
     }
@@ -119,7 +121,7 @@ public class IO{
      * @param primary_key
      * @return write object to string
      */
-    public static int  write(Object o, String primary_key)
+    public static boolean  write(Object o, String primary_key)
     {
         try{
             Gson gson;
@@ -134,9 +136,9 @@ public class IO{
         }catch (Exception e)
         {
             e.printStackTrace();
-            return 0;
+            return false;
         }
-        return 1;
+        return true;
     }
 
     /**

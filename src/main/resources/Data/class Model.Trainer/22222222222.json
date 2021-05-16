@@ -1,12 +1,11 @@
 {
     "phone_number":"22222222222",
     "password":"22222222222",
-    "name":"111",
+    "name":"Master Zhang",
     "state":"active",
     "occupation":[],
     "my_course":[
-        "C001",
-        "C002"
+        "C001"
     ],
     "my_live":[
 

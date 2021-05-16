@@ -32,6 +32,7 @@ public class ClassSceneController {
     public Label nameLabel;
     public Client client;
     public Course course;
+    public Label courseNameLabel;
 
     public void setCourse(Course course){
         this.course = course;
@@ -60,10 +61,10 @@ public class ClassSceneController {
             tab.setContent(pane);//Node
             controller.textForPlanInfo.setText(s);
             tabPane.getTabs().add(tab);
-
         }
         accountType.setText((course.getRank()==0)?"Standard":"Premier");
         price.setText(course.getPrice()+"");
+        courseNameLabel.setText(course.getName());
         //accountType
         //accountPrice
 
@@ -76,24 +77,27 @@ public class ClassSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
     }
 
     public void watchVideo(ActionEvent actionEvent) throws IOException {
+        int index = tabPane.getSelectionModel().getSelectedIndex();//get day
+        if(index==0) return;//intro page selected no vedio
         Stage stage = new Stage();
-
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/WatchVideo.fxml"));
         Parent WatchVideoParent = loader.load();
         Scene WatchVideoScene = new Scene(WatchVideoParent);
         stage.setScene(WatchVideoScene);
         WatchVideo controller = loader.getController();
-        int index = tabPane.getSelectionModel().getSelectedIndex();
         controller.dayLabel.setText("Day: "+index);
         controller.url = course.getVideo_path().get(index-1);
-        controller.urlLabel.setText(controller.url);
+        //controller.urlLabel.setText(controller.url);
+        controller.courseNameLabel.setText(course.getName());
         stage.show();
-        controller.url = "/test.mp4";
+        WatchVideoScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         controller.playVedio();
     }
 
@@ -110,7 +114,8 @@ public class ClassSceneController {
         controller.course = course;
         controller.client = client;
         controller.buildScene();
-
+        PaymentScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -125,5 +130,7 @@ public class ClassSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
     }
 }

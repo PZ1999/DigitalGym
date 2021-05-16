@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -27,8 +28,6 @@
           </Tab>
         </tabs>
       </TabPane>
-      <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="536.0" onAction="#bookDateChanged" promptText="pick a date for your live session" />
-      <ChoiceBox fx:id="timePicker" layoutX="228.0" layoutY="536.0" prefHeight="23.0" prefWidth="186.0" />
       <Button fx:id="subscribeButton" layoutX="34.0" layoutY="141.0" mnemonicParsing="false" onAction="#subscribeButtonClicked" prefHeight="23.0" prefWidth="163.0" text="Subscribe ">
          <font>
             <Font size="18.0" />
@@ -58,7 +57,7 @@
             </ScrollPane>
             <TextArea fx:id="liveInfoText" prefHeight="113.0" prefWidth="404.0" text="Live for this seeesion has been booked.&#10;Live URL: xxx.">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </TextArea>
          </children>
@@ -74,7 +73,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="228.0" layoutY="563.0" mnemonicParsing="false" onAction="#bookbuttonClicked" prefHeight="23.0" prefWidth="186.0" text="Book Live Now" />
       <Label fx:id="priceLabel1" layoutX="183.0" layoutY="53.0" prefHeight="24.0" prefWidth="153.0" text="\$/Subscription">
          <font>
             <Font size="18.0" />
@@ -88,6 +86,24 @@
       <Label layoutX="183.0" layoutY="95.0" prefHeight="15.0" prefWidth="133.0" text="for Premier" textFill="#046f09">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <FlowPane alignment="TOP_CENTER" hgap="3.0" layoutX="8.0" layoutY="511.0" prefHeight="75.0" prefWidth="378.0" vgap="3.0">
+         <children>
+            <Label fx:id="errorLabelForBookLive" prefHeight="15.0" prefWidth="378.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="datePicker" onAction="#bookDateChanged" promptText="pick a date for your live session" />
+            <ChoiceBox fx:id="timePicker" prefHeight="23.0" prefWidth="186.0" />
+            <Button mnemonicParsing="false" onAction="#cancelLiveButtonClicked" prefHeight="23.0" prefWidth="186.0" text="Cancel Live Session" />
+            <Button mnemonicParsing="false" onAction="#bookButtonClicked" prefHeight="23.0" prefWidth="186.0" text="Book Live Now" />
+         </children>
+      </FlowPane>
+      <Label fx:id="errorLabelForGoLive" layoutX="421.0" layoutY="507.0" prefHeight="15.0" prefWidth="378.0">
+         <font>
+            <Font size="14.0" />
          </font>
       </Label>
    </children>

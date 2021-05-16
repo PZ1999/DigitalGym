@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Payment {
     public Button confirm;
     public Label itemLabel;
@@ -27,14 +29,15 @@ public class Payment {
     /**
      * this method will do the payment logic including price decision.
      */
-    public void buildScene(){
+    public void buildScene() throws IOException {
         switch (itemType){
             case "Live":{
                 itemLabel.setText(live.getName());
                 origin_price = live.getPrice();
                 originPriceLabel.setText(""+origin_price+" $");
                 if(client.getRank()>0){//premium which lead to discount
-                    discount_price = origin_price*(1.0-Policy.live_discount);
+                    Policy policy = (Policy)IO.read(new Policy(),"Policy");
+                    discount_price = origin_price*(1.0-policy.live_discount);
                     discountPriceLabel.setText(""+discount_price+" $");
                 }
                 else discount_price = origin_price;
@@ -53,8 +56,9 @@ public class Payment {
             }
             case "Premium":{
                 itemLabel.setText("Premium Access for"+premium_month+" month");
-                origin_price = Policy.premium_price*premium_month;
-                discount_price = origin_price*(1-Policy.premium_discount);
+                Policy policy = (Policy) IO.read(new Policy(),"Policy");
+                origin_price = policy.premium_price*premium_month;
+                discount_price = origin_price*(1-policy.premium_discount);
                 originPriceLabel.setText(""+origin_price+" $");
                 discountPriceLabel.setText(""+discount_price+" $");
                 break;

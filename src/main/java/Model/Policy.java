@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Policy {
-    public static double premium_price = 60;
-    public static double premium_discount = 0.1;//on buying premium,0.1 for 10%off
-    public static double live_discount = 0.3;
-    public static ArrayList<String> sport_type;// contains types info of courses
-    static {
-        sport_type = new ArrayList<String>();
-        sport_type.add("Yoga");
-        sport_type.add("Bike");
-        Policy policy;
+    public double premium_price;
+    public double premium_discount;//on buying premium,0.1 for 10%off
+    public double live_discount;
+    public ArrayList<String> sport_type;// contains types info of courses
 
+    @Override
+    public String toString() {
+        return "Policy{" +
+                "premium_price=" + premium_price +
+                ", premium_discount=" + premium_discount +
+                ", live_discount=" + live_discount +
+                ", sport_type=" + sport_type +
+                '}';
     }
 }
 /**

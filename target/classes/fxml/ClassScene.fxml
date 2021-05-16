@@ -57,7 +57,12 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="nameLabel" layoutX="316.0" layoutY="16.0" prefHeight="24.0" prefWidth="179.0" text="Session Name">
+      <Label layoutX="170.0" layoutY="14.0" prefHeight="24.0" prefWidth="132.0" text="Session Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="courseNameLabel" layoutX="302.0" layoutY="14.0" prefHeight="24.0" prefWidth="479.0" textFill="#017c28">
          <font>
             <Font size="18.0" />
          </font>

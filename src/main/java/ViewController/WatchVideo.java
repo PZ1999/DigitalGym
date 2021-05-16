@@ -26,22 +26,26 @@ public class WatchVideo {
     public Label dayLabel;
     public Label urlLabel;
     public String url;
-
-    public MediaView vedioView;
+    public MediaView videoView;
+    public Label courseNameLabel;
 
     /**
+     *
      * MediaView Component added to show vedio later --PZ
+     * vedio function added, for test all course's daily workout vedio are the same
+     * @author PZ
      * @throws MalformedURLException
      */
     public void playVedio() throws MalformedURLException {
 
-        File mediaFile = new File("C:\\Users\\panzh\\Desktop\\DigitalGym\\target\\classes\\video"+url);
-        Media media = new Media(mediaFile.toURI().toURL().toString());
+        File mediaFile = new File("target/classes/Data/video/"+url);//find file
+        Media media = new Media(mediaFile.toURI().toURL().toString());//convert to Media
 
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-
-        vedioView.setMediaPlayer(mediaPlayer);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);//generate player
+        urlLabel.setText(mediaFile.toURI().toURL().toString());
+        //videoView = new MediaView(mediaPlayer);
+        videoView.setMediaPlayer(mediaPlayer);//put player into MediaView
         mediaPlayer.play();
+
     }
 }

@@ -22,14 +22,16 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
         primaryStage.setTitle("iGym");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("/web/icon1.jpg"));
+        scene.getStylesheets().add
+                (Main.class.getResource("/web/login.css").toExternalForm());
         primaryStage.show();
     }
     //
     public static void main(String[] args) throws IOException {
         //IO.main(args);
         launch(args);
-
-
     }
 }

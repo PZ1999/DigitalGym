@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="182.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ChangeEmailScene">
+<AnchorPane prefHeight="278.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ChangeEmailScene">
    <children>
-      <Button fx:id="sendVarifyButton" layoutX="283.0" layoutY="41.0" mnemonicParsing="false" onAction="#sendVarifyClicked" text="send varification code">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
-      <TextField fx:id="varify" layoutX="122.0" layoutY="84.0" />
-      <TextField fx:id="newemail" layoutX="122.0" layoutY="43.0" />
-      <Label layoutX="78.0" layoutY="43.0" prefHeight="23.0" prefWidth="44.0" text="new" textAlignment="CENTER">
+      <TextField fx:id="varify" layoutX="172.0" layoutY="114.0" />
+      <TextField fx:id="newPhoneNumber" layoutX="172.0" layoutY="73.0" />
+      <Label layoutX="11.0" layoutY="73.0" prefHeight="23.0" prefWidth="161.0" text="New Phonenumber" textAlignment="CENTER">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="82.0" text="Varify">
+      <Label layoutX="70.0" layoutY="114.0" prefHeight="23.0" prefWidth="102.0" text="Verify Code">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="OkButton" layoutX="202.0" layoutY="142.0" mnemonicParsing="false" onAction="#OkButtonclicked" prefHeight="34.0" prefWidth="79.0" text="OK">
+      <Button fx:id="OkButton" layoutX="252.0" layoutY="172.0" mnemonicParsing="false" onAction="#OkButtonclicked" prefHeight="34.0" prefWidth="79.0" text="OK">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="14.0" layoutY="108.0" prefHeight="34.0" prefWidth="410.0" text="error info">
+      <Label fx:id="errorLabel" layoutX="64.0" layoutY="138.0" prefHeight="34.0" prefWidth="410.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Hyperlink layoutX="352.0" layoutY="74.0" text="send verify code" />
    </children>
 </AnchorPane>

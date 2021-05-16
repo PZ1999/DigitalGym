@@ -1,5 +1,9 @@
 {
   "premium_price": 66.6,
   "premium_discount": 0.1,
-  "live_discount": 0.3
+  "live_discount": 0.3,
+  "sport_type": [
+    "Yoga",
+    "Bike"
+  ]
 }
