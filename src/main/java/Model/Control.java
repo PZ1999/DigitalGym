@@ -262,6 +262,7 @@ public class Control {
     }
 
 
+
     /** return live subscription by client
      * add filter function --PZ
      * @author PZ
@@ -546,7 +547,8 @@ public class Control {
      * @param clientHeight
      * @throws IOException
      */
-    public static void updateMyAccountPage(String client_id, String clientAge, String clientWeight, String clientHeight, String clientTwist) throws IOException {
+    public static void updateMyAccountPage(String client_id, String clientAge, String clientWeight, String clientHeight, String clientTwist) throws Exception {
+
         Integer age = Integer.parseInt(clientAge);
         Double weight = Double.parseDouble(clientWeight);
         Double height = Double.parseDouble(clientHeight);

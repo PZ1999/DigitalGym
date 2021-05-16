@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -69,6 +70,8 @@ public class ClientMainSceneController {
     public Model.Client client;
     public TextArea myAccountShowPlanTextArea;
     public TextField twistlineTextField;
+    public Label Overview;
+    public VBox OverviewVbox;
     //public String id; no need --PZ
 
 
@@ -194,6 +197,8 @@ public class ClientMainSceneController {
             controller.setClient(client);
 
             controller.previousScene = ((Node)actionEvent.getSource()).getScene();
+            classScene.getStylesheets().add
+                    (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
             } catch (IOException e) {
@@ -229,6 +234,8 @@ public class ClientMainSceneController {
             controller.setClient(client);
             classScene.setUserData(controller);
             window.setScene(classScene);
+            classScene.getStylesheets().add
+                    (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
             } catch (IOException e) {
@@ -397,6 +404,8 @@ public class ClientMainSceneController {
         ChangeEmailScene controller = loader.getController();
         controller.client = client;
         controller.mainSceneController = (ClientMainSceneController)(((Node)actionEvent.getSource()).getScene()).getUserData();
+        changeEmailScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
 
 
@@ -413,7 +422,8 @@ public class ClientMainSceneController {
         ChangePassword controller = loader.getController();
         controller.client = this.client;
         stage.setScene(changePassWordScene);
-
+        changePassWordScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -450,6 +460,8 @@ public class ClientMainSceneController {
         controller.client = client;
         controller.buildScene();
         controller.mainSceneController = local_controller;
+        PaymentScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
 
         stage.show();
 
@@ -469,8 +481,9 @@ public class ClientMainSceneController {
         Policy policy = (Policy)IO.read(new Policy(),"Policy");
         double originPrice = month * policy.premium_price;
         double discountPrice = month * policy.premium_price * (1-policy.premium_discount);
-        premierOriginalPriceLabel.setText(originPrice+" $ ");
-        premierDiscountPriceLabel.setText(discountPrice+" $ ");
+        premierOriginalPriceLabel.setText(String.format("%.2f $",originPrice));
+        premierDiscountPriceLabel.setText(String.format("%.2f $",discountPrice));
+
     }
     /**
      * @author WD,WHY
@@ -479,12 +492,15 @@ public class ClientMainSceneController {
      * modified by PZ at 4.19 to read client IO again.
      * @param actionEvent
      */
-    public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
-        Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText(),twistlineTextField.getText());
+    public void myAccountSaveButtonClicked(ActionEvent actionEvent) throws IOException {
+        try{Control.updateMyAccountPage(client.getPhone_number(),myAccountAgeField.getValue().toString(),myAccountWeightField.getText(), myAccountHeightField.getText(),twistlineTextField.getText());}
+        catch (Exception e){
+            return ;
+        }
         client = (Client)IO.read(client,client.getPhone_number());
 
-        myAccountBMIField.setText(""+client.getBMI());
-        myAccountFattyField.setText(""+client.getBody_fat_rate());
+        myAccountBMIField.setText(String.format("%.2f",client.getBMI()));
+        myAccountFattyField.setText(String.format("%.2f",client.getBody_fat_rate()));
         myAccountShowPlanTextArea.setText(client.getGeneric_plan());
 
 
@@ -503,7 +519,8 @@ public class ClientMainSceneController {
         controller.stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(deleteAccountScene);
         deleteAccountScene.setUserData(((Node)actionEvent.getSource()).getScene().getWindow());
-
+        deleteAccountScene.getStylesheets().add
+                (ClientMainSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 }

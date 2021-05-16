@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,8 @@ public class LoginController {
         Scene afterRegisterScene = new Scene(afterRegisterParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(afterRegisterScene);
+        afterRegisterScene.getStylesheets().add
+                (LoginController.class.getResource("/web/login.css").toExternalForm());
         window.show();
 
     }
@@ -68,6 +71,8 @@ public class LoginController {
         Scene forgetPasswdScene = new Scene(forgetPasswdParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(forgetPasswdScene);
+        forgetPasswdScene.getStylesheets().add
+                (LoginController.class.getResource("/web/login.css").toExternalForm());
         window.show();
 
     }
@@ -85,6 +90,8 @@ public class LoginController {
         controller.buildScene();
         //  controller.id = name;
         //System.out.println(controller.client.getName());
+        afterLoginScene.getStylesheets().add
+                (LoginController.class.getResource("/web/clientmainscene.css").toExternalForm());
         window.show();
     }
 
@@ -98,6 +105,8 @@ public class LoginController {
         window.setScene(afterLoginScene);
         ManagerMainSceneController controller = loader.getController();
         afterLoginScene.setUserData(controller);
+        afterLoginScene.getStylesheets().add
+                (LoginController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
 
     }
@@ -114,6 +123,8 @@ public class LoginController {
         controller.trainer = (Trainer) IO.read(new Trainer(),nameTextField.getText());
         afterLoginScene.setUserData(controller);
         controller.buildScene();
+        afterLoginScene.getStylesheets().add
+                (LoginController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
     }
 }

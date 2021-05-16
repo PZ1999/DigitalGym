@@ -55,6 +55,7 @@ public class ManagerMainSceneController {
         myClassFilterType.getSelectionModel().select(0);
         rankComboBox.getItems().add("Normal");
         rankComboBox.getItems().add("Premium");
+        rankComboBox.getSelectionModel().select(0);
         premiumErrorLabel.setVisible(false);
         buildScene();
 
@@ -213,6 +214,8 @@ public class ManagerMainSceneController {
         Scene afterLoginScene = new Scene(afterLoginParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(afterLoginScene);
+        afterLoginScene.getStylesheets().add
+                (ManagerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
 
     }

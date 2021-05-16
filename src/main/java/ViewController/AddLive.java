@@ -101,6 +101,8 @@ public class AddLive {
         TrainerMainSceneController controller = (TrainerMainSceneController) previousScene.getUserData();
         controller.buildScene();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (AddLive.class.getResource("/web/trainer.css").toExternalForm());
     }
 
     public void AddClassPublishClicked(ActionEvent actionEvent) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {

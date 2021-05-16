@@ -125,6 +125,8 @@ public class LiveSceneForTrainerController {
         controller.url = live.getLive_plan().get(index).getLive_url();
         controller.urlLabel.setText(controller.url);
         controller.live_plan = live.getLive_plan().get(index);
+        liveShowScene.getStylesheets().add
+                (LiveSceneForTrainerController.class.getResource("/web/trainer.css").toExternalForm());
         stage.show();
     }
 
@@ -144,6 +146,8 @@ public class LiveSceneForTrainerController {
         TrainerMainSceneController controller = (TrainerMainSceneController) previousScene.getUserData();
         controller.buildScene();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (LiveSceneForTrainerController.class.getResource("/web/trainer.css").toExternalForm());
     }
 
     public void savePersonalPlanButtonCliked(ActionEvent actionEvent) throws IOException {

@@ -31,6 +31,8 @@ public class ForgetPasswdScene {
         Scene gobackScene = new Scene(gobackParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(gobackScene);
+        gobackScene.getStylesheets().add
+                (ForgetPasswdScene.class.getResource("/web/login.css").toExternalForm());
         window.show();
     }
 

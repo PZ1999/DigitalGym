@@ -20,7 +20,10 @@ public class DeleteAccountSceneController {
         ((Stage)(((Node)actionEvent.getSource()).getScene().getWindow())).close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
         stage.setTitle("iGym");
-        stage.setScene(new Scene(root, 800, 600));
+        Scene deleteAccountScene = new Scene(root, 800, 600);
+        stage.setScene(deleteAccountScene);
+        deleteAccountScene.getStylesheets().add
+                (DeleteAccountSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 }

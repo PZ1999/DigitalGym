@@ -57,7 +57,8 @@ public class ChangeEmailScene {
         Scene afterChangeEmailScene = new Scene(afterChangeEmailParent);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(afterChangeEmailScene);
-
+        afterChangeEmailScene.getStylesheets().add
+                (ChangeEmailScene.class.getResource("/web/clientmainscene.css").toExternalForm());
         window.show();
     }
 
