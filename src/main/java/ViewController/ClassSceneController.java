@@ -77,6 +77,8 @@ public class ClassSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
     }
 
     public void watchVideo(ActionEvent actionEvent) throws IOException {
@@ -94,6 +96,9 @@ public class ClassSceneController {
         //controller.urlLabel.setText(controller.url);
         controller.courseNameLabel.setText(course.getName());
         stage.show();
+        WatchVideoScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
+        controller.url = "/test.mp4";
         controller.playVedio();
     }
 
@@ -110,7 +115,8 @@ public class ClassSceneController {
         controller.course = course;
         controller.client = client;
         controller.buildScene();
-
+        PaymentScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -125,5 +131,7 @@ public class ClassSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (ClassSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
     }
 }

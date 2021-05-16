@@ -13,12 +13,12 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddLive">
     <children>
         <Button fx:id="AddClassBack" mnemonicParsing="false" onAction="#AddClassBackClicked" text="Back" />
-        <ComboBox fx:id="typePicker" layoutX="100.0" layoutY="87.0" prefHeight="23.0" prefWidth="169.0" />
-        <Label layoutX="410.0" layoutY="87.0" prefHeight="23.0" prefWidth="35.0" text="Days">
+        <ComboBox fx:id="typePicker" layoutX="147.0" layoutY="87.0" prefHeight="23.0" prefWidth="169.0" />
+        <Label layoutX="456.0" layoutY="87.0" prefHeight="23.0" prefWidth="35.0" text="Days">
             <font>
                 <Font size="14.0" />
             </font></Label>
-        <TabPane fx:id="tabPane" layoutX="87.0" layoutY="184.0" prefHeight="292.0" prefWidth="27.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tabPane" layoutX="87.0" layoutY="194.0" prefHeight="292.0" prefWidth="27.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Intro">
                     <content>
@@ -27,23 +27,23 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <ComboBox fx:id="dayPicker" layoutX="297.0" layoutY="87.0" onAction="#AddClassChooseDays" prefHeight="23.0" prefWidth="110.0" />
-        <Label layoutX="57.0" layoutY="89.0" prefHeight="19.0" prefWidth="43.0" text="Type:">
+        <ComboBox fx:id="dayPicker" layoutX="336.0" layoutY="87.0" onAction="#AddClassChooseDays" prefHeight="23.0" prefWidth="110.0" />
+        <Label layoutX="87.0" layoutY="89.0" prefHeight="19.0" prefWidth="43.0" text="Type:">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="AddClassPublish" layoutX="460.0" layoutY="119.0" mnemonicParsing="false" onAction="#AddClassPublishClicked" prefHeight="23.0" prefWidth="266.0" text="Publish">
+        <Button fx:id="AddClassPublish" layoutX="518.0" layoutY="131.0" mnemonicParsing="false" onAction="#AddClassPublishClicked" prefHeight="30.0" prefWidth="98.0" text="Publish">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Label layoutX="51.0" layoutY="124.0" prefHeight="19.0" prefWidth="52.0" text="Name: ">
+        <Label layoutX="88.0" layoutY="136.0" prefHeight="19.0" prefWidth="52.0" text="Name: ">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="nameTextField" layoutX="101.0" layoutY="122.0" prefHeight="23.0" prefWidth="344.0" />
-      <TextArea fx:id="coursePlanTextArea" layoutX="114.0" layoutY="184.0" prefHeight="292.0" prefWidth="615.0" />
+        <TextField fx:id="nameTextField" layoutX="144.0" layoutY="134.0" prefHeight="23.0" prefWidth="344.0" />
+      <TextArea fx:id="coursePlanTextArea" layoutX="114.0" layoutY="194.0" prefHeight="292.0" prefWidth="615.0" />
     </children>
 </AnchorPane>

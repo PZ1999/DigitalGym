@@ -143,6 +143,8 @@ public class LiveSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
 
     }
 
@@ -171,6 +173,8 @@ public class LiveSceneController {
         controller.url = live.getLive_plan().get(index).getLive_url();
         controller.urlLabel.setText(controller.url);
         controller.live_plan = live.getLive_plan().get(index);
+        liveShowScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -197,6 +201,8 @@ public class LiveSceneController {
         Parent PaymentParent = loader.load();
         Scene PaymentScene = new Scene(PaymentParent);
         stage.setScene(PaymentScene);
+        PaymentScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
         buildScene();
     }
@@ -218,7 +224,8 @@ public class LiveSceneController {
         controller.live = live;
         controller.client = client;
         controller.buildScene();
-
+        PaymentScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
         stage.show();
     }
 
@@ -258,6 +265,8 @@ public class LiveSceneController {
         controller.updateClassesInMyClass();
         controller.updateClassesInMainPage();
         window.setScene(previousScene);
+        previousScene.getStylesheets().add
+                (LiveSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
     }
 
     public void cancelLiveButtonClicked(ActionEvent actionEvent) throws IOException {

@@ -47,6 +47,7 @@ public class TrainerMainSceneController {
     public Trainer trainer;
     public TrainerMainSceneController local_controller;
 
+
     public void initialize() throws IOException {
         LocalDate date = LocalDate.now();
         myLiveDatePicker.setValue(date);
@@ -79,6 +80,8 @@ public class TrainerMainSceneController {
         controller.course = getNewCourse();
         controller.buildScene();
         window.setScene(addClassScene);
+        addClassScene.getStylesheets().add
+                (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
     }
 
@@ -94,6 +97,8 @@ public class TrainerMainSceneController {
         controller.trainer = trainer;
         controller.buildScene();
         window.setScene(addLiveScene);
+        addLiveScene.getStylesheets().add
+                (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
 
 //
@@ -131,6 +136,8 @@ public class TrainerMainSceneController {
             //controller.setTrainer(trainer);
 
             window.setScene(classScene);
+            classScene.getStylesheets().add
+                    (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
             try {
                 controller.buildScene();//build course scene dynamically according to the course information
             } catch (IOException e) {
@@ -155,6 +162,8 @@ public class TrainerMainSceneController {
         AddLive controller = loader.getController();
         controller.previousScene = ((Node)actionEvent.getSource()).getScene();
         window.setScene(addLiveScene);
+        addLiveScene.getStylesheets().add
+                (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         window.show();
     }
 
@@ -168,7 +177,8 @@ public class TrainerMainSceneController {
         Scene changePassWordScene = new Scene(changePassWordParent);
 
         stage.setScene(changePassWordScene);
-
+        changePassWordScene.getStylesheets().add
+                (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         stage.show();
     }
 
@@ -225,6 +235,8 @@ public class TrainerMainSceneController {
 
         classScene.setUserData(controller);
         window.setScene(classScene);
+        classScene.getStylesheets().add
+                (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
         try {
             controller.buildScene();//build course scene dynamically according to the course information
         } catch (IOException e) {
@@ -257,8 +269,10 @@ public class TrainerMainSceneController {
         MyClassFlowPane.getChildren().clear();
         ArrayList<Button> buttons;
         buttons = getClassesButtonsForMyClass();//with filter --PZ
-        for(Button button:buttons)
+        for(Button button:buttons) {
             MyClassFlowPane.getChildren().add(button);
+            button.setPrefSize(170,50);
+        }
     }
     /**
      * This method return a set of class buttons for myClass pages.
@@ -274,7 +288,7 @@ public class TrainerMainSceneController {
         //System.out.println(classes.size());
         for(Course course :classes){
             Button button = new Button();
-            button.setPrefSize(160,160);
+            button.setPrefSize(170,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(classButtonClicked);
 
@@ -316,6 +330,8 @@ public class TrainerMainSceneController {
             controller.course = course;
             controller.buildSceneForChange();
             window.setScene(addClassScene);
+            addClassScene.getStylesheets().add
+                    (TrainerMainSceneController.class.getResource("/web/trainer.css").toExternalForm());
             window.show();
         }
     };
