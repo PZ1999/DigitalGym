@@ -1,0 +1,15 @@
+{
+  "phone_number":"33333333333",
+  "password":"33333333333",
+  "name":"user Two",
+  "state":"active",
+  "rank":0,
+  "premium_end_date":"2020-4-11 08:56:00",
+  "height": 165,
+  "weight": 49,
+  "sex":"female",
+  "age":"23",
+  "generic_plan":"drink more hot water",
+  "my_course":[],
+  "my_live":[]
+}

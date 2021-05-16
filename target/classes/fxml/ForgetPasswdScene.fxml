@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.ForgetPasswdScene">
+   <children>
+      <AnchorPane layoutX="73.0" layoutY="52.0" prefHeight="243.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="53.0" layoutY="42.0" text="Phone number" />
+            <TextField fx:id="phoneNumberTextField" layoutX="157.0" layoutY="38.0" />
+            <TextField fx:id="verifyCodeTextField" layoutX="157.0" layoutY="82.0" />
+            <TextField fx:id="newPasswordTextField" layoutX="157.0" layoutY="130.0" />
+            <TextField fx:id="passwordAgainTextField" layoutX="157.0" layoutY="179.0" />
+            <Label layoutX="72.0" layoutY="86.0" text="Verify Code" />
+            <Label layoutX="54.0" layoutY="134.0" text="New Password" />
+            <Label layoutX="47.0" layoutY="183.0" text="Password Again" />
+            <Label fx:id="difReminderLabel" layoutX="344.0" layoutY="179.0" prefHeight="23.0" prefWidth="161.0" text="not the same twice" textFill="RED" visible="false" />
+            <Label fx:id="wrongPhoneNumberLabel" layoutX="30.0" layoutY="61.0" prefHeight="15.0" prefWidth="134.0" text="Wrong phone number" textFill="RED" visible="false" />
+            <Hyperlink layoutX="332.0" layoutY="39.0" prefHeight="21.0" prefWidth="124.0" text="Send verify code" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="254.0" layoutY="295.0" mnemonicParsing="false" onAction="#forgetPasswordOkClicked" prefHeight="36.0" prefWidth="92.0" text="OK">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackButtonClicked" prefHeight="15.0" prefWidth="85.0" text="Go back" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddClass">
+   <children>
+      <Button fx:id="AddClassBack" mnemonicParsing="false" onAction="#AddClassBackClicked" text="Back" />
+      <ComboBox fx:id="typePicker" layoutX="100.0" layoutY="87.0" prefWidth="150.0" />
+      <Label layoutX="364.0" layoutY="87.0" prefHeight="23.0" prefWidth="58.0" text="Days">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TabPane fx:id="tabPane" layoutX="87.0" layoutY="184.0" prefHeight="338.0" prefWidth="27.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Intro">
+               <content>
+                  <AnchorPane prefHeight="374.0" prefWidth="26.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ComboBox fx:id="dayPicker" layoutX="297.0" layoutY="87.0" onAction="#AddClassChooseDays" prefHeight="23.0" prefWidth="58.0" />
+      <Label layoutX="57.0" layoutY="89.0" prefHeight="19.0" prefWidth="43.0" text="Type:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="urlTextField" layoutX="434.0" layoutY="262.0" prefHeight="23.0" prefWidth="266.0" text="test.mp4" />
+      <Label fx:id="urlLabel" layoutX="434.0" layoutY="200.0" prefHeight="62.0" prefWidth="296.0" text="Video URL (please put video to target.vedio and just input vedio name here):" textAlignment="JUSTIFY" wrapText="true" />
+      <Button fx:id="AddClassPublish" layoutX="434.0" layoutY="298.0" mnemonicParsing="false" onAction="#AddClassPublishClicked" prefHeight="36.0" prefWidth="266.0" text="Publish">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="51.0" layoutY="124.0" prefHeight="19.0" prefWidth="52.0" text="Name: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameTextField" layoutX="101.0" layoutY="122.0" prefHeight="23.0" prefWidth="296.0" />
+      <TextArea fx:id="coursePlanTextArea" layoutX="114.0" layoutY="185.0" prefHeight="338.0" prefWidth="311.0" wrapText="true" />
+   </children>
+</AnchorPane>

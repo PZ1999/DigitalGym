@@ -1,0 +1,56 @@
+{
+  "live_plan": [
+    {
+      "live_url": "initial url",
+      "live_start_Date": null,
+      "personal_plan": "initial text",
+      "course_id": "L3",
+      "client_id": "",
+      "trainer_id": "22222222222",
+      "finish": false
+    },
+    {
+      "live_url": "initial url",
+      "live_start_Date": null,
+      "personal_plan": "initial text",
+      "course_id": "L3",
+      "client_id": "",
+      "trainer_id": "22222222222",
+      "finish": false
+    },
+    {
+      "live_url": "initial url",
+      "live_start_Date": null,
+      "personal_plan": "initial text",
+      "course_id": "L3",
+      "client_id": "",
+      "trainer_id": "22222222222",
+      "finish": false
+    },
+    {
+      "live_url": "initial url",
+      "live_start_Date": null,
+      "personal_plan": "initial text",
+      "course_id": "L3",
+      "client_id": "",
+      "trainer_id": "22222222222",
+      "finish": false
+    }
+  ],
+  "client_id": "",
+  "course_id": "L3",
+  "name": "",
+  "trainer_id": "22222222222",
+  "trainer": "Master Zhang",
+  "type": "Bike",
+  "info": "new info",
+  "plan": [
+    "plan not modified",
+    "plan not modified",
+    "plan not modified",
+    "plan not modified"
+  ],
+  "rank": 0,
+  "state": "waiting",
+  "price": 0.0
+}

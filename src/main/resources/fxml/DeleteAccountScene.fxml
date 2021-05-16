@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.DeleteAccountSceneController">
+   <children>
+      <TextField layoutX="240.0" layoutY="144.0" prefHeight="23.0" prefWidth="198.0" />
+      <Label layoutX="71.0" layoutY="143.0" prefHeight="24.0" prefWidth="175.0" text="Verification Code">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="280.0" layoutY="167.0" text="Send me verification code" />
+      <Button layoutX="213.0" layoutY="257.0" mnemonicParsing="false" onAction="#confirmButtonClicked" prefHeight="44.0" prefWidth="175.0" text="Confirm">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="213.0" layoutY="233.0" prefHeight="24.0" prefWidth="377.0" text="Caution: This is an irreversible operation!" textFill="#bf0b0b">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

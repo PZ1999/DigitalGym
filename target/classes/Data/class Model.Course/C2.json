@@ -1,0 +1,17 @@
+{
+  "video_path": [
+    "test.mp4"
+  ],
+  "course_id": "C2",
+  "name": "",
+  "trainer_id": "22222222222",
+  "trainer": "Master Zhang",
+  "type": "Yoga",
+  "info": "new info",
+  "plan": [
+    "plan not modified"
+  ],
+  "rank": 0,
+  "state": "waiting",
+  "price": 0.0
+}
