@@ -430,7 +430,7 @@ public class Control {
                 }
 
             }catch (IOException o){
-                if(phoneNumber.equals("00000000000")&&password.equals("00000000000"))   return "Manager";
+                if(phoneNumber.equals("manager")&&password.equals("manager"))   return "Manager";
                     //else if(phoneNumber.equals("00000000000")||!password.equals("00000000000")) System.out.println("ManagerPassword Wrong");
                 else    return "fail";
             }

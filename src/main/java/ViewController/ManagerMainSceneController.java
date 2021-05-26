@@ -44,6 +44,7 @@ public class ManagerMainSceneController {
     public Button addAccountButton;
     public Label errorLabelForTwicePassword;
     public Label errorLabelForPhoneNumebr;
+    public Label errorLabelForAccountExist;
 
     public void initialize() throws IOException, XPathExpressionException, ParserConfigurationException, SAXException {
         myClassClassButton.setToggleGroup(groupForType);//initialize first tab
@@ -102,7 +103,7 @@ public class ManagerMainSceneController {
         //System.out.println(classes.size());
         for(Live live :lives){
             ToggleButton button = new ToggleButton();
-            button.setPrefSize(160,160);
+            button.setPrefSize(170,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(liveButtonClicked);
             button.setUserData(live);//add course object to object
@@ -120,7 +121,7 @@ public class ManagerMainSceneController {
         //System.out.println(classes.size());
         for(Course course :classes){
             ToggleButton button = new ToggleButton();
-            button.setPrefSize(160,160);
+            button.setPrefSize(170,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(classButtonClicked);
             button.setUserData(course);//add course object to object
@@ -197,13 +198,31 @@ public class ManagerMainSceneController {
 
         errorLabelForTwicePassword.setText("");
         errorLabelForPhoneNumebr.setText("");
+        errorLabelForAccountExist.setText("");
 
         if(!trainerPasswordAgainTextField.getText().equals(trainerPasswordTextField.getText()))
             errorLabelForTwicePassword.setText("Different input from first time.");
+        if(!Control.checkPasswordFormat(trainerPasswordTextField.getText()))
+            errorLabelForTwicePassword.setText("invalid password, it should be 6-20 bits, digits or letters.");
+
         if(!Control.checkPhoneNumberFormat(trainerPhoneNumberTextField.getText()))
             errorLabelForPhoneNumebr.setText("Wrong format of phone number.");
+        try{
+            if(IO.read(new Trainer(),trainerPhoneNumberTextField.getText())!=null);
+            errorLabelForAccountExist.setText("Account with this phone number has already been created, please login or register with another phone number.");
+        }
+        catch (Exception e){
+            System.out.println("new trainer.");
 
-        if(!errorLabelForPhoneNumebr.getText().equals("")||!errorLabelForTwicePassword.getText().equals(""))
+        }
+        try{
+            if(IO.read(new Client(),trainerPhoneNumberTextField.getText())!=null);
+            errorLabelForAccountExist.setText("Account with this phone number has already been created, please login or register with another phone number.");
+        }
+        catch (Exception e){
+            System.out.println("new client.");
+        }
+        if(!errorLabelForPhoneNumebr.getText().equals("")||!errorLabelForTwicePassword.getText().equals("")||errorLabelForAccountExist.getText()!="")
             return ;
 
         Model.Control.trainerAddAccount(trainerNameTextField.getText(),trainerPhoneNumberTextField.getText(),trainerPasswordTextField.getText());

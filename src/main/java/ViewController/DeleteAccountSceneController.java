@@ -23,7 +23,7 @@ public class DeleteAccountSceneController {
         Scene deleteAccountScene = new Scene(root, 800, 600);
         stage.setScene(deleteAccountScene);
         deleteAccountScene.getStylesheets().add
-                (DeleteAccountSceneController.class.getResource("/web/clientmainscene.css").toExternalForm());
+                (DeleteAccountSceneController.class.getResource("/web/login.css").toExternalForm());
         stage.show();
     }
 }

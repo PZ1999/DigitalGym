@@ -68,5 +68,5 @@
    -fx-font-size: 18;
    -fx-font-family: Consolas;
    -fx-highlight-fill: black;
-   -fx-control-inner-background: grey;
+   -fx-control-inner-background: #a9a9a9;
 }

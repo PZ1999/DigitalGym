@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -99,7 +100,7 @@ public class LiveSceneController {
             tabPane.getTabs().add(tab);
         }
 
-        liveSessionNameLabel.setText(liveSessionNameLabel.getText()+live.getName());
+        liveSessionNameLabel.setText("Live Name:"+live.getName());
         tabPane.getSelectionModel().selectedIndexProperty().addListener( (observable, oldValue, newValue) -> {
             final long HOUR = 3600L*1000;
             int selectedIndex = newValue.intValue();
@@ -187,7 +188,15 @@ public class LiveSceneController {
 
         try {
             Control.bookLiveSession(live,tabPane.getSelectionModel().getSelectedIndex(),datePicker.getValue(),(String)timePicker.getValue());
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            errorLabelForBookLive.setText("Please do not book live for intro section");
+            return ;
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+            errorLabelForBookLive.setText("PLease subscribe live");
+            return ;
+        } catch (Exception e){
             e.printStackTrace();
             errorLabelForBookLive.setText(e.toString());
             return ;

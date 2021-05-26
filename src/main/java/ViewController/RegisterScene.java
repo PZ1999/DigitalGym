@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import Model.*;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class RegisterScene {
     public Label errorLabelForTwicePassword;
     public Label errorLabelForPhoneNumebr;
     public ChoiceBox sexChoiceBox;
+    public Label accountExistErrorLabel;
 
     public void initialize(){
         sexChoiceBox.getItems().add("Male");
@@ -36,13 +38,32 @@ public class RegisterScene {
     public void RegisterButtonClicked(ActionEvent actionEvent) throws Exception {
         errorLabelForTwicePassword.setText("");
         errorLabelForPhoneNumebr.setText("");
+        accountExistErrorLabel.setText("");
 
         if(!PasswordAgainTextField.getText().equals(PasswordTextField.getText()))
             errorLabelForTwicePassword.setText("Different input from first time.");
         if(!Control.checkPhoneNumberFormat(PhoneNumberTextField.getText()))
-            errorLabelForPhoneNumebr.setText("Wrong format of phone number.");
+            errorLabelForPhoneNumebr.setText("Wrong format of phone number. 11 bits digits expected");
+        if(!Control.checkPasswordFormat(PasswordTextField.getText())){
+            errorLabelForTwicePassword.setText("invalid password, it should be 6-20 bits, digits or letters");
+        }
+        try{
+            if(IO.read(new Client(),PhoneNumberTextField.getText())!=null);
+            accountExistErrorLabel.setText("Account with this phone number has already been created, please login or register with another phone number.");
+        }
+        catch (Exception e){
+            System.out.println("new account.");
+        }
+        try{
+            if(IO.read(new Trainer(),PhoneNumberTextField.getText())!=null);
+            accountExistErrorLabel.setText("Account with this phone number has already been created, please login or register with another phone number.");
+        }
+        catch (Exception e){
+            System.out.println("new account.");
+        }
 
-        if(!errorLabelForPhoneNumebr.getText().equals("")||!errorLabelForTwicePassword.getText().equals(""))
+
+        if(!errorLabelForPhoneNumebr.getText().equals("")||!errorLabelForTwicePassword.getText().equals("")||!accountExistErrorLabel.getText().equals(""))
             return ;
 
         Model.Control.register(UsernameTextField.getText(),PhoneNumberTextField.getText(),PasswordTextField.getText(),sexChoiceBox.getValue().toString());

@@ -260,7 +260,7 @@ public class ClientMainSceneController {
                 if(!course.getState().equals("alive"))
                     continue ;//not available
                 Button button = new Button();
-                button.setPrefSize(160,160);
+                button.setPrefSize(170,50);
                 //mainPageFlowPane.getChildren().add(button);
                 button.setOnAction(classButtonClicked);
 
@@ -295,7 +295,7 @@ public class ClientMainSceneController {
             if(!live.getState().equals("alive"))
                 continue ; //not available
             Button button = new Button();
-            button.setPrefSize(160,160);
+            button.setPrefSize(170,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(liveButtonClieked);
             button.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -327,7 +327,7 @@ public class ClientMainSceneController {
         //System.out.println(classes.size());
         for(Course course :classes){
             Button button = new Button();
-            button.setPrefSize(160,160);
+            button.setPrefSize(170,50);
             //mainPageFlowPane.getChildren().add(button);
             button.setOnAction(classButtonClicked);
 
@@ -359,7 +359,7 @@ public class ClientMainSceneController {
             ArrayList <Live> lives = controller.getClientLives(client,myClassFilterType.getValue().toString());
             for(Live live : lives){
                 Button button = new Button();
-                button.setPrefSize(160,160);
+                button.setPrefSize(170,50);
                 //mainPageFlowPane.getChildren().add(button);
                 button.setOnAction(liveButtonClieked);
                 button.addEventHandler(MouseEvent.MOUSE_ENTERED,

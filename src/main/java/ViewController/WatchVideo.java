@@ -48,4 +48,5 @@ public class WatchVideo {
         mediaPlayer.play();
 
     }
+
 }

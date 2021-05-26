@@ -1,0 +1,78 @@
+
+.root {
+     -fx-background-image: url("trainerBG.jpg");
+}
+.label {
+   -fx-text-fill: white;
+   -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 0,0, 0, 1);
+}
+.button {
+   -fx-text-fill: white;
+   -fx-font-weight: bold;
+   -fx-background-color: linear-gradient(#4994A0, #22415D);
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.toggle-button{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#4994A0, #22415D);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.toggle-button:hover{
+    -fx-background-color: linear-gradient(#22415D, #22415D);
+}
+.button:hover {
+   -fx-background-color: linear-gradient(#22415D, #22415D);
+}
+.choice-box {
+    -fx-background-radius: 15px; /**圆角 */
+    -fx-background-color: linear-gradient(#4994A0, #22415D);
+    -fx-mark-color: white;	/**下拉框箭头颜色和选中后前面√颜色 */
+    -fx-font-size: 12px;
+}
+.choice-box .context-menu {
+	-fx-background-color: linear-gradient(#22415D, #4994A0);
+}
+.choice-box .menu-item:focused {
+	-fx-background-color: linear-gradient(#22415D, #4994A0);
+}
+.radio-button {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 0,0, 0, 1);
+}
+.tab{
+    -fx-background-color: linear-gradient(#22415D, #4994A0);
+}
+.tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
+}
+.tab:selected {
+    -fx-background-color: #4994A0;
+}
+.tab:hover {
+   -fx-background-color: linear-gradient(#608da3, #6b7fa7);
+}
+.tab-pane>*.tab-header-area>*.tab-header-background {
+    -fx-background-color: linear-gradient(#f5f5f5, #4994A0);
+}
+.combo-box {
+    -fx-background-color: linear-gradient(#22415D, #4994A0);
+    -fx-mark-color: white;	/**下拉框箭头颜色和选中后前面√颜色 */
+}
+.combo-box .list-cell {
+    -fx-text-fill: white;
+	-fx-background-color: linear-gradient(#22415D, #4994A0);
+}
+.combo-box .list-cell:hover {
+   -fx-background-color: linear-gradient(#4994A0, #22415D);
+}
+ .text-area {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-family: Consolas;
+    -fx-highlight-fill: black;
+    -fx-control-inner-background: #a9a9a9;
+ }

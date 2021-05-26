@@ -68,6 +68,7 @@ public class ClassSceneController {
         //accountType
         //accountPrice
 
+
     }
 
     public void goBack(ActionEvent actionEvent) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
@@ -82,6 +83,8 @@ public class ClassSceneController {
     }
 
     public void watchVideo(ActionEvent actionEvent) throws IOException {
+        if(!client.getMy_course().contains(course.getCourse_id()))
+            return ;
         int index = tabPane.getSelectionModel().getSelectedIndex();//get day
         if(index==0) return;//intro page selected no vedio
         Stage stage = new Stage();

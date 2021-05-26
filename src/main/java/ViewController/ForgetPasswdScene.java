@@ -1,11 +1,13 @@
 package ViewController;
 
+import Model.Client;
+import Model.Control;
+import Model.IO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -20,8 +22,9 @@ public class ForgetPasswdScene {
     public TextField verifyCodeTextField;
     public TextField newPasswordTextField;
     public TextField passwordAgainTextField;
-    public Label difReminderLabel;
     public Label wrongPhoneNumberLabel;
+    public Label errorLabelForPassword;
+    public Label errorLabelForNotExist;
 
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -37,16 +40,25 @@ public class ForgetPasswdScene {
     }
 
     public void forgetPasswordOkClicked(ActionEvent actionEvent) throws IOException {
-        //System.out.println(Model.Control.checkLoginInfo(phoneNumberTextField.getText(),newPasswordTextField.getText()));
-        if((!newPasswordTextField.getText().equals(passwordAgainTextField.getText()))){
-            difReminderLabel.setVisible(true);  //password dif error
+        wrongPhoneNumberLabel.setText("");
+        errorLabelForPassword.setText("");
+        errorLabelForNotExist.setText("");
 
-        }else if((Model.Control.checkLoginInfo(phoneNumberTextField.getText(),newPasswordTextField.getText())).equals("Account not exist")){
-            wrongPhoneNumberLabel.setVisible(true); //phone number not exists in the json
-        }else{
+        if((!newPasswordTextField.getText().equals(passwordAgainTextField.getText())))
+            errorLabelForPassword.setText("Different input from first time.");
+        if(!Control.checkPasswordFormat(newPasswordTextField.getText()))
+            errorLabelForPassword.setText("Invalid password, it should be 6-20 bits, digits or letters");
+        if(!Control.checkPhoneNumberFormat(phoneNumberTextField.getText()))
+            wrongPhoneNumberLabel.setText("Wrong format of phone number. 11 bits digits expected");
+        try{
+            IO.read(new Client(),phoneNumberTextField.getText());
+        }
+        catch (Exception e){
+            errorLabelForNotExist.setText("Account with this phone number has not been created.");
+        }
+        if(errorLabelForNotExist.getText().equals("")&&errorLabelForPassword.getText().equals("")&&wrongPhoneNumberLabel.getText().equals("")){
             Model.Control.changePassword(phoneNumberTextField.getText(), newPasswordTextField.getText()); //phone number & password right
             goBackButtonClicked(actionEvent);
         }
-
     }
 }

@@ -160,16 +160,21 @@
                                                 <Font size="21.0" />
                                             </font>
                                         </Button>
-                                        <Label fx:id="errorLabelForTwicePassword" layoutX="344.0" layoutY="144.0" prefHeight="23.0" prefWidth="292.0" textFill="#f20606">
+                                        <Label fx:id="errorLabelForTwicePassword" alignment="TOP_LEFT" layoutX="344.0" layoutY="79.0" prefHeight="59.0" prefWidth="292.0" textFill="#f20606" wrapText="true">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="errorLabelForPhoneNumebr" layoutX="344.0" layoutY="47.0" prefHeight="23.0" prefWidth="292.0" textFill="#f20606">
+                                        <Label fx:id="errorLabelForPhoneNumebr" alignment="BOTTOM_LEFT" layoutX="344.0" layoutY="12.0" prefHeight="58.0" prefWidth="292.0" textFill="#f20606" wrapText="true">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
+                              <Label fx:id="errorLabelForAccountExist" alignment="TOP_LEFT" layoutX="177.0" layoutY="151.0" prefHeight="82.0" prefWidth="323.0" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                 </AnchorPane>
                             </children>

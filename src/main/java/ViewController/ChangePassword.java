@@ -37,7 +37,7 @@ public class ChangePassword {
         errorLabelForTwiceInput.setText("");
 
         if(!Control.checkPasswordFormat(newPasswordinput.getText()))
-            errorLabelForPasswordFormat.setText("Invalid input!Please input again.");
+            errorLabelForPasswordFormat.setText("invalid password, it should be 6-20 bits, digits or letters");
         if(!newPasswordinput.getText().equals(againInput.getText()))
             errorLabelForTwiceInput.setText("Different input from first time.");
 

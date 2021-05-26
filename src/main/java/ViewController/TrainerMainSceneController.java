@@ -36,7 +36,6 @@ public class TrainerMainSceneController {
     public ChoiceBox MyClassFilter;
     public TextArea MyClassOverView;
     public Label MyAccountName;
-    public Button MyAccountChangePassword;
     public DatePicker myLiveDatePicker;
     public Button live1SlotButton;
     public Button live2SlotButton;
@@ -64,7 +63,6 @@ public class TrainerMainSceneController {
 
     public void buildScene() throws SAXException, ParserConfigurationException, XPathExpressionException, IOException {
         trainer = (Trainer) IO.read(trainer, trainer.getPhone_number());
-        MyAccountName.setText(trainer.getName());
         myLiveDatePickerchanged(new ActionEvent());
         myCourseSearchButtonClicked(new ActionEvent());
     }
